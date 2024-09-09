@@ -1,0 +1,264 @@
+[gd_scene load_steps=11 format=3 uid="uid://8hmmjoiptn3q"]
+
+[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_bgs1l"]
+[ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="2_ke0qf"]
+
+[sub_resource type="Gradient" id="Gradient_ufixn"]
+colors = PackedColorArray(0.188371, 0.188371, 0.188371, 0.54902, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m7h0w"]
+gradient = SubResource("Gradient_ufixn")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hd4h6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vqmbf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b6y7e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hxo6u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t2hbv"]
+
+[sub_resource type="Gradient" id="Gradient_h3xge"]
+colors = PackedColorArray(0.901961, 0.858824, 0, 0.784314, 0.901961, 0.858824, 0, 1)
+
+[node name="optionsMenu" type="TextureRect"]
+z_index = 1
+offset_left = 128.0
+offset_top = 80.0
+offset_right = 1920.0
+offset_bottom = 1000.0
+texture = SubResource("GradientTexture2D_m7h0w")
+script = ExtResource("1_bgs1l")
+metadata/_edit_use_anchors_ = true
+
+[node name="close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 19.999
+offset_top = 819.0
+offset_right = 171.999
+offset_bottom = 900.0
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ke0qf")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hd4h6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vqmbf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_b6y7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hxo6u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t2hbv")
+text = "Close "
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(0, 8.085)
+points = PackedVector2Array(0, 76, 1792, 77)
+gradient = SubResource("Gradient_h3xge")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 1792.0
+offset_bottom = 81.0
+
+[node name="graphics" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ke0qf")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hd4h6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vqmbf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_b6y7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hxo6u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t2hbv")
+text = "Graphics "
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+
+[node name="controls" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ke0qf")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hd4h6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vqmbf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_b6y7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hxo6u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t2hbv")
+text = "Conrtols"
+
+[node name="graphicsSettings" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -872.0
+offset_top = -330.0
+offset_bottom = 460.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="graphicsHeaders" type="MarginContainer" parent="graphicsSettings"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 224.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="graphicsSettings/graphicsHeaders"]
+layout_mode = 2
+
+[node name="resolution" type="Label" parent="graphicsSettings/graphicsHeaders/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_ke0qf")
+theme_override_font_sizes/font_size = 45
+text = "Resolution"
+
+[node name="MarginContainer" type="MarginContainer" parent="graphicsSettings/graphicsHeaders/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 5
+
+[node name="screenMode" type="Label" parent="graphicsSettings/graphicsHeaders/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_ke0qf")
+theme_override_font_sizes/font_size = 45
+text = "Screen Mode
+"
+
+[node name="MarginContainer2" type="MarginContainer" parent="graphicsSettings/graphicsHeaders/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 5
+
+[node name="v-sync" type="Label" parent="graphicsSettings/graphicsHeaders/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_ke0qf")
+theme_override_font_sizes/font_size = 45
+text = "V-Sync
+"
+
+[node name="MarginContainer3" type="MarginContainer" parent="graphicsSettings/graphicsHeaders/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 5
+
+[node name="framerate" type="Label" parent="graphicsSettings/graphicsHeaders/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_ke0qf")
+theme_override_font_sizes/font_size = 45
+text = "Framerate Cap
+"
+
+[node name="graphicSelectors" type="MarginContainer" parent="graphicsSettings"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -648.0
+offset_right = 0.00500488
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="graphicsSettings/graphicSelectors"]
+layout_mode = 2
+
+[node name="resolutionButton" type="OptionButton" parent="graphicsSettings/graphicSelectors/VBoxContainer"]
+custom_minimum_size = Vector2(245, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+item_count = 6
+popup/item_0/text = "1280 x 720"
+popup/item_1/text = "1366 x 768"
+popup/item_1/id = 1
+popup/item_2/text = "1600 x 900"
+popup/item_2/id = 2
+popup/item_3/text = "1920 x 1080"
+popup/item_3/id = 3
+popup/item_4/text = "2560 x 1440"
+popup/item_4/id = 4
+popup/item_5/text = "3840 x 2160"
+popup/item_5/id = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="graphicsSettings/graphicSelectors/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="screenModeButton" type="OptionButton" parent="graphicsSettings/graphicSelectors/VBoxContainer"]
+custom_minimum_size = Vector2(245, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+item_count = 2
+popup/item_0/text = "Fullscreen"
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="graphicsSettings/graphicSelectors/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="vsyncButton" type="Button" parent="graphicsSettings/graphicSelectors/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ke0qf")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hd4h6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vqmbf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_b6y7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hxo6u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t2hbv")
+text = "On"
+
+[node name="MarginContainer3" type="MarginContainer" parent="graphicsSettings/graphicSelectors/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="framerateButton" type="OptionButton" parent="graphicsSettings/graphicSelectors/VBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+item_count = 8
+popup/item_0/text = "30"
+popup/item_1/text = "60"
+popup/item_1/id = 1
+popup/item_2/text = "90"
+popup/item_2/id = 2
+popup/item_3/text = "120"
+popup/item_3/id = 3
+popup/item_4/text = "144"
+popup/item_4/id = 4
+popup/item_5/text = "165"
+popup/item_5/id = 5
+popup/item_6/text = "240"
+popup/item_6/id = 6
+popup/item_7/text = "Unlimited"
+popup/item_7/id = 7
+
+[connection signal="item_selected" from="graphicsSettings/graphicSelectors/VBoxContainer/resolutionButton" to="." method="_on_resolution_button_item_selected"]
+[connection signal="item_selected" from="graphicsSettings/graphicSelectors/VBoxContainer/screenModeButton" to="." method="_on_screen_mode_button_item_selected"]
+[connection signal="pressed" from="graphicsSettings/graphicSelectors/VBoxContainer/vsyncButton" to="." method="_on_vsync_button_pressed"]
+[connection signal="item_selected" from="graphicsSettings/graphicSelectors/VBoxContainer/framerateButton" to="." method="_on_framerate_button_item_selected"]

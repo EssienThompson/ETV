@@ -1,0 +1,118 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgks8x1vq1bm3"]
+
+[ext_resource type="Script" path="res://scripts/healthBar3d.gd" id="1_doy1h"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ggqa7"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36nfy"]
+bg_color = Color(0.72549, 0.72549, 0.72549, 0)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2aoa"]
+bg_color = Color(0.956863, 0.827451, 0.301961, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3e8s8"]
+bg_color = Color(0.202723, 0.202723, 0.202723, 1)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dereg"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0.644663, 0.644663, 0.644663, 1)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8836v"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(100, 1, 1)
+gravity = Vector3(0, -98, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 9.82
+radial_accel_min = -30.0
+radial_accel_max = 30.0
+
+[sub_resource type="Gradient" id="Gradient_2f8hp"]
+offsets = PackedFloat32Array(0, 0.432665)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_28es0"]
+gradient = SubResource("Gradient_2f8hp")
+width = 2
+height = 5
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[node name="HealthBar3D" type="Node3D"]
+script = ExtResource("1_doy1h")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture = SubResource("ViewportTexture_ggqa7")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1287, 512)
+
+[node name="staggerBar" type="ProgressBar" parent="SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -20.0
+offset_right = 115.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_36nfy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a2aoa")
+step = 1.0
+value = 64.0
+show_percentage = false
+
+[node name="healthBar" type="ProgressBar" parent="SubViewport/staggerBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.0
+offset_top = -13.0
+offset_right = 119.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.960001, 0.600005)
+theme_override_styles/background = SubResource("StyleBoxFlat_3e8s8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dereg")
+step = 1.0
+value = 49.0
+show_percentage = false
+
+[node name="staggerParticles" type="GPUParticles2D" parent="SubViewport/staggerBar"]
+position = Vector2(112.5, -3)
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_8836v")
+texture = SubResource("GradientTexture2D_28es0")
+speed_scale = 1.5
+explosiveness = 0.2
+collision_base_size = 0.0
+trail_enabled = true
+trail_lifetime = 0.1

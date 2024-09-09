@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmwcs0op244in"]
+
+[ext_resource type="PackedScene" uid="uid://i2xgpu2dm8c4" path="res://scenes/menu&ui/map.tscn" id="1_1vs2c"]
+[ext_resource type="Script" path="res://scripts/run.gd" id="1_i6gma"]
+[ext_resource type="PackedScene" uid="uid://bs01qwyxnt877" path="res://scenes/player/player.tscn" id="2_uqrpa"]
+[ext_resource type="PackedScene" uid="uid://shbact1orxrb" path="res://scenes/levels/test_level.tscn" id="3_1cx5j"]
+
+[node name="run" type="Node"]
+script = ExtResource("1_i6gma")
+
+[node name="map" parent="." instance=ExtResource("1_1vs2c")]
+visible = false
+
+[node name="level" type="Node3D" parent="."]
+
+[node name="test_level" parent="level" instance=ExtResource("3_1cx5j")]
+
+[node name="Player" parent="." instance=ExtResource("2_uqrpa")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 4.00939, -0.00854, 0.673337)

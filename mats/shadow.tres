@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://xlcs6o2eykhi"]
+
+[ext_resource type="Shader" path="res://shaders/shadow.gdshader" id="1_rk6u0"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_rk6u0")
+shader_parameter/shadow_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_opacity = 1.0
+shader_parameter/shadow_max_opacity = 1.0
+shader_parameter/luminance = Color(0.3086, 0.6049, 0.082, 1)
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 4.0
+shader_parameter/scale = 0.15
+shader_parameter/angle = 0.0

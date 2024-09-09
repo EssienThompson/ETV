@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bt7gh87cfn6h4"]
+
+[ext_resource type="Shader" path="res://shaders/cutter.gdshader" id="1_ox46l"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tibyr"]
+frequency = 0.0796
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k6ede"]
+noise = SubResource("FastNoiseLite_tibyr")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ox46l")
+shader_parameter/cutplane = null
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/point_size = null
+shader_parameter/roughness = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = null
+shader_parameter/metallic = null
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+shader_parameter/_noise = SubResource("NoiseTexture2D_k6ede")

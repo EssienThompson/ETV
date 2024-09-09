@@ -1,0 +1,187 @@
+[gd_scene load_steps=15 format=3 uid="uid://bs01qwyxnt877"]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_2cdyn"]
+[ext_resource type="PackedScene" uid="uid://djgxuudg7kwp6" path="res://scenes/player/manBoneAtt.tscn" id="2_6vwgt"]
+[ext_resource type="Script" path="res://scripts/cutterDeath.gd" id="3_00i4s"]
+[ext_resource type="Script" path="res://scripts/playerCamera.gd" id="3_j2l74"]
+[ext_resource type="PackedScene" uid="uid://d31edaotg38x7" path="res://scenes/utilities/hurtbox.tscn" id="4_dbh8y"]
+[ext_resource type="PackedScene" uid="uid://cwh0w0lnu8dpq" path="res://scenes/menu&ui/pauseMenu.tscn" id="6_c4eio"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cgehq"]
+radius = 0.577285
+height = 4.42989
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w8wq3"]
+radius = 50.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6tg5a"]
+height = 4.41289
+
+[sub_resource type="BoxMesh" id="BoxMesh_fj8rt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pk8at"]
+bg_color = Color(0.427493, 0.427493, 0.427493, 1)
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op82c"]
+bg_color = Color(1, 1, 1, 1)
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kv0k"]
+bg_color = Color(0.427451, 0.427451, 0.427451, 0.470588)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5rqp"]
+bg_color = Color(0.956863, 0.827451, 0.301961, 1)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+collision_layer = 16
+collision_mask = 105
+script = ExtResource("1_2cdyn")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2225, 0.205914)
+shape = SubResource("CapsuleShape3D_cgehq")
+
+[node name="man" parent="." instance=ExtResource("2_6vwgt")]
+
+[node name="Skeleton3D" parent="man/Armature" index="1"]
+bones/5/rotation = Quaternion(0.0356937, -0.0140043, -0.768585, 0.638597)
+bones/5/scale = Vector3(1.0014, 1.0014, 1.0014)
+bones/24/rotation = Quaternion(0.0356937, 0.0140043, 0.768585, 0.638597)
+bones/24/scale = Vector3(1.0014, 1.0014, 1.0014)
+
+[node name="man" parent="man/Armature/Skeleton3D" index="0" node_paths=PackedStringArray("cutter", "user")]
+surface_material_override/0 = null
+script = ExtResource("3_00i4s")
+cutter = NodePath("../../../../MeshInstance3D")
+user = NodePath("../../../..")
+cutPos = 2.5
+
+[node name="AnimationTree" parent="man/Armature/Skeleton3D/AnimationPlayer" index="0"]
+parameters/TimeScaleParry2/scale = 1.0
+parameters/swordSwingSpd/scale = 1.0
+
+[node name="BoneAttachment3D" parent="man/Armature/Skeleton3D" index="2"]
+transform = Transform3D(-0.685322, 0.120353, -0.720181, -0.160462, -0.988386, -0.0124792, -0.712318, 0.10686, 0.695697, -0.646129, -0.00725293, 0.236752)
+
+[node name="swordCont" parent="man/Armature/Skeleton3D/BoneAttachment3D" index="0"]
+transform = Transform3D(0.701888, 0.513028, -0.494114, -0.251738, 0.827603, 0.501693, 0.66631, -0.227746, 0.710042, -0.475, 0.227, 0.476)
+
+[node name="sword" parent="man/Armature/Skeleton3D/BoneAttachment3D/swordCont" index="0"]
+transform = Transform3D(0.215057, 0, 0, 0, 0.0861336, 0.197056, 0, -0.197056, 0.0861336, 0, 0, 0)
+
+[node name="hitbox" parent="man/Armature/Skeleton3D/BoneAttachment3D/swordCont/sword" index="1" node_paths=PackedStringArray("user")]
+user = NodePath("../../../../../../..")
+
+[node name="camRoot" type="Node3D" parent="."]
+script = ExtResource("3_j2l74")
+
+[node name="twistPivot" type="Node3D" parent="camRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0924839, 4.08727, 0)
+
+[node name="pitchPivot" type="Node3D" parent="camRoot/twistPivot"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="camRoot/twistPivot/pitchPivot"]
+spring_length = -3.5
+margin = 0.1
+
+[node name="camera" type="Marker3D" parent="camRoot/twistPivot/pitchPivot/SpringArm3D"]
+transform = Transform3D(-1, 3.13938e-08, -1.47696e-07, 0, 0.978148, 0.207912, 1.50996e-07, 0.207912, -0.978148, -0.000131108, 1.49955, -3.5)
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="camRoot/twistPivot/pitchPivot/SpringArm3D"]
+transform = Transform3D(-1, 1.81762e-08, -8.55124e-08, 0, 0.978148, 0.207912, 8.74228e-08, 0.207912, -0.978148, 0, 1.5, -3.5)
+cull_mask = 1048573
+current = true
+fov = 90.0
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.48174, 0)
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_w8wq3")
+
+[node name="hurtbox" parent="." node_paths=PackedStringArray("user") instance=ExtResource("4_dbh8y")]
+collision_layer = 0
+user = NodePath("..")
+
+[node name="CollisionShape3D" parent="hurtbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2225, 0.181347)
+shape = SubResource("CapsuleShape3D_6tg5a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.67624, 0)
+visible = false
+mesh = SubResource("BoxMesh_fj8rt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="healthBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 610.0
+offset_bottom = 57.0
+theme_override_styles/background = SubResource("StyleBoxFlat_pk8at")
+theme_override_styles/fill = SubResource("StyleBoxFlat_op82c")
+step = 1.0
+value = 44.0
+show_percentage = false
+
+[node name="staggerBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 216.0
+offset_top = -1050.0
+offset_right = 956.0
+offset_bottom = -1023.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_5kv0k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_n5rqp")
+step = 1.0
+fill_mode = 1
+show_percentage = false
+
+[node name="bossStaggerBar" type="ProgressBar" parent="CanvasLayer"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -370.0
+offset_top = -154.905
+offset_right = 370.0
+offset_bottom = -127.905
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_5kv0k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_n5rqp")
+step = 1.0
+show_percentage = false
+
+[node name="pauseMenu" parent="." instance=ExtResource("6_c4eio")]
+process_priority = 3
+
+[editable path="man"]
+[editable path="man/Armature/Skeleton3D/BoneAttachment3D/swordCont/sword"]
+[editable path="man/Armature/Skeleton3D/BoneAttachment3D/swordCont/sword/sword"]
+[editable path="hurtbox"]

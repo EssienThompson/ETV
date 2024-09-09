@@ -1,0 +1,287 @@
+[gd_scene load_steps=16 format=3 uid="uid://c07ge7h3c8w3w"]
+
+[ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_7iyqe"]
+[ext_resource type="FontFile" uid="uid://cb0p8y1fs5mb2" path="res://fonts/bubba/BubbaRegular-YzYXo.ttf" id="1_cqa01"]
+[ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="2_75f50"]
+[ext_resource type="Environment" uid="uid://dh35wtmm60qnx" path="res://mats/environment.tres" id="3_ckegr"]
+[ext_resource type="PackedScene" uid="uid://8hmmjoiptn3q" path="res://scenes/menu&ui/optionsMenu.tscn" id="4_qbfka"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ehcle"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vh6r0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mlokf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5r5mc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a2uqs"]
+
+[sub_resource type="Animation" id="Animation_mwlu0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/SubViewportContainer/SubViewport/Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.12438, -0.225228, 0.169439)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/optionsMenu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1920, 80)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/optionsMenu:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_l6ykj"]
+resource_name = "options"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/optionsMenu:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(-2, 0.5),
+"update": 0,
+"values": [Vector2(1920, 80), Vector2(128, 80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/optionsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_bo72v"]
+resource_name = "optionsOut"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/optionsMenu:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.5, -2),
+"update": 0,
+"values": [Vector2(128, 80), Vector2(1920, 80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/optionsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_36ixy"]
+resource_name = "start"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/SubViewportContainer/SubViewport/Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.12438, -0.225228, 0.169439), Vector3(1.27856, -0.341256, 0.0454109), Vector3(1.18514, 0.293161, -0.402098), Vector3(0.865161, -0.410066, -1.04232), Vector3(1.15139, -0.266175, 0.202391), Vector3(1.45549, -0.10573, 1.29257), Vector3(1.13134, 0.0381482, 0.149848), Vector3(0.828849, -0.216626, 0.166889), Vector3(0.91156, -1.59413, -0.226489), Vector3(1.27856, -0.341256, 0.0454109), Vector3(1.12438, -0.225228, 0.169439)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gb152"]
+_data = {
+"RESET": SubResource("Animation_mwlu0"),
+"options": SubResource("Animation_l6ykj"),
+"optionsOut": SubResource("Animation_bo72v"),
+"start": SubResource("Animation_36ixy")
+}
+
+[node name="StartMenu" type="Node3D"]
+script = ExtResource("1_7iyqe")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.926815, -0.362928, -0.096419, 0.0728033, 0.425553, -0.902, 0.368392, 0.828968, 0.420832, 0, 0, 1.06483)
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.903619, 0.858692, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_cqa01")
+theme_override_font_sizes/font_size = 250
+text = "Embrace The Void"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+
+[node name="continue" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_75f50")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ehcle")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vh6r0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mlokf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5r5mc")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_a2uqs")
+text = "Continue"
+
+[node name="start" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_75f50")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ehcle")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vh6r0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mlokf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5r5mc")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_a2uqs")
+text = "Start Game"
+
+[node name="options" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_75f50")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ehcle")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vh6r0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mlokf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5r5mc")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_a2uqs")
+text = "Options"
+
+[node name="quit" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_75f50")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ehcle")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vh6r0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mlokf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5r5mc")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_a2uqs")
+text = "Quit"
+
+[node name="optionsMenu" parent="CanvasLayer/Control" instance=ExtResource("4_qbfka")]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -0.0128174
+offset_top = -460.0
+offset_right = 1791.99
+offset_bottom = 460.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_ckegr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.944791, 0.272117, 0.182543, -0.0240441, -0.498013, 0.866836, 0.32679, -0.823368, -0.463976, -0.11829, 13.6619, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gb152")
+}
+
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/optionsMenu/close" to="." method="_on_close_pressed"]
+
+[editable path="CanvasLayer/Control/optionsMenu"]

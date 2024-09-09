@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://db05p6cx6bvlb"]
+
+[ext_resource type="Shader" path="res://shaders/world3d.gdshader" id="1_ikch2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3d50"]
+render_priority = 0
+shader = ExtResource("1_ikch2")
+shader_parameter/outline_threshold = 0.1
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/brightness = 6.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u20b7"]
+resource_name = "Material"
+next_pass = SubResource("ShaderMaterial_v3d50")
+cull_mode = 2
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+heightmap_scale = 4.61
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_flip_tangent = true
+heightmap_flip_binormal = true
+refraction_texture_channel = 4
+detail_blend_mode = 3
+disable_receive_shadows = true
+billboard_keep_scale = true
+point_size = 128.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x842j"]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, -5, 0)
+scale_min = 0.02
+scale_max = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_kihgc"]
+size = Vector3(0.25, 1, 0.25)
+
+[node name="sparks" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_u20b7")
+emitting = false
+amount = 30
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_x842j")
+draw_passes = 2
+draw_pass_1 = SubResource("BoxMesh_kihgc")
+draw_pass_2 = null

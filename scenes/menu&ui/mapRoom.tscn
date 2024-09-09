@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://crejrduqj7841"]
+
+[ext_resource type="Script" path="res://scripts/mapRoom.gd" id="1_744a6"]
+[ext_resource type="Texture2D" uid="uid://ypk5f8ur83s0" path="res://images/evanDisrepect.png" id="2_pkdr5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idpj2"]
+size = Vector2(96, 80)
+
+[sub_resource type="Animation" id="Animation_ipbol"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/Line2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rmj1r"]
+resource_name = "highlight"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.25, 1.25)]
+}
+
+[sub_resource type="Animation" id="Animation_hy6f6"]
+resource_name = "select"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals/Line2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"onMapRoomSelected"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_68sac"]
+_data = {
+"RESET": SubResource("Animation_ipbol"),
+"highlight": SubResource("Animation_rmj1r"),
+"select": SubResource("Animation_hy6f6")
+}
+
+[node name="mapRoom" type="Area2D"]
+script = ExtResource("1_744a6")
+
+[node name="visuals" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="visuals"]
+modulate = Color(1, 1, 1, 0)
+points = PackedVector2Array(-40, -32, 40, -32, 40, 32, -40, 32)
+closed = true
+
+[node name="Sprite2D" type="Sprite2D" parent="visuals"]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_pkdr5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_idpj2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_68sac")
+}
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
