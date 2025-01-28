@@ -1,0 +1,27 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b3bcnspskkc4k"]
+
+[ext_resource type="Shader" path="res://shaders/shadow+hatch.gdshader" id="1_tx3y7"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_tx3y7")
+shader_parameter/shadow_color = Color(1, 1, 1, 1)
+shader_parameter/hatchColor = Color(1, 1, 1, 1)
+shader_parameter/farShadowColor = Color(0, 0, 0, 1)
+shader_parameter/back_color = Color(0, 0, 0, 1)
+shader_parameter/HBack_color = Color(0, 0, 0, 1)
+shader_parameter/FSBackColor = Color(1, 1, 1, 1)
+shader_parameter/obj = true
+shader_parameter/chara = false
+shader_parameter/shadow_opacity = 0.6
+shader_parameter/shadow_max_opacity = 1.0
+shader_parameter/transition_distance = 10.0
+shader_parameter/fade_smoothness = 2.0
+shader_parameter/brightness = 1.0
+shader_parameter/hatchBrightness = 0.9
+shader_parameter/FarShadowBrightness = 0.9
+shader_parameter/scale = 400.0
+shader_parameter/hatchScale = 160.21
+shader_parameter/FarShadowScale = 30.0
+shader_parameter/angle = 0.0
+shader_parameter/hatchAngle = 0.65

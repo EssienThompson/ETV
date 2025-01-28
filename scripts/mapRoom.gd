@@ -10,6 +10,7 @@ const ICONS := {
 	Room.Type.REST: [preload("res://images/Lawwi kitty.JPG"), Vector2(0.03, 0.03)],
 	Room.Type.SHOP: [preload("res://images/moneyPrime.jpg"), Vector2(0.085, 0.085)],
 	Room.Type.BOSS: [preload("res://images/evanDisrepect.png"), Vector2(0.03, 0.03)],
+	Room.Type.ELITE: [preload("res://images/greylE.png"), Vector2(0.065, 0.065)]
 }
 
 @onready var sprite_2d: Sprite2D = $visuals/Sprite2D
@@ -17,16 +18,37 @@ const ICONS := {
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var colli: CollisionShape2D = $CollisionShape2D
 
+
 var available := false : set = setAvailable
 var room:Room : set = setRoom
 
 func setAvailable(newValue:bool) -> void:
 	available = newValue
 	
-	if available:
+	if available == true:
+		animation_player.play("highlight")
+	elif available == false:
+		animation_player.play("still")
+	elif not room.selected:
+		animation_player.play("RESET")
+		
+func setFocus():
+	if room.focus && available:
+		animation_player.play("focusHighlight")
+	elif room.focus:
+		animation_player.play("focus")
+	elif available:
 		animation_player.play("highlight")
 	elif not room.selected:
 		animation_player.play("RESET")
+		
+	if room.beaten == false:
+		line_2d.modulate = Color.TRANSPARENT
+	elif room.beaten:
+		if !room.focus and !available:
+			animation_player.play("still")
+		showSelected()
+		
 		
 
 func setRoom(newData:Room) -> void:
@@ -46,13 +68,16 @@ func showSelected() -> void:
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if not available or not event.is_action_pressed("attack"):
 		return
-		
+	
+	select()
+	
+func select():
 	room.selected = true
 	animation_player.play("select")
 	
-	
 func onMapRoomSelected() -> void:
 	selected.emit(room) #called in aniplr when select ani finishes
+	
 	
 func disableColli() -> void:
 	colli.disabled = true
@@ -60,7 +85,8 @@ func disableColli() -> void:
 func enableColli() -> void:
 	colli.disabled = false
 	
-#func _ready() -> void:
+func _ready() -> void:
+	Events.focusCheck.connect(setFocus)
 	#var testRoom := Room.new()
 	#testRoom.type = Room.Type.REST
 	#testRoom.position = Vector2(100, 100)
@@ -68,3 +94,7 @@ func enableColli() -> void:
 	#
 	#await get_tree().create_timer(3).timeout
 	#available = true
+
+
+func _on_mouse_entered() -> void:
+	Events.focusChanged.emit(room)

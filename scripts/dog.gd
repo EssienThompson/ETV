@@ -6,11 +6,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var nav = $NavigationAgent3D
 @onready var armature = $ani_scele/Armature
 @onready var man: MeshInstance3D = $ani_scele/Armature/Skeleton3D/man
-@onready var health_bar_3d: Node3D = $CollisionShape3D/HealthBar3D
+@onready var health_bar_3d: Node3D = $HealthBar3D
+@onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
+@onready var hitbo: CollisionShape3D = $ani_scele/Armature/Skeleton3D/BoneAttachment3D/hitbox/CollisionShape3D
 
 const ENEMY_TYPE = "norm"
 const SPEED = 9 #7
-enum {
+enum State {
 	IDLE,
 	CHASE,
 	HURT,
@@ -18,7 +20,7 @@ enum {
 	STAGGERED,
 	DEATH,
 }
-var state = IDLE
+var currState : State = State.IDLE
 var player
 var team := 1
 var damage := 0
@@ -62,15 +64,15 @@ var postLower := false
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	match state:
-		IDLE:
+	match currState:
+		State.IDLE:
 			velocity.x = 0
 			velocity.z = 0
-		CHASE:
+		State.CHASE:
 			velocity.x = direction.x * SPEED 
 			velocity.z = direction.z * SPEED
 		
-		ATTACK:
+		State.ATTACK:
 			if veloZero:
 				velocity.x = 0
 				velocity.z = 0
@@ -78,15 +80,16 @@ func _physics_process(delta):
 				velocity.x = atkDir.x * SPEED * 1.5
 				velocity.z = atkDir.z * SPEED * 1.5
 				
-		STAGGERED:
+		State.STAGGERED:
 			velocity.x = 0
 			velocity.z = 0
 			
-		HURT:
+			
+		State.HURT:
 			velocity.x = -attackerDir.x * SPEED/2
 			velocity.z = -attackerDir.z * SPEED/2
 			
-		DEATH:
+		State.DEATH:
 			velocity.x = 0
 			velocity.z = 0
 			
@@ -114,6 +117,8 @@ func _process(delta):
 	else:
 		if posture > 0:
 			postLower = true
+		else:
+			postLower = false
 		
 	if postLower:
 		postLowTimer += delta
@@ -124,7 +129,7 @@ func _process(delta):
 				posture = 0
 		
 	if posture >= maxPosture:
-		state = STAGGERED
+		currState = State.STAGGERED
 		#health_bar_3d.staggerColorRed()
 	#elif posture >= maxPosture/2:
 		#health_bar_3d.staggerColorOrange()
@@ -133,16 +138,16 @@ func _process(delta):
 		
 	health_bar_3d.staggerColor()
 	if hp <= 0:
-		state = DEATH #add death
+		currState = State.DEATH #add death
 		man.death = true
 		dying = true
 		#print("death reached")
 		
-	match state: 
-		IDLE:
+	match currState: 
+		State.IDLE:
 			idle()
 			
-		CHASE:
+		State.CHASE:
 			jog()
 			if player == null:
 				return
@@ -152,11 +157,11 @@ func _process(delta):
 				direction = (nav.get_next_path_position() - global_transform.origin).normalized()
 				var distToPlayer = global_transform.origin.distance_to(targetPos)
 				if distToPlayer <= 5:
-					state = ATTACK
+					currState = State.ATTACK
 						
 			facing_angle = Vector2(direction.z, direction.x).angle() 
 			
-		ATTACK:
+		State.ATTACK:
 			var blockChance : bool
 			targetPos = player.global_transform.origin
 			var distToPlayer = global_transform.origin.distance_to(targetPos)
@@ -179,7 +184,7 @@ func _process(delta):
 				stringCount = 0
 				rando = 0
 				once = true
-				state = CHASE
+				currState = State.CHASE
 				
 			if timer <= facingThresh:
 				facing_angle = Vector2(direction.z, direction.x).angle()
@@ -195,26 +200,26 @@ func _process(delta):
 					veloZero = true
 			
 			
-		STAGGERED:
+		State.STAGGERED:
 			stagger()
 			staggerTimer += delta
 			if staggerTimer >= 0.63:
 				stagIdle()
 			
 				
-		HURT:
+		State.HURT:
 			timer += delta
 			if timer >= 0.5:
-				state = CHASE
+				currState = State.CHASE
 				timerThresh = 0
 				facingThresh = 0
 				timer = 0
 				
-		DEATH:
+		State.DEATH:
 			deathTimer += delta
 			if deathTimer >= 3:
 				queue_free()
-				pass
+				
 			
 		
 
@@ -235,25 +240,25 @@ func isHit(hitInfo):
 	velocity.x = 0
 	velocity.z = 0
 	if team != Entityteam:
-		match state:
-			CHASE:
+		match currState:
+			State.CHASE:
 				hit()
-				state = HURT
+				currState = State.HURT
 				hp = hp - damageDealt
-			IDLE:
+			State.IDLE:
 				hit()
-				state = HURT
+				currState = State.HURT
 				hp = hp - damageDealt
-			HURT: 
+			State.HURT: 
 				hit()
-				state = HURT
+				currState = State.HURT
 				hp = hp - damageDealt
-			ATTACK:
+			State.ATTACK:
 				atkAbort()
 				hit()
-				state = HURT
+				currState = State.HURT
 				hp = hp - damageDealt
-			STAGGERED:
+			State.STAGGERED:
 				hp = hp - (damageDealt * 2)
 		attackerDir = (entityOrigin - global_transform.origin).normalized()
 		facing_angle = Vector2(attackerDir.z, attackerDir.x).angle()
@@ -264,14 +269,14 @@ func isHit(hitInfo):
 
 func _on_Body_Entered(body):
 	if body.is_in_group("player"):
-		state = CHASE #Chase
+		currState = State.CHASE #Chase
 		rotati = true
 		once = true
 		player = body
 
 func _on_Body_Exited(body):
 	if body.is_in_group("player"):
-		state = IDLE
+		currState = State.IDLE
 		rotati = false
 		
 		

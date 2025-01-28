@@ -46,9 +46,9 @@ func staggerColorYellow():
 	
 func staggerColor():
 	var progress = stagger_bar.value
-	var t = 1 - (progress/ stagger_bar.max_value)
-	var rgb = 1*t
-	rgb = clampf(rgb, 0.3, 1)
+	#var t = 1 - (progress/ stagger_bar.max_value)
+	var rgb = 1#/t
+	#rgb = clampf(rgb, 0.3, 1)
 	var fillBar = stagger_bar.get_theme_stylebox("fill")
 	fillBar.bg_color = Color(rgb, rgb, rgb)
 	if stagger_bar.value == stagger_bar.max_value:

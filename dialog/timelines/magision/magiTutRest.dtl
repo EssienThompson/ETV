@@ -1,0 +1,8 @@
+join magision center
+[signal arg="magiNeutral"]
+magision: Oh yea I kinda forgot to tell you that this is the rest room
+[signal arg="magiSmile"]
+magision: Interact with the campfire and you'll be brought to tip top condition
+[signal arg="magiResetMou"]
+magision: Cause the next fight is gonna be toooouuuugh
+[signal arg="stopTalk"]

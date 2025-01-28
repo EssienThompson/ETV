@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=3 uid="uid://df6xky32r6u56"]
+
+[ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="1_78ymf"]
+[ext_resource type="Script" path="res://scripts/relicButton.gd" id="2_27wwl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejst7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eut8c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kkel7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2yml"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oi8ju"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0tlyd"]
+
+[node name="Button" type="Button" groups=["persist"]]
+custom_minimum_size = Vector2(268, 36)
+theme_override_colors/font_hover_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_78ymf")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ejst7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_eut8c")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kkel7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v2yml")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_oi8ju")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0tlyd")
+text = "Exampleisudjfjjnjnasd"
+script = ExtResource("2_27wwl")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,79 @@
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://bad6fpq46eyxb"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_njbum"]
+parameter_name = "ballColor"
+
+[sub_resource type="VisualShaderNodeFresnel" id="VisualShaderNodeFresnel_m0llc"]
+default_input_values = [2, true, 3, 4.0]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_3w4pw"]
+parameter_name = "frenelPow"
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_kat6v"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_gbrsi"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_37smh"]
+parameter_name = "bright"
+default_value_enabled = true
+default_value = 1.0
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded, shadows_disabled, ambient_light_disabled, fog_disabled;
+
+uniform vec4 ballColor : source_color;
+uniform float bright = 1;
+uniform float frenelPow;
+
+
+
+void fragment() {
+// ColorParameter:2
+	vec4 n_out2p0 = ballColor;
+
+
+// FloatParameter:7
+	float n_out7p0 = bright;
+
+
+// VectorCompose:5
+	vec3 n_out5p0 = vec3(n_out7p0, n_out7p0, n_out7p0);
+
+
+// VectorOp:6
+	vec3 n_out6p0 = vec3(n_out2p0.xyz) + n_out5p0;
+
+
+// FloatParameter:4
+	float n_out4p0 = frenelPow;
+
+
+// Fresnel:3
+	float n_out3p0 = pow(clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_out4p0);
+
+
+// Output:0
+	ALBEDO = n_out6p0;
+	ALPHA = n_out3p0;
+
+
+}
+"
+flags/unshaded = true
+flags/shadows_disabled = true
+flags/ambient_light_disabled = true
+flags/fog_disabled = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_njbum")
+nodes/fragment/2/position = Vector2(-840, 120)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFresnel_m0llc")
+nodes/fragment/3/position = Vector2(-760, 540)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatParameter_3w4pw")
+nodes/fragment/4/position = Vector2(-1283.86, 645.862)
+nodes/fragment/5/node = SubResource("VisualShaderNodeVectorCompose_kat6v")
+nodes/fragment/5/position = Vector2(-700, 880)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVectorOp_gbrsi")
+nodes/fragment/6/position = Vector2(-160, 580)
+nodes/fragment/7/node = SubResource("VisualShaderNodeFloatParameter_37smh")
+nodes/fragment/7/position = Vector2(-1100, 980)
+nodes/fragment/connections = PackedInt32Array(4, 0, 3, 3, 3, 0, 0, 1, 5, 0, 6, 1, 7, 0, 5, 0, 7, 0, 5, 1, 7, 0, 5, 2, 2, 0, 6, 0, 6, 0, 0, 0)

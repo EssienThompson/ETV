@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://btx7omj5rrbn1"]
+
+[ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="1_v1fhr"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oasha"]
+viewport_path = NodePath("SubViewport")
+
+[node name="interactable" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+transparent = false
+texture = SubResource("ViewportTexture_oasha")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(97, 79)
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport"]
+offset_right = 97.0
+offset_bottom = 79.0
+color = Color(0.104167, 0.104167, 0.104167, 1)
+
+[node name="Label" type="Label" parent="SubViewport/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_v1fhr")
+theme_override_font_sizes/font_size = 50
+text = "F"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect4" type="ColorRect" parent="SubViewport/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="SubViewport/ColorRect"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 5.0
+grow_vertical = 2
+
+[node name="ColorRect3" type="ColorRect" parent="SubViewport/ColorRect"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 92.0
+offset_right = 97.0
+grow_vertical = 2

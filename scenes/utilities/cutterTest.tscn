@@ -1,40 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dog2nh15n6u36"]
+[gd_scene load_steps=12 format=3 uid="uid://dog2nh15n6u36"]
 
-[ext_resource type="Material" uid="uid://fyqvi3omyh3h" path="res://mats/manMattBackup.tres" id="1_1427c"]
-[ext_resource type="Shader" path="res://shaders/world3d.gdshader" id="1_xsurl"]
-[ext_resource type="Script" path="res://scripts/cutterDeath.gd" id="2_31u5u"]
+[ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="1_ruao6"]
 [ext_resource type="Shader" path="res://shaders/cutter.gdshader" id="2_xs4sn"]
 [ext_resource type="Script" path="res://scripts/testy.gd" id="3_owvf2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_i8qrd"]
 size = Vector3(10, 10, 10)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3d50"]
-render_priority = 0
-shader = ExtResource("1_xsurl")
-shader_parameter/outline_threshold = 0.1
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/brightness = 6.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ddpoi"]
-resource_name = "Material"
-next_pass = SubResource("ShaderMaterial_v3d50")
-cull_mode = 2
-diffuse_mode = 3
-specular_mode = 1
-albedo_color = Color(0, 0, 0, 1)
-anisotropy = 1.0
-heightmap_scale = 4.61
-heightmap_deep_parallax = true
-heightmap_min_layers = 8
-heightmap_max_layers = 32
-heightmap_flip_tangent = true
-heightmap_flip_binormal = true
-subsurf_scatter_strength = 1.0
-refraction_texture_channel = 4
-detail_blend_mode = 3
-disable_receive_shadows = true
-point_size = 128.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_qj18v"]
 
@@ -46,12 +17,12 @@ fractal_type = 0
 noise = SubResource("FastNoiseLite_tibyr")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_riybv"]
-render_priority = 0
+render_priority = 1
 shader = ExtResource("2_xs4sn")
 shader_parameter/cutplane = null
 shader_parameter/albedo = Color(0, 0, 0, 1)
-shader_parameter/point_size = null
-shader_parameter/roughness = null
+shader_parameter/point_size = 0.1
+shader_parameter/roughness = 0.0
 shader_parameter/metallic_texture_channel = null
 shader_parameter/specular = null
 shader_parameter/metallic = null
@@ -64,24 +35,82 @@ shader_parameter/_noise = SubResource("NoiseTexture2D_k6ede")
 [sub_resource type="BoxMesh" id="BoxMesh_y7web"]
 size = Vector3(10, 10, 10)
 
+[sub_resource type="Shader" id="Shader_bobgj"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_toon, specular_toon, shadows_disabled;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ul3y4"]
+resource_name = "Material"
+render_priority = 0
+shader = SubResource("Shader_bobgj")
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/point_size = 128.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
 [node name="Node3D" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93344, 0)
+material_override = ExtResource("1_ruao6")
 mesh = SubResource("BoxMesh_i8qrd")
-surface_material_override/0 = SubResource("StandardMaterial3D_ddpoi")
-script = ExtResource("2_31u5u")
+script = ExtResource("3_owvf2")
 
 [node name="cutter" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.999778, -0.0210646, 0, 0.0210646, 0.999778, 0, 0, 0, 1, -8.23409, 6.64858, 0)
+transform = Transform3D(0.999778, -0.0210646, 0, 0.0210646, 0.999778, 0, 0, 0, 1, -8.23409, 2.47738, 0)
 mesh = SubResource("BoxMesh_qj18v")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5571, 0, 0)
 material_override = SubResource("ShaderMaterial_riybv")
 mesh = SubResource("BoxMesh_y7web")
-surface_material_override/0 = ExtResource("1_1427c")
+surface_material_override/0 = SubResource("ShaderMaterial_ul3y4")
 script = ExtResource("3_owvf2")
 
 [node name="Camera3D" type="Camera3D" parent="."]

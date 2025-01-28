@@ -1,0 +1,120 @@
+[gd_scene load_steps=15 format=3 uid="uid://db05p6cx6bvlb"]
+
+[ext_resource type="Shader" path="res://shaders/world3d.gdshader" id="1_0xrkl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3d50"]
+render_priority = 0
+shader = ExtResource("1_0xrkl")
+shader_parameter/outline_threshold = 0.1
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/brightness = 6.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u20b7"]
+resource_name = "Material"
+next_pass = SubResource("ShaderMaterial_v3d50")
+cull_mode = 2
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+heightmap_scale = 4.61
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_flip_tangent = true
+heightmap_flip_binormal = true
+refraction_texture_channel = 4
+detail_blend_mode = 3
+disable_receive_shadows = true
+billboard_keep_scale = true
+point_size = 128.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x842j"]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, -5, 0)
+scale_min = 0.02
+scale_max = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_kihgc"]
+size = Vector3(0.25, 1, 0.25)
+
+[sub_resource type="Curve" id="Curve_dcqeg"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.453211, 0, 0, Vector2(0.99999, -1), 0.0, 0.0, 0, 0, Vector2(1, -1024), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_igk0o"]
+curve = SubResource("Curve_dcqeg")
+
+[sub_resource type="Curve" id="Curve_q7v7n"]
+_data = [Vector2(0.151703, 1), 0.0, 0.452224, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_h5bsp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_15u7a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_dkh2r"]
+curve_x = SubResource("Curve_q7v7n")
+curve_y = SubResource("Curve_h5bsp")
+curve_z = SubResource("Curve_15u7a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_av7vu"]
+angle_min = -25.0
+angle_max = 25.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveXYZTexture_dkh2r")
+emission_curve = SubResource("CurveTexture_igk0o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y45ms"]
+cull_mode = 2
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1.5, 1.5, 1.502, 1)
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_u74hx"]
+material = SubResource("StandardMaterial3D_y45ms")
+size = Vector2(4.5, 0.03)
+orientation = 2
+
+[node name="sparks" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_u20b7")
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_x842j")
+draw_passes = 2
+draw_pass_1 = SubResource("BoxMesh_kihgc")
+draw_pass_2 = null
+
+[node name="line" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 1
+lifetime = 0.25
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_av7vu")
+draw_pass_1 = SubResource("PlaneMesh_u74hx")

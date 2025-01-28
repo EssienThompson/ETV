@@ -7,10 +7,11 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var armature = $zomb/Armature
 @onready var man: MeshInstance3D = $zomb/Armature/Skeleton3D/man
 @onready var health_bar_3d: Node3D = $CollisionShape3D/HealthBar3D
+@onready var sparks: GPUParticles3D = $zomb/Armature/Skeleton3D/sword/sparks
 
 const ENEMY_TYPE = "norm"
 const SPEED = 7 #7
-enum {
+enum State {
 	IDLE,
 	CHASE,
 	HURT,
@@ -19,7 +20,7 @@ enum {
 	BLOCK,
 	DEATH,
 }
-var state = IDLE
+var currState : State = State.IDLE
 var player
 var team := 1
 var damage := 0
@@ -63,15 +64,15 @@ var postLower := false
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	match state:
-		IDLE:
+	match currState:
+		State.IDLE:
 			velocity.x = 0
 			velocity.z = 0
-		CHASE:
+		State.CHASE:
 			velocity.x = direction.x * SPEED 
 			velocity.z = direction.z * SPEED
 		
-		ATTACK:
+		State.ATTACK:
 			if veloZero:
 				velocity.x = 0
 				velocity.z = 0
@@ -79,19 +80,19 @@ func _physics_process(delta):
 				velocity.x = atkDir.x * SPEED 
 				velocity.z = atkDir.z * SPEED 
 				
-		STAGGERED:
+		State.STAGGERED:
 			velocity.x = 0
 			velocity.z = 0
 			
-		BLOCK:
+		State.BLOCK:
 			velocity.x = 0
 			velocity.z = 0
 			
-		HURT:
+		State.HURT:
 			velocity.x = -attackerDir.x * SPEED/2
 			velocity.z = -attackerDir.z * SPEED/2
 			
-		DEATH:
+		State.DEATH:
 			velocity.x = 0
 			velocity.z = 0
 			
@@ -106,6 +107,7 @@ func _physics_process(delta):
 func _process(delta):
 	health_bar_3d.healthCurr(hp)
 	health_bar_3d.staggerCurr(posture)
+	health_bar_3d.staggerColor()
 	if barVisible == true:
 		health_bar_3d.visible = true
 	else:
@@ -119,6 +121,8 @@ func _process(delta):
 	else:
 		if posture > 0:
 			postLower = true
+		else:
+			postLower = false
 		
 	if postLower:
 		postLowTimer += delta
@@ -129,24 +133,23 @@ func _process(delta):
 				posture = 0
 	
 	if posture >= maxPosture:
-		state = STAGGERED
+		currState = State.STAGGERED
 		#health_bar_3d.staggerColorRed()
 	#elif posture >= maxPosture/2:
 		#health_bar_3d.staggerColorOrange()
 	#else:
 		#health_bar_3d.staggerColorYellow()
 		
-	health_bar_3d.staggerColor()
 	if hp <= 0:
-		state = DEATH 
+		currState = State.DEATH 
 		man.death = true
 		dying = true
 		
-	match state: 
-		IDLE:
+	match currState: 
+		State.IDLE:
 			idle()
 			
-		CHASE:
+		State.CHASE:
 			jog()
 			if player == null:
 				return
@@ -158,15 +161,15 @@ func _process(delta):
 				if distToPlayer <= 4:
 					rando = randi_range(1, 2)
 					if rando == 2 && blockRepeat == false:
-						state = BLOCK
+						currState = State.BLOCK
 					else:
-						state = ATTACK
+						currState = State.ATTACK
 						rando = 0
 						once = true
 						
 			facing_angle = Vector2(direction.z, direction.x).angle() 
 			
-		ATTACK:
+		State.ATTACK:
 			var blockChance : bool
 			targetPos = player.global_transform.origin
 			var distToPlayer = global_transform.origin.distance_to(targetPos)
@@ -197,7 +200,7 @@ func _process(delta):
 				rando = 0
 				once = true
 				blockRepeat = false
-				state = CHASE
+				currState = State.CHASE
 				
 			if timer <= facingThresh:
 				facing_angle = Vector2(direction.z, direction.x).angle()
@@ -212,51 +215,51 @@ func _process(delta):
 				if midRange:
 					veloZero = true
 			
-		BLOCK:
+		State.BLOCK:
 			block()
 			timer += delta
 			blockEndAni = false
 			if blockRepeat == true:
-				state = CHASE
+				currState = State.CHASE
 				once = true
 			targetPos = player.global_transform.origin
 			var distToPlayer = global_transform.origin.distance_to(targetPos)
 			direction = (targetPos - global_transform.origin).normalized()
 			if distToPlayer >= 4.5 && timer >= 1.4:#i chose 1.4 just casue
-				state = CHASE 
+				currState = State.CHASE 
 				blockHitCount = 0
 				blockRepeat = true
 				timer = 0
 				blockEndAni = true
 			if timer >= 2.5:
-				state = CHASE
+				currState = State.CHASE
 				blockHitCount = 0
 				blockRepeat = true
 				timer = 0
 				blockEndAni = true
 			facing_angle = Vector2(direction.z, direction.x).angle()
 			
-		STAGGERED:
+		State.STAGGERED:
 			stagger()
 			staggerTimer += delta
 			if staggerTimer >= 3:
 				unStagger()
-				state = CHASE
+				currState = State.CHASE
 				posture = 0
 				timerThresh = 0
 				facingThresh = 0
 				timer = 0
 				staggerTimer = 0
 				
-		HURT:
+		State.HURT:
 			timer += delta
 			if timer >= 0.5:
-				state = CHASE
+				currState = State.CHASE
 				timerThresh = 0
 				facingThresh = 0
 				timer = 0
 				
-		DEATH: 
+		State.DEATH: 
 			deathTimer += delta
 			if deathTimer >= 3:
 				queue_free()
@@ -283,27 +286,27 @@ func isHit(hitInfo):
 	velocity.x = 0
 	velocity.z = 0
 	if team != Entityteam:
-		match state:
-			CHASE:
+		match currState:
+			State.CHASE:
 				hurtAni(entityHurtType)
-				state = HURT
+				currState = State.HURT
 				hp = hp - damageDealt
-			IDLE:
+			State.IDLE:
 				hurtAni(entityHurtType)
-				state = HURT
+				currState = State.HURT
 				hp = hp - damageDealt
-			HURT: 
+			State.HURT: 
 				hurtAni(entityHurtType)
-				state = HURT
+				currState = State.HURT
 				hp = hp - damageDealt
-			ATTACK:
+			State.ATTACK:
 				atkAbort()
 				hurtAni(entityHurtType)
-				state = HURT
+				currState = State.HURT
 				hp = hp - damageDealt
-			STAGGERED:
+			State.STAGGERED:
 				hp = hp - (damageDealt * 2)
-			BLOCK:
+			State.BLOCK:
 				blockHitCount += 1
 				timer -= 0.25
 				if blockHitCount == 1:
@@ -312,6 +315,7 @@ func isHit(hitInfo):
 					blockHit2()
 					blockHitCount = 0
 				posture = posture + postureRecieved
+				sparksActi()
 		attackerDir = (entityOrigin - global_transform.origin).normalized()
 		facing_angle = Vector2(attackerDir.z, attackerDir.x).angle()
 		barVisible = true
@@ -321,14 +325,14 @@ func isHit(hitInfo):
 
 func _on_Body_Entered(body):
 	if body.is_in_group("player"):
-		state = CHASE #Chase
+		currState = State.CHASE #Chase
 		rotati = true
 		once = true
 		player = body
 
 func _on_Body_Exited(body):
 	if body.is_in_group("player"):
-		state = IDLE
+		currState = State.IDLE
 		rotati = false
 		
 func hurtAni(ht):
@@ -358,6 +362,11 @@ func performAtk():
 			postureDamage = 15
 			hurtType = 3
 	stringCount += 1
+	
+func sparksActi():
+	sparks.restart()
+	sparks.emitting = true
+	
 
 func idle():
 	animation_tree.set("parameters/idleJog/transition_request", "idle")

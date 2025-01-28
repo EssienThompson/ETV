@@ -1,0 +1,630 @@
+[gd_scene load_steps=43 format=3]
+
+[ext_resource type="Script" path="res://scripts/run.gd" id="1_wmndk"]
+[ext_resource type="PackedScene" path="res://scenes/menu&ui/map.tscn" id="2_yjayy"]
+[ext_resource type="Script" path="res://scripts/map.gd" id="3_6e50f"]
+[ext_resource type="PackedScene" path="res://scenes/levels/act1/forrest_4.tscn" id="4_rb3bu"]
+[ext_resource type="Script" path="res://scripts/act1LevelMan.gd" id="5_amoby"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="6_nx4qc"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="7_gmuq2"]
+[ext_resource type="PackedScene" path="res://scenes/menu&ui/pauseMenu.tscn" id="8_ejaxl"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="9_qcyjo"]
+[ext_resource type="Texture2D" path="res://images/evanDisrepect.png" id="10_mqarm"]
+[ext_resource type="FontFile" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="11_xhd1r"]
+[ext_resource type="Script" path="res://scripts/button.gd" id="12_dlqf1"]
+[ext_resource type="Script" path="res://scripts/relicScrollBar.gd" id="13_w3m1h"]
+[ext_resource type="PackedScene" path="res://scenes/menu&ui/optionsMenu.tscn" id="14_e87w7"]
+[ext_resource type="Script" path="res://scripts/options_menu.gd" id="15_ben6a"]
+
+[sub_resource type="Animation" id="Animation_whikv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/optionsMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1920, 80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/optionsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2x3wg"]
+resource_name = "options"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/optionsMenu:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(-2, 0.5),
+"update": 0,
+"values": [Vector2(1920, 80), Vector2(128, 80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/optionsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0pf4n"]
+resource_name = "optionsOut"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/optionsMenu:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.5, -2),
+"update": 0,
+"values": [Vector2(128, 80), Vector2(1920, 80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/optionsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kagg7"]
+_data = {
+"RESET": SubResource("Animation_whikv"),
+"options": SubResource("Animation_2x3wg"),
+"optionsOut": SubResource("Animation_0pf4n")
+}
+
+[sub_resource type="Gradient" id="Gradient_n60nh"]
+colors = PackedColorArray(0.160784, 0.160784, 0.160784, 0.784314, 0.160784, 0.160784, 0.160784, 0.784314)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eu0ld"]
+gradient = SubResource("Gradient_n60nh")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aclqt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_etl7r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0y7tj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h685e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f4nb4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_autm5"]
+
+[sub_resource type="Gradient" id="Gradient_yeyql"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fop2x"]
+gradient = SubResource("Gradient_yeyql")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nfd4o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t0huy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jgr3a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c2i54"]
+
+[sub_resource type="Theme" id="Theme_khmop"]
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_nfd4o")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_t0huy")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_jgr3a")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_c2i54")
+
+[sub_resource type="Gradient" id="Gradient_ufixn"]
+colors = PackedColorArray(0.188371, 0.188371, 0.188371, 0.54902, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m7h0w"]
+gradient = SubResource("Gradient_ufixn")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hd4h6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vqmbf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b6y7e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hxo6u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t2hbv"]
+
+[sub_resource type="Gradient" id="Gradient_h3xge"]
+colors = PackedColorArray(0.901961, 0.858824, 0, 0.784314, 0.901961, 0.858824, 0, 1)
+
+[node name="run" type="Node" groups=["persist"]]
+script = ExtResource("1_wmndk")
+
+[node name="map" type="Node2D" parent="." instance=ExtResource("2_yjayy")]
+visible = false
+script = ExtResource("3_6e50f")
+
+[node name="level" type="Node3D" parent="."]
+
+[node name="forrest4" type="Node3D" parent="level" groups=["persist"] instance=ExtResource("4_rb3bu")]
+script = ExtResource("5_amoby")
+mode = 0
+diaID = ""
+
+[node name="Player" type="CharacterBody3D" parent="." groups=["persist", "player"] instance=ExtResource("6_nx4qc")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 7.63224, -0.00482658, -37.3947)
+collision_layer = 16
+collision_mask = 105
+velocity = Vector3(2.86825, 0, -8.26654)
+script = ExtResource("7_gmuq2")
+metadata/_edit_group_ = true
+
+[node name="pauseMenu" parent="Player" groups=["persist"] instance=ExtResource("8_ejaxl")]
+process_mode = 3
+process_priority = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("9_qcyjo")
+
+[node name="TextureRect" parent="Player/pauseMenu" index="0"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -600.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("10_mqarm")
+
+[node name="AnimationPlayer" parent="Player/pauseMenu" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_kagg7")
+}
+
+[node name="CanvasLayer" parent="Player/pauseMenu" index="2"]
+layer = 2
+visible = false
+
+[node name="MarginContainer" parent="Player/pauseMenu/CanvasLayer" index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 550
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 550
+theme_override_constants/margin_bottom = 150
+
+[node name="pauseMTex" parent="Player/pauseMenu/CanvasLayer/MarginContainer" index="0"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_eu0ld")
+
+[node name="MarginContainer" parent="Player/pauseMenu/CanvasLayer/MarginContainer/pauseMTex" index="0"]
+layout_mode = 2
+offset_right = 820.0
+offset_bottom = 780.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" parent="Player/pauseMenu/CanvasLayer/MarginContainer/pauseMTex/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="paused" parent="Player/pauseMenu/CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("11_xhd1r")
+theme_override_font_sizes/font_size = 100
+text = "Paused"
+
+[node name="MarginContainer" parent="Player/pauseMenu/CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="resumeButton" parent="Player/pauseMenu/CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_xhd1r")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aclqt")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_etl7r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0y7tj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_h685e")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4nb4")
+text = "Resume
+"
+script = ExtResource("12_dlqf1")
+
+[node name="MarginContainer2" parent="Player/pauseMenu/CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer" index="3"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 50
+
+[node name="optionsButton" parent="Player/pauseMenu/CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer" index="4"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_xhd1r")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_autm5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_etl7r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0y7tj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_h685e")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4nb4")
+text = "Options
+"
+script = ExtResource("12_dlqf1")
+
+[node name="MarginContainer3" parent="Player/pauseMenu/CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer" index="5"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 50
+
+[node name="quitButton" parent="Player/pauseMenu/CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer" index="6"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_xhd1r")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_autm5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_etl7r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0y7tj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_h685e")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4nb4")
+text = "Quit
+"
+script = ExtResource("12_dlqf1")
+
+[node name="TextureRect" parent="Player/pauseMenu/CanvasLayer" index="1"]
+offset_right = 275.0
+offset_bottom = 1080.0
+texture = SubResource("GradientTexture2D_fop2x")
+
+[node name="Label" parent="Player/pauseMenu/CanvasLayer/TextureRect" index="0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0327273
+anchor_right = 0.967273
+anchor_bottom = 0.075
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_xhd1r")
+theme_override_font_sizes/font_size = 60
+text = "Relic List"
+metadata/_edit_use_anchors_ = true
+
+[node name="scrollCont" parent="Player/pauseMenu/CanvasLayer/TextureRect" index="1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0990741
+anchor_right = 0.989091
+anchor_bottom = 1.0
+offset_right = 3.0
+grow_vertical = 2
+theme = SubResource("Theme_khmop")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" parent="Player/pauseMenu/CanvasLayer/TextureRect/scrollCont" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+
+[node name="VBoxContainer" parent="Player/pauseMenu/CanvasLayer/TextureRect/scrollCont/MarginContainer" index="0" node_paths=PackedStringArray("player")]
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("13_w3m1h")
+player = NodePath("../../../../../..")
+
+[node name="optionsMenu" parent="Player/pauseMenu/CanvasLayer" index="2" groups=["persist"] instance=ExtResource("14_e87w7")]
+process_mode = 3
+visible = false
+z_index = 1
+offset_left = 1920.0
+offset_top = 80.0
+offset_right = 3712.0
+offset_bottom = 1000.0
+texture = SubResource("GradientTexture2D_m7h0w")
+script = ExtResource("15_ben6a")
+metadata/_edit_use_anchors_ = true
+
+[node name="close" parent="Player/pauseMenu/CanvasLayer/optionsMenu" index="0"]
+layout_mode = 0
+anchor_left = 0.0111602
+anchor_top = 0.890217
+anchor_right = 0.103794
+anchor_bottom = 0.978261
+offset_right = -14.0
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_xhd1r")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hd4h6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vqmbf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_b6y7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hxo6u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t2hbv")
+text = "Close "
+script = ExtResource("12_dlqf1")
+
+[node name="Line2D" parent="Player/pauseMenu/CanvasLayer/optionsMenu" index="1"]
+position = Vector2(0, 8.085)
+points = PackedVector2Array(0, 76, 1792, 77)
+gradient = SubResource("Gradient_h3xge")
+
+[node name="HBoxContainer" parent="Player/pauseMenu/CanvasLayer/optionsMenu" index="2"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 1792.0
+offset_bottom = 81.0
+
+[node name="graphics" parent="Player/pauseMenu/CanvasLayer/optionsMenu/HBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_xhd1r")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hd4h6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vqmbf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_b6y7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hxo6u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t2hbv")
+text = "Graphics "
+script = ExtResource("12_dlqf1")
+
+[node name="MarginContainer" parent="Player/pauseMenu/CanvasLayer/optionsMenu/HBoxContainer" index="1"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+
+[node name="controls" parent="Player/pauseMenu/CanvasLayer/optionsMenu/HBoxContainer" index="2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_xhd1r")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hd4h6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vqmbf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_b6y7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hxo6u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t2hbv")
+text = "Conrtols"
+script = ExtResource("12_dlqf1")
+
+[node name="graphicsSettings" parent="Player/pauseMenu/CanvasLayer/optionsMenu" index="3"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -872.0
+offset_top = -330.0
+offset_bottom = 460.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="graphicsHeaders" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings" index="0"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 224.0
+grow_vertical = 2
+
+[node name="VBoxContainer" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicsHeaders" index="0"]
+layout_mode = 2
+
+[node name="resolution" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicsHeaders/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("11_xhd1r")
+theme_override_font_sizes/font_size = 45
+text = "Resolution"
+
+[node name="MarginContainer" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicsHeaders/VBoxContainer" index="1"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 5
+
+[node name="screenMode" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicsHeaders/VBoxContainer" index="2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("11_xhd1r")
+theme_override_font_sizes/font_size = 45
+text = "Screen Mode
+"
+
+[node name="MarginContainer2" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicsHeaders/VBoxContainer" index="3"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 5
+
+[node name="v-sync" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicsHeaders/VBoxContainer" index="4"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("11_xhd1r")
+theme_override_font_sizes/font_size = 45
+text = "V-Sync
+"
+
+[node name="MarginContainer3" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicsHeaders/VBoxContainer" index="5"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 5
+
+[node name="framerate" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicsHeaders/VBoxContainer" index="6"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("11_xhd1r")
+theme_override_font_sizes/font_size = 45
+text = "Framerate Cap
+"
+
+[node name="graphicSelectors" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings" index="1"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -648.0
+offset_right = 0.00500488
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicSelectors" index="0"]
+layout_mode = 2
+
+[node name="resolutionButton" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicSelectors/VBoxContainer" index="0"]
+custom_minimum_size = Vector2(245, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+selected = 3
+item_count = 6
+popup/item_0/text = "1280 x 720"
+popup/item_1/text = "1366 x 768"
+popup/item_1/id = 1
+popup/item_2/text = "1600 x 900"
+popup/item_2/id = 2
+popup/item_3/text = "1920 x 1080"
+popup/item_3/id = 3
+popup/item_4/text = "2560 x 1440"
+popup/item_4/id = 4
+popup/item_5/text = "3840 x 2160"
+popup/item_5/id = 5
+script = ExtResource("12_dlqf1")
+
+[node name="MarginContainer" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicSelectors/VBoxContainer" index="1"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="screenModeButton" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicSelectors/VBoxContainer" index="2"]
+custom_minimum_size = Vector2(245, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+selected = 1
+item_count = 2
+popup/item_0/text = "Fullscreen"
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
+script = ExtResource("12_dlqf1")
+
+[node name="MarginContainer2" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicSelectors/VBoxContainer" index="3"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="vsyncButton" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicSelectors/VBoxContainer" index="4"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_xhd1r")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hd4h6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vqmbf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_b6y7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hxo6u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t2hbv")
+text = "On"
+script = ExtResource("12_dlqf1")
+
+[node name="MarginContainer3" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicSelectors/VBoxContainer" index="5"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="framerateButton" parent="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicSelectors/VBoxContainer" index="6"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+selected = 1
+item_count = 8
+popup/item_0/text = "30"
+popup/item_1/text = "60"
+popup/item_1/id = 1
+popup/item_2/text = "90"
+popup/item_2/id = 2
+popup/item_3/text = "120"
+popup/item_3/id = 3
+popup/item_4/text = "144"
+popup/item_4/id = 4
+popup/item_5/text = "165"
+popup/item_5/id = 5
+popup/item_6/text = "240"
+popup/item_6/id = 6
+popup/item_7/text = "Unlimited"
+popup/item_7/id = 7
+script = ExtResource("12_dlqf1")
+
+[connection signal="pressed" from="Player/pauseMenu/CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer/resumeButton" to="Player/pauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Player/pauseMenu/CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer/optionsButton" to="Player/pauseMenu" method="_on_options_button_pressed"]
+[connection signal="pressed" from="Player/pauseMenu/CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer/quitButton" to="Player/pauseMenu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Player/pauseMenu/CanvasLayer/optionsMenu/close" to="Player/pauseMenu" method="_on_close_pressed"]
+[connection signal="item_selected" from="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicSelectors/VBoxContainer/resolutionButton" to="Player/pauseMenu/CanvasLayer/optionsMenu" method="_on_resolution_button_item_selected"]
+[connection signal="item_selected" from="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicSelectors/VBoxContainer/screenModeButton" to="Player/pauseMenu/CanvasLayer/optionsMenu" method="_on_screen_mode_button_item_selected"]
+[connection signal="pressed" from="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicSelectors/VBoxContainer/vsyncButton" to="Player/pauseMenu/CanvasLayer/optionsMenu" method="_on_vsync_button_pressed"]
+[connection signal="item_selected" from="Player/pauseMenu/CanvasLayer/optionsMenu/graphicsSettings/graphicSelectors/VBoxContainer/framerateButton" to="Player/pauseMenu/CanvasLayer/optionsMenu" method="_on_framerate_button_item_selected"]
+
+[editable path="Player/pauseMenu"]
+[editable path="Player/pauseMenu/CanvasLayer/optionsMenu"]

@@ -6,8 +6,14 @@ extends TextureRect
 @onready var graphics: Button = $HBoxContainer/graphics
 @onready var controls: Button = $HBoxContainer/controls
 @onready var close: Button = $close
+@onready var graphics_settings: Control = $graphicsSettings
+
 
 var vsync := true
+var timer := 0.0
+var focus := false
+var setting := SettingData.new()
+#var currPage := "graphics"
 
 var resolutions := [Vector2i(1280,720),
 Vector2i(1366,768),
@@ -18,12 +24,18 @@ Vector2i(3840,2160)]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	loadSetting()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if timer <= 0.6 and focus:
+		timer += delta
+		setFocus()
+		
+	if timer > 0.6:
+		focus = false
 
 func _on_resolution_button_item_selected(index: int) -> void:
 	match index:
@@ -44,16 +56,25 @@ func _on_resolution_button_item_selected(index: int) -> void:
 	if get_window().get_mode() == Window.MODE_EXCLUSIVE_FULLSCREEN:
 		screen_mode_button.select(1)
 		screen_mode_button.emit_signal("item_selected", 1)
+	setting.resolution = index
 
 
 func _on_screen_mode_button_item_selected(index: int) -> void:
 	match index:
 		0:
 			get_window().set_mode(Window.MODE_EXCLUSIVE_FULLSCREEN)
+			get_window().borderless = false
 			setCurrRes()#resolution_button.select(6)
 		1:
 			get_window().set_mode(Window.MODE_WINDOWED)
+			get_window().borderless = false
 			setCurrRes()
+		2:
+			get_window().set_mode(Window.MODE_WINDOWED)
+			get_window().borderless = true
+			setCurrRes()
+			
+	setting.screenMode = index
 			
 func centreWindow():
 	var centreScreen = DisplayServer.screen_get_position()+DisplayServer.screen_get_size()/2
@@ -63,12 +84,16 @@ func centreWindow():
 
 func _on_vsync_button_pressed() -> void:
 	vsync = !vsync
+	changeVsync()
+
+func changeVsync():
 	if vsync:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 		vsync_button.text = "On"
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 		vsync_button.text = "Off"
+	setting.vsync = vsync
 
 
 func _on_framerate_button_item_selected(index: int) -> void:
@@ -89,6 +114,7 @@ func _on_framerate_button_item_selected(index: int) -> void:
 			Engine.max_fps = 240
 		7:
 			Engine.max_fps = 0
+	setting.fpsCap = index
 			
 			
 func setCurrRes() -> void:
@@ -97,14 +123,43 @@ func setCurrRes() -> void:
 	for res in resolutions:
 		if currRes == res:
 			resolution_button.select(count)
+			setting.resolution = count
 		count += 1
 	
 func toggleAllButtons(opt:bool) -> void:
 	close.disabled = opt
 	graphics.disabled = opt
 	controls.disabled = opt
-	framerate_button.disabled = opt
-	vsync_button.disabled = opt
-	framerate_button.disabled = opt
-	resolution_button.disabled = opt
+	graphics_settings.toggleButtons(opt)
+	#framerate_button.disabled = opt
+	#vsync_button.disabled = opt
+	#screen_mode_button.disabled = opt
+	#resolution_button.disabled = opt
+	if opt == false:
+		focus = true
+		timer = 0
+		
+func setFocus():
+	graphics.focus()
+	graphics_settings.closePage(false)
 	
+func loadSetting():
+	var sets = saveManager.loadSettings()
+	#print(sets," load")
+	screen_mode_button.select(sets.screenMode) 
+	_on_screen_mode_button_item_selected(sets.screenMode)
+	resolution_button.select(sets.resolution)
+	_on_resolution_button_item_selected(sets.resolution)
+	framerate_button.select(sets.fpsCap)
+	_on_framerate_button_item_selected(sets.fpsCap)
+	vsync = sets.vsync
+	changeVsync()
+	
+func saveSetting():
+	#print(setting," save")
+	saveManager.saveSettings(setting)
+
+
+func _on_graphics_pressed() -> void:
+	graphics_settings.closePage(false)
+	# close other pages added

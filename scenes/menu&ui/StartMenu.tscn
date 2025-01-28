@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://c07ge7h3c8w3w"]
+[gd_scene load_steps=17 format=3 uid="uid://c07ge7h3c8w3w"]
 
 [ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_7iyqe"]
 [ext_resource type="FontFile" uid="uid://cb0p8y1fs5mb2" path="res://fonts/bubba/BubbaRegular-YzYXo.ttf" id="1_cqa01"]
 [ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="2_75f50"]
 [ext_resource type="Environment" uid="uid://dh35wtmm60qnx" path="res://mats/environment.tres" id="3_ckegr"]
+[ext_resource type="Script" path="res://scripts/button.gd" id="4_acovw"]
 [ext_resource type="PackedScene" uid="uid://8hmmjoiptn3q" path="res://scenes/menu&ui/optionsMenu.tscn" id="4_qbfka"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ehcle"]
@@ -33,7 +34,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Control/optionsMenu:position")
+tracks/1/path = NodePath("CanvasLayer/optionsMenu:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -45,7 +46,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer/Control/optionsMenu:visible")
+tracks/2/path = NodePath("CanvasLayer/optionsMenu:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -61,7 +62,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Control/optionsMenu:position")
+tracks/0/path = NodePath("CanvasLayer/optionsMenu:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -73,7 +74,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Control/optionsMenu:visible")
+tracks/1/path = NodePath("CanvasLayer/optionsMenu:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -89,7 +90,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Control/optionsMenu:position")
+tracks/0/path = NodePath("CanvasLayer/optionsMenu:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -101,7 +102,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Control/optionsMenu:visible")
+tracks/1/path = NodePath("CanvasLayer/optionsMenu:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -197,6 +198,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_75f50")
 theme_override_font_sizes/font_size = 60
@@ -206,12 +208,14 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_mlokf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_5r5mc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_a2uqs")
 text = "Continue"
+script = ExtResource("4_acovw")
 
 [node name="start" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_75f50")
 theme_override_font_sizes/font_size = 60
@@ -221,12 +225,14 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_mlokf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_5r5mc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_a2uqs")
 text = "Start Game"
+script = ExtResource("4_acovw")
 
 [node name="options" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_75f50")
 theme_override_font_sizes/font_size = 60
@@ -236,12 +242,14 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_mlokf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_5r5mc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_a2uqs")
 text = "Options"
+script = ExtResource("4_acovw")
 
 [node name="quit" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_75f50")
 theme_override_font_sizes/font_size = 60
@@ -251,18 +259,18 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_mlokf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_5r5mc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_a2uqs")
 text = "Quit"
+script = ExtResource("4_acovw")
 
-[node name="optionsMenu" parent="CanvasLayer/Control" instance=ExtResource("4_qbfka")]
+[node name="optionsMenu" parent="CanvasLayer" instance=ExtResource("4_qbfka")]
 visible = false
-layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -0.0128174
+offset_left = 0.0
 offset_top = -460.0
-offset_right = 1791.99
+offset_right = 1792.0
 offset_bottom = 460.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -282,6 +290,6 @@ libraries = {
 [connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/optionsMenu/close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="CanvasLayer/optionsMenu/close" to="." method="_on_close_pressed"]
 
-[editable path="CanvasLayer/Control/optionsMenu"]
+[editable path="CanvasLayer/optionsMenu"]

@@ -1,0 +1,17 @@
+join magision center
+[signal arg="magiNeutral"]
+magision: Hello lad, dont be intimidated by the big guy
+[signal arg="magiSmile"]
+magision: This'll be your last fight in the tutorial promise
+[signal arg="magiClosed"]
+magision: I've weakened him for you to fight. You'll still have to be careful
+[signal arg="magiResetEye"]
+[signal arg="magiAnnoy"]
+magision: He does this unblockable heavy attack that you have to dodge
+[signal arg="magiNeutral"]
+magision: And if it lands it'll throw you the floor. Then if finished you nap down there just dodge to get back up
+[signal arg="magiSmile"]
+magision: P.S. when your napping on the floor your untouchable, so you can lie and wait for a bit
+[signal arg="magiResetMou"]
+[signal arg="rockDrop"]
+[signal arg="stopTalk"]

@@ -1,0 +1,17 @@
+join magision center
+[signal arg="magiSmile"]
+magision: Hello, you foolish lad
+magision: I am Le Magision, and I'll be teaching you how to do things around here
+[signal arg="magiAnnoy"]
+magision: Because God fucked up and hasn't connected yet
+[signal arg="magiNeutral"]
+magision: After this talk, to go forwards open the map with the
+if {player.inDevice} == "cont":
+	magision: Menu/Start button
+elif {player.inDevice} == "key":
+	magision: M key
+[signal arg="magiSmile"]
+magision: Dont mind the weird pause
+[signal arg="magiResetMou"]
+[signal arg="stopTalk"]
+[end_timeline]

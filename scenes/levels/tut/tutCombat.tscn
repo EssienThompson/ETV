@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://efa254t6vi6d"]
+
+[ext_resource type="Script" path="res://scripts/act1LevelMan.gd" id="1_b0377"]
+[ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="1_ka40l"]
+[ext_resource type="Material" uid="uid://xlcs6o2eykhi" path="res://mats/shadow.tres" id="2_pp5m2"]
+[ext_resource type="Environment" uid="uid://dh35wtmm60qnx" path="res://mats/environment.tres" id="3_dpot6"]
+[ext_resource type="PackedScene" uid="uid://dn7om6ifrd040" path="res://models/levels/rock.tscn" id="4_bt4r0"]
+[ext_resource type="PackedScene" uid="uid://cwtnlojrisbnh" path="res://scenes/npcRelated/magision.tscn" id="6_b5nw4"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_0g4cc"]
+vertices = PackedVector3Array(-49.5, 0.5, -49.5, -49.5, 0.5, 49.5, 49.5, 0.5, 49.5, 49.5, 0.5, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_34mii"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7n7fr"]
+material = ExtResource("1_ka40l")
+size = Vector2(100, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pl1gn"]
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0h045"]
+size = Vector3(1, 20, 100)
+
+[node name="tutCombat" type="Node3D" groups=["persist"]]
+script = ExtResource("1_b0377")
+diaID = "tutCombat"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_dpot6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.944791, 0.272117, 0.182543, -0.30632, 0.535658, 0.786918, 0.116353, -0.799389, 0.58944, -0.11829, 13.6619, 0)
+shadow_enabled = true
+
+[node name="playerSpawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.353614, 0, -40.8671)
+
+[node name="enemySpawn" type="Marker3D" parent="." groups=["enemySpawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.198183, 3, 33.4653)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["naviMesh"]]
+navigation_mesh = SubResource("NavigationMesh_0g4cc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_34mii")
+
+[node name="floor" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+mesh = SubResource("PlaneMesh_7n7fr")
+
+[node name="shadow" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+material_override = ExtResource("2_pp5m2")
+mesh = SubResource("PlaneMesh_pl1gn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/StaticBody3D"]
+
+[node name="invWall1" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 10, 0)
+shape = SubResource("BoxShape3D_0h045")
+
+[node name="invWall2" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 10, 0)
+shape = SubResource("BoxShape3D_0h045")
+
+[node name="invWall3" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, 50)
+shape = SubResource("BoxShape3D_0h045")
+
+[node name="invWall4" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, -50)
+shape = SubResource("BoxShape3D_0h045")
+
+[node name="magision" parent="." instance=ExtResource("6_b5nw4")]
+transform = Transform3D(-0.506886, 0, -0.552781, 0, 0.75, 0, 0.552781, 0, -0.506886, 13.8225, -9.53674e-07, -30.8215)
+
+[node name="rock" parent="." groups=["interactable"] instance=ExtResource("4_bt4r0")]
+transform = Transform3D(28.215, 0, 0, 0, 28.215, 0, 0, 0, 28.215, 2.37135, -19.8092, 2.72893)

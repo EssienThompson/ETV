@@ -16,6 +16,7 @@ metadata/_snap_enabled = true
 script = ExtResource("1_uqqlg")
 
 [node name="visuals" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="lines" type="Node2D" parent="visuals"]
 unique_name_in_owner = true
@@ -24,12 +25,15 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="mapGenerator" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("1_ep5ns")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
 offset = Vector2(960, 540)
 
 [node name="mapBackground" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 layer = -1
 
 [node name="MarginContainer" type="MarginContainer" parent="mapBackground"]

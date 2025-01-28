@@ -1,35 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://cwh0w0lnu8dpq"]
+[gd_scene load_steps=26 format=3 uid="uid://cwh0w0lnu8dpq"]
 
 [ext_resource type="Texture2D" uid="uid://ypk5f8ur83s0" path="res://images/evanDisrepect.png" id="1_gogy7"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_y884d"]
 [ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="2_q7vri"]
+[ext_resource type="Script" path="res://scripts/button.gd" id="4_afuyf"]
 [ext_resource type="PackedScene" uid="uid://8hmmjoiptn3q" path="res://scenes/menu&ui/optionsMenu.tscn" id="4_imfwu"]
-
-[sub_resource type="Gradient" id="Gradient_n60nh"]
-colors = PackedColorArray(0.160784, 0.160784, 0.160784, 0.784314, 0.160784, 0.160784, 0.160784, 0.784314)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_eu0ld"]
-gradient = SubResource("Gradient_n60nh")
-fill_from = Vector2(0.5, 0)
-fill_to = Vector2(0.5, 1)
-metadata/_snap_enabled = true
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_autm5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_etl7r"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0y7tj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h685e"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f4nb4"]
+[ext_resource type="Script" path="res://scripts/relicScrollBar.gd" id="5_u1v5k"]
 
 [sub_resource type="Animation" id="Animation_whikv"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("optionsMenu:position")
+tracks/0/path = NodePath("CanvasLayer/optionsMenu:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -41,7 +24,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("optionsMenu:visible")
+tracks/1/path = NodePath("CanvasLayer/optionsMenu:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -57,7 +40,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("optionsMenu:position")
+tracks/0/path = NodePath("CanvasLayer/optionsMenu:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -69,7 +52,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("optionsMenu:visible")
+tracks/1/path = NodePath("CanvasLayer/optionsMenu:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -85,7 +68,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("optionsMenu:position")
+tracks/0/path = NodePath("CanvasLayer/optionsMenu:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -97,7 +80,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("optionsMenu:visible")
+tracks/1/path = NodePath("CanvasLayer/optionsMenu:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -114,13 +97,58 @@ _data = {
 "optionsOut": SubResource("Animation_0pf4n")
 }
 
-[node name="pauseMenu" type="Control"]
+[sub_resource type="Gradient" id="Gradient_n60nh"]
+colors = PackedColorArray(0.160784, 0.160784, 0.160784, 0.784314, 0.160784, 0.160784, 0.160784, 0.784314)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eu0ld"]
+gradient = SubResource("Gradient_n60nh")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aclqt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_etl7r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0y7tj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h685e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f4nb4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_autm5"]
+
+[sub_resource type="Gradient" id="Gradient_yeyql"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fop2x"]
+gradient = SubResource("Gradient_yeyql")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nfd4o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t0huy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jgr3a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c2i54"]
+
+[sub_resource type="Theme" id="Theme_khmop"]
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_nfd4o")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_t0huy")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_jgr3a")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_c2i54")
+
+[node name="pauseMenu" type="Control" groups=["persist"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_y884d")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -133,10 +161,18 @@ offset_top = -600.0
 offset_bottom = 600.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("1_gogy7")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kagg7")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -147,11 +183,11 @@ theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 550
 theme_override_constants/margin_bottom = 150
 
-[node name="pauseMTex" type="TextureRect" parent="MarginContainer"]
+[node name="pauseMTex" type="TextureRect" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_eu0ld")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/pauseMTex"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/pauseMTex"]
 layout_mode = 2
 offset_right = 820.0
 offset_bottom = 780.0
@@ -160,10 +196,10 @@ grow_vertical = 2
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/pauseMTex/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/pauseMTex/MarginContainer"]
 layout_mode = 2
 
-[node name="paused" type="Label" parent="MarginContainer/pauseMTex/MarginContainer/VBoxContainer"]
+[node name="paused" type="Label" parent="CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -171,35 +207,38 @@ theme_override_fonts/font = ExtResource("2_q7vri")
 theme_override_font_sizes/font_size = 100
 text = "Paused"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/pauseMTex/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 100
 
-[node name="resumeButton" type="Button" parent="MarginContainer/pauseMTex/MarginContainer/VBoxContainer"]
+[node name="resumeButton" type="Button" parent="CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_q7vri")
 theme_override_font_sizes/font_size = 60
-theme_override_styles/focus = SubResource("StyleBoxEmpty_autm5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aclqt")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_etl7r")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_0y7tj")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_h685e")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_f4nb4")
 text = "Resume
 "
+script = ExtResource("4_afuyf")
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/pauseMTex/MarginContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 50
 
-[node name="optionsButton" type="Button" parent="MarginContainer/pauseMTex/MarginContainer/VBoxContainer"]
+[node name="optionsButton" type="Button" parent="CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_q7vri")
 theme_override_font_sizes/font_size = 60
@@ -210,16 +249,18 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_h685e")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_f4nb4")
 text = "Options
 "
+script = ExtResource("4_afuyf")
 
-[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/pauseMTex/MarginContainer/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 50
 
-[node name="quitButton" type="Button" parent="MarginContainer/pauseMTex/MarginContainer/VBoxContainer"]
+[node name="quitButton" type="Button" parent="CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_q7vri")
 theme_override_font_sizes/font_size = 60
@@ -230,23 +271,53 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_h685e")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_f4nb4")
 text = "Quit
 "
+script = ExtResource("4_afuyf")
 
-[node name="optionsMenu" parent="." instance=ExtResource("4_imfwu")]
+[node name="relicList" type="TextureRect" parent="CanvasLayer"]
+offset_right = 275.0
+offset_bottom = 1080.0
+texture = SubResource("GradientTexture2D_fop2x")
+
+[node name="Label" type="Label" parent="CanvasLayer/relicList"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0327273
+anchor_right = 0.967273
+anchor_bottom = 0.075
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_q7vri")
+theme_override_font_sizes/font_size = 60
+text = "Relic List"
+metadata/_edit_use_anchors_ = true
+
+[node name="scrollCont" type="ScrollContainer" parent="CanvasLayer/relicList"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0990741
+anchor_right = 0.989091
+anchor_bottom = 1.0
+offset_right = 3.0
+grow_vertical = 2
+theme = SubResource("Theme_khmop")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/relicList/scrollCont"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/relicList/scrollCont/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("5_u1v5k")
+
+[node name="optionsMenu" parent="CanvasLayer" groups=["persist"] instance=ExtResource("4_imfwu")]
 visible = false
-layout_mode = 0
 offset_left = 1920.0
-offset_top = 0.0
 offset_right = 3712.0
-offset_bottom = 920.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_kagg7")
-}
+[connection signal="pressed" from="CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer/resumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer/optionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/pauseMTex/MarginContainer/VBoxContainer/quitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/optionsMenu/close" to="." method="_on_close_pressed"]
 
-[connection signal="pressed" from="MarginContainer/pauseMTex/MarginContainer/VBoxContainer/resumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="MarginContainer/pauseMTex/MarginContainer/VBoxContainer/optionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MarginContainer/pauseMTex/MarginContainer/VBoxContainer/quitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="optionsMenu/close" to="." method="_on_close_pressed"]
-
-[editable path="optionsMenu"]
+[editable path="CanvasLayer/optionsMenu"]

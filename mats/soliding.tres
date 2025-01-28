@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dvjn8v7chpeoo"]
+
+[ext_resource type="Shader" path="res://shaders/world3d.gdshader" id="1_ri8qj"]
+[ext_resource type="Shader" uid="uid://btithw10ah7v3" path="res://shaders/Disolv.tres" id="2_44cop"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k1o8a"]
+render_priority = 0
+shader = ExtResource("1_ri8qj")
+shader_parameter/outline_threshold = 0.1
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/brightness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jicju"]
+next_pass = SubResource("ShaderMaterial_k1o8a")
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+disable_receive_shadows = true
+
+[resource]
+render_priority = 1
+next_pass = SubResource("StandardMaterial3D_jicju")
+shader = ExtResource("2_44cop")
+shader_parameter/baseColor = Color(1, 1, 1, 1)
+shader_parameter/disHeight = 0.125
+shader_parameter/noiseScale = 1.07
+shader_parameter/noiseSize = 32.775
+shader_parameter/glowThresh = null
+shader_parameter/edgeColor = Color(1, 1, 1, 1)

@@ -9,10 +9,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var shield_hitbox = $Armature/Skeleton3D/shield/shieldHitbox
 @onready var eli_zomb_mesh: MeshInstance3D = $"Armature/Skeleton3D/eli-zombMesh"
 @onready var health_bar_3d: Node3D = $CollisionShape3D/HealthBar3D
+@onready var sparks: GPUParticles3D = $Armature/Skeleton3D/shield/sparks
+@onready var heavy_atk_fx: GPUParticles3D = $Armature/Skeleton3D/BoneAttachment3D/heavyAtkFx
 
 const ENEMY_TYPE = "elite"
 const SPEED = 9 #9
-enum {
+enum State{
 	IDLE,
 	CHASE,
 	ATTACK,
@@ -23,15 +25,15 @@ enum {
 }
 var trans = false
 var clockwise = false
-var state = IDLE
+var currState : State = State.IDLE
 var team := 1
 var damage := 0
 var postureDamage := 0 
 var hurtType := 0
-var hp = 400
-var maxHp = 800 # 800
-var posture = 0 # crip will have no stagger (maybe not)
-var maxPosture = 150 #150 might go higher
+var hp := 400.0
+var maxHp := 800.0 # 800
+var posture := 0.0 # crip will have no stagger (maybe not)
+var maxPosture := 150.0 #150 might go higher
 var blendVal := 0.0
 
 var direction := Vector3.ZERO
@@ -87,19 +89,19 @@ func _ready():
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	match state:
-		IDLE:
+	match currState:
+		State.IDLE:
 			velocity.x = 0
 			velocity.z = 0
-		CHASE:
+		State.CHASE:
 			velocity.x = direction.x * SPEED 
 			velocity.z = direction.z * SPEED
 			
-		HOVER:
+		State.HOVER:
 			velocity.x = direction.x * SPEED/1.75
 			velocity.z = direction.z * SPEED/1.75
 		
-		ATTACK:
+		State.ATTACK:
 			if veloZero:
 				velocity.x = 0
 				velocity.z = 0
@@ -107,11 +109,11 @@ func _physics_process(delta):
 				velocity.x = atkDir.x * SPEED 
 				velocity.z = atkDir.z * SPEED
 				
-		STAGGERED:
+		State.STAGGERED:
 			velocity.x = 0
 			velocity.z = 0
 			
-		DEATH:
+		State.DEATH:
 			velocity.x = 0
 			velocity.z = 0
 				
@@ -129,11 +131,17 @@ func _physics_process(delta):
 			armature.rotation.y = lerp_angle(armature.rotation.y, facing_angle, 0.25)
 		else:
 			armature.rotation.y = lerp_angle(armature.rotation.y, facing_angle, 0.08)
+			
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	health_bar_3d.healthCurr(hp)
 	health_bar_3d.staggerCurr(posture)
+	var distToPlayer = global_transform.origin.distance_to(targetPos)
+	
+	if player and heavy_atk_fx:
+		heavy_atk_fx.global_transform.basis = player.global_transform.basis
 	
 	if barVisible == true:
 		health_bar_3d.visible = true
@@ -148,6 +156,8 @@ func _process(delta):
 	else:
 		if posture > 0:
 			postLower = true
+		else:
+			postLower = false
 		
 	if postLower:
 		postLowTimer += delta
@@ -158,7 +168,7 @@ func _process(delta):
 				posture = 0
 			
 	if posture >= maxPosture:
-		state = STAGGERED
+		currState = State.STAGGERED
 		#health_bar_3d.staggerColorRed()
 	#elif posture >= maxPosture/2:
 		#health_bar_3d.staggerColorOrange()
@@ -166,17 +176,17 @@ func _process(delta):
 		#health_bar_3d.staggerColorYellow()
 	health_bar_3d.staggerColor()
 	if hp <= 0:
-		state = DEATH #add death
+		currState = State.DEATH #add death
 		eli_zomb_mesh.death = true
 		dying = true
 		
-	match state: 
-		IDLE:
+	match currState: 
+		State.IDLE:
 			if trans:
 				cripIdle()
 			else:
 				idle()
-		CHASE:
+		State.CHASE:
 			jog()
 			if player == null:
 				return
@@ -184,7 +194,7 @@ func _process(delta):
 				targetPos = player.global_transform.origin
 				nav.target_position = targetPos
 				direction = (nav.get_next_path_position() - global_transform.origin).normalized()
-				var distToPlayer = global_transform.origin.distance_to(targetPos)
+				distToPlayer = global_transform.origin.distance_to(targetPos)
 				if once: # set once in body entered
 					rando = randi_range(1, 4)
 					if rando >= 2:
@@ -198,17 +208,17 @@ func _process(delta):
 				
 				if hoverOver:
 					if distToPlayer <= 4:
-						state = ATTACK
+						currState = State.ATTACK
 						hoverOver = false
 				elif distToPlayer <= hoverRadius:
-					state = HOVER
+					currState = State.HOVER
 					hoverMissCount = 0
 					hoverOver = false
 					once = true
 					randOnce = true
 			facing_angle = Vector2(direction.z, direction.x).angle()
 			
-		HOVER:
+		State.HOVER:
 			targetPos = player.global_transform.origin
 			#var distToPlayer = global_transform.origin.distance_to(targetPos) 
 			timer += delta
@@ -216,14 +226,14 @@ func _process(delta):
 				rando = randf_range(2, 4) # make rand numb from 2 - 5 sec
 				randOnce = false
 			if timer >= rando:
-				#state = CHASE 
+				currState = State.CHASE 
 				hoverOver = true
 				timer = 0
 			if is_on_wall() && timer <= rando && once:
 				clockwise = !clockwise
 				once = false
 			elif is_on_wall() && once == false:
-				#state = CHASE
+				currState = State.CHASE
 				hoverOver = true
 				timer = 0
 			
@@ -241,10 +251,10 @@ func _process(delta):
 			var circleDir = (targetPos - global_transform.origin).normalized()
 			facing_angle = Vector2(circleDir.z, circleDir.x).angle()
 			
-		ATTACK:
+		State.ATTACK:
 			var blockChance : bool
 			targetPos = player.global_transform.origin
-			var distToPlayer = global_transform.origin.distance_to(targetPos)
+			distToPlayer = global_transform.origin.distance_to(targetPos)
 			direction = (targetPos - global_transform.origin).normalized()
 			timer += delta
 			#print(distToPlayer) # <4 == no move <9 move atk 9+ cancel
@@ -270,7 +280,7 @@ func _process(delta):
 					timerThresh = 0
 					facingThresh = 0
 					stringCount = 1
-					state = BLOCK
+					currState = State.BLOCK
 					blockChance = false
 				else:
 					timer = 0
@@ -278,7 +288,7 @@ func _process(delta):
 					facingThresh = 0
 					stringCount = 1
 					once = true
-					state = CHASE
+					currState = State.CHASE
 					blockChance = false
 				
 			if timer <= facingThresh:
@@ -306,11 +316,11 @@ func _process(delta):
 					veloZero = true
 			#print(facingThresh)
 			
-		BLOCK:
+		State.BLOCK:
 			block()
 			timer += delta
 			targetPos = player.global_transform.origin
-			var distToPlayer = global_transform.origin.distance_to(targetPos)
+			distToPlayer = global_transform.origin.distance_to(targetPos)
 			direction = (targetPos - global_transform.origin).normalized()
 			if blockHitCount == 5:
 				shieldBash = true
@@ -324,7 +334,7 @@ func _process(delta):
 			if shieldBash:
 				afterSB = true
 				blockBash()
-				damage = 40
+				damage = 0
 				postureDamage = 30
 				hurtType = 5 # 1
 				shieldBash = false
@@ -332,14 +342,14 @@ func _process(delta):
 				timer = 0
 				hitBlocked = false
 			if distToPlayer >= 4.5 && timer >= 1.4:#i chose 1.4 just casue
-				state = CHASE 
+				currState = State.CHASE 
 				once = true
 				retalRand = false
 				timer = 0
 				blockHitCount = 0
 				blockEndAni = true
 			if timer >= 2.5:
-				state = CHASE
+				currState = State.CHASE
 				once = true
 				retalRand = false
 				timer = 0
@@ -349,7 +359,7 @@ func _process(delta):
 				if oldVal != blockHitCount:
 					var switchChance = randi_range(1, 2)
 					if switchChance == 1:
-						state = CHASE
+						currState = State.CHASE
 						once = true
 						retalRand = false
 						timer = 0
@@ -360,12 +370,12 @@ func _process(delta):
 						
 			facing_angle = Vector2(direction.z, direction.x).angle()
 			
-		STAGGERED:
+		State.STAGGERED:
 			stagger()
 			staggerTimer += delta
 			if staggerTimer >= 3.5:
 				unStagger()
-				state = CHASE
+				currState = State.CHASE
 				posture = 0
 				stringCount = 1
 				timerThresh = 0
@@ -375,7 +385,7 @@ func _process(delta):
 				once = true
 				randOnce = true
 				
-		DEATH:
+		State.DEATH:
 			deathTimer += delta
 			if deathTimer >= 3:
 				queue_free()
@@ -405,10 +415,10 @@ func idle():
 	
 func jog():
 	var jogVec := Vector2.ZERO
-	match state:
-		CHASE:
+	match currState:
+		State.CHASE:
 			jogVec = Vector2(0, 1)
-		HOVER:
+		State.HOVER:
 			if clockwise:
 				jogVec = Vector2(1, 0)
 			else:
@@ -476,7 +486,7 @@ func unStagger():
 
 func _on_Body_Entered(body):
 	if body.is_in_group("player"):
-		state = CHASE #Chase
+		currState = State.CHASE #Chase
 		once = true
 		player = body
 		rotati = true
@@ -484,15 +494,17 @@ func _on_Body_Entered(body):
 
 func _on_Body_Exited(body):
 	if body.is_in_group("player"):
-		state = IDLE
+		currState = State.IDLE
 		rotati = false
 		
+		
 func performC1():
+		#stringCount = 4 #TODO FOR TESTING REMOVE DON FOR GOR###########################################################
 		if stringCount == 1:
 			C1S1()
 			timerThresh = 0.9
 			facingThresh = 0.5
-			damage = 25
+			damage = 15
 			postureDamage = 15
 			hurtType = 1
 		elif stringCount == 2:
@@ -500,7 +512,7 @@ func performC1():
 			C1S2()
 			timerThresh = 0.9
 			facingThresh = 0.5
-			damage = 25
+			damage = 15
 			postureDamage = 15
 			hurtType = 3
 		elif stringCount == 3:
@@ -509,7 +521,7 @@ func performC1():
 			C1S3()
 			timerThresh = 2.2
 			facingThresh = 0.8
-			damage = 15
+			damage = 10
 			postureDamage = 10
 		elif stringCount == 4:
 			C1S3Spec = false
@@ -517,7 +529,7 @@ func performC1():
 			C1S4()
 			timerThresh = 1.25
 			facingThresh = 0.9
-			damage = 50
+			damage = 35
 			hurtType = 5
 			postureDamage = 40
 		stringCount += 1
@@ -528,39 +540,52 @@ func isHit(hitInfo):
 	var postureRecieved = hitInfo[2]
 	velocity = Vector3.ZERO
 	if team != Entityteam:
-		match state:
-			CHASE:
-				state = BLOCK
+		match currState:
+			State.CHASE:
+				currState = State.BLOCK
 				blockHitCount += 1
 				hitBlocked = true
 				posture = posture + postureRecieved
+				sparksActi()
 				blockHit()
-			IDLE:
-				state = BLOCK
+			State.IDLE:
+				currState = State.BLOCK
 				blockHitCount += 1
 				hitBlocked = true
 				posture = posture + postureRecieved
+				sparksActi()
 				blockHit()
-			HOVER: 
-				state = BLOCK
+			State.HOVER: 
+				currState = State.BLOCK
 				blockHitCount += 1
 				hitBlocked = true
 				posture = posture + postureRecieved
+				sparksActi()
 				blockHit()
-			ATTACK:
+			State.ATTACK:
 				hp = hp - damageDealt
-			STAGGERED:
+			State.STAGGERED:
 				hp = hp - (damageDealt * 2)
-			BLOCK:
+			State.BLOCK:
 				if !shieldBash:
 					blockHit() 
 					blockHitCount += 1
 					hitBlocked = true
 					posture = posture + postureRecieved
+					sparksActi()
 				else:
 					hp = hp - damageDealt
 					
 		barVisible = true
 		postureTimer = 0.0
 		postLower = false
+		
+func sparksActi():
+	sparks.restart()
+	sparks.emitting = true
+	
+func heavActi(lif : float = 0.7):
+	heavy_atk_fx.restart()
+	heavy_atk_fx.lifetime = lif
+	heavy_atk_fx.emitting = true
 	

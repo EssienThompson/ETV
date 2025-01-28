@@ -1,0 +1,118 @@
+[gd_scene load_steps=13 format=3 uid="uid://bonkbbejrrdot"]
+
+[ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="1_cny7n"]
+[ext_resource type="Script" path="res://scripts/act1LevelMan.gd" id="1_u2xt3"]
+[ext_resource type="Material" uid="uid://xlcs6o2eykhi" path="res://mats/shadow.tres" id="2_0ebqv"]
+[ext_resource type="Environment" uid="uid://dh35wtmm60qnx" path="res://mats/environment.tres" id="3_jthcd"]
+[ext_resource type="PackedScene" uid="uid://c70owo4ydyf0t" path="res://scenes/relics/greyl.tscn" id="4_g5nu0"]
+[ext_resource type="PackedScene" uid="uid://kamh3sd27jnx" path="res://models/levels/tree.tscn" id="5_ckajt"]
+[ext_resource type="PackedScene" uid="uid://cwtnlojrisbnh" path="res://scenes/npcRelated/magision.tscn" id="6_vbevb"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ujekg"]
+vertices = PackedVector3Array(-49.5, 0.5, -49.5, -49.5, 0.5, 49.5, 49.5, 0.5, 49.5, 49.5, 0.5, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dv6ib"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gphrp"]
+material = ExtResource("1_cny7n")
+size = Vector2(100, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_youri"]
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4xcm5"]
+size = Vector3(1, 20, 100)
+
+[node name="tutRelic" type="Node3D"]
+script = ExtResource("1_u2xt3")
+diaID = "tutRelic"
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["naviMesh"]]
+navigation_mesh = SubResource("NavigationMesh_ujekg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_dv6ib")
+
+[node name="floor" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+mesh = SubResource("PlaneMesh_gphrp")
+
+[node name="shadow" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+material_override = ExtResource("2_0ebqv")
+mesh = SubResource("PlaneMesh_youri")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/StaticBody3D"]
+
+[node name="invWall1" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 10, 0)
+shape = SubResource("BoxShape3D_4xcm5")
+
+[node name="invWall2" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 10, 0)
+shape = SubResource("BoxShape3D_4xcm5")
+
+[node name="invWall3" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, 50)
+shape = SubResource("BoxShape3D_4xcm5")
+
+[node name="invWall4" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, -50)
+shape = SubResource("BoxShape3D_4xcm5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_jthcd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.944791, 0.272117, 0.182543, -0.30632, 0.535658, 0.786918, 0.116353, -0.799389, 0.58944, -0.11829, 13.6619, 0)
+shadow_enabled = true
+
+[node name="playerSpawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.353614, 0, -38.576)
+
+[node name="greyl" parent="." groups=["persist"] instance=ExtResource("4_g5nu0")]
+transform = Transform3D(-0.349365, 0, 0.0210804, 0, 0.35, 0, -0.0210804, 0, -0.349365, 0.849216, 4.76837e-07, -9.56832)
+
+[node name="tree" parent="." instance=ExtResource("5_ckajt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5479, 0, 8.1653)
+
+[node name="tree2" parent="." instance=ExtResource("5_ckajt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.1559, 0, -33.7053)
+
+[node name="tree3" parent="." instance=ExtResource("5_ckajt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3943, 0, 5.10733)
+
+[node name="tree4" parent="." instance=ExtResource("5_ckajt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.4114, 0, -15.5927)
+
+[node name="tree5" parent="." instance=ExtResource("5_ckajt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.61588, 0, 11.9289)
+
+[node name="tree6" parent="." instance=ExtResource("5_ckajt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4762, 0, 24.004)
+
+[node name="tree7" parent="." instance=ExtResource("5_ckajt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4956, 0, 0.559593)
+
+[node name="tree12" parent="." instance=ExtResource("5_ckajt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2613, 0, 29.4926)
+
+[node name="tree8" parent="." instance=ExtResource("5_ckajt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.8046, 0, 35.1381)
+
+[node name="tree9" parent="." instance=ExtResource("5_ckajt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.0195, 0, 41.7245)
+
+[node name="tree10" parent="." instance=ExtResource("5_ckajt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.6899, 0, -19.278)
+
+[node name="tree11" parent="." instance=ExtResource("5_ckajt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2602, 0, -28.6087)
+
+[node name="magision" parent="." instance=ExtResource("6_vbevb")]
+transform = Transform3D(-0.484003, 0, -0.572923, 0, 0.75, 0, 0.572923, 0, -0.484003, 8.46871, 9.53674e-07, -25.0099)

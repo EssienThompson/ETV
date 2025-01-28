@@ -1,0 +1,19 @@
+join magision center
+if {player.health} == "MWounded":
+	[signal arg="magiShocked"]
+	magision: Dam lad, you really stuggled with that one guy, your looking like a busted up watermelon
+elif {player.health} == "wounded":
+	[signal arg="magiNeutral"]
+	magision: wow lad, looks like you took some hit there
+elif {player.health} == "healthy":
+	[signal arg="magiSmile"]
+	magision: look at you lad, barely a scratch in your first fight huh
+[signal arg="magiNeutral"]
+magision: So up ahead is a relic, objects imbued with powerful emotions and because of God's blessing your able draw powers from relics giving you help on your journey
+[signal arg="magiClosed"]
+[signal arg="magiSmile"]
+magision: Now this relic, I kinda took from God buuuut don't worry bout that Im sure he won't mind
+[signal arg="magiResetEye"]
+magision: Just go ahead and grab it
+[signal arg="magiResetMou"]
+[signal arg="stopTalk"]

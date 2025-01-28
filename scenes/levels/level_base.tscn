@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://mipfhty8rd0t"]
+
+[ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="1_8rllf"]
+[ext_resource type="Material" uid="uid://xlcs6o2eykhi" path="res://mats/shadow.tres" id="2_h3j4o"]
+[ext_resource type="Environment" uid="uid://dh35wtmm60qnx" path="res://mats/environment.tres" id="3_2e03t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_34mii"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7n7fr"]
+material = ExtResource("1_8rllf")
+size = Vector2(100, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pl1gn"]
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0h045"]
+size = Vector3(1, 20, 100)
+
+[node name="levelBase" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_34mii")
+
+[node name="floor" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_7n7fr")
+
+[node name="shadow" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+material_override = ExtResource("2_h3j4o")
+mesh = SubResource("PlaneMesh_pl1gn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="StaticBody3D"]
+
+[node name="invWall1" type="CollisionShape3D" parent="StaticBody3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 10, 0)
+shape = SubResource("BoxShape3D_0h045")
+
+[node name="invWall2" type="CollisionShape3D" parent="StaticBody3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 10, 0)
+shape = SubResource("BoxShape3D_0h045")
+
+[node name="invWall3" type="CollisionShape3D" parent="StaticBody3D/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, 50)
+shape = SubResource("BoxShape3D_0h045")
+
+[node name="invWall4" type="CollisionShape3D" parent="StaticBody3D/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, -50)
+shape = SubResource("BoxShape3D_0h045")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_2e03t")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.944791, 0.272117, 0.182543, -0.30632, 0.535658, 0.786918, 0.116353, -0.799389, 0.58944, -0.11829, 13.6619, 0)
+shadow_enabled = true
+
+[node name="playerSpawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -34.9092)

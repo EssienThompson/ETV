@@ -1,13 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://8hmmjoiptn3q"]
+[gd_scene load_steps=21 format=3 uid="uid://8hmmjoiptn3q"]
 
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_bgs1l"]
 [ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="2_ke0qf"]
+[ext_resource type="Script" path="res://scripts/button.gd" id="3_rauql"]
+[ext_resource type="Script" path="res://scripts/graphicsSettings.gd" id="4_vsg3n"]
+[ext_resource type="Script" path="res://scripts/controlsSettings.gd" id="5_o56v0"]
+[ext_resource type="PackedScene" uid="uid://dj5na2y36sjs" path="res://scenes/menu&ui/InputButton(Remap).tscn" id="6_ow3x4"]
+[ext_resource type="Script" path="res://scripts/remap_msg.gd" id="7_xdal6"]
 
 [sub_resource type="Gradient" id="Gradient_ufixn"]
 colors = PackedColorArray(0.188371, 0.188371, 0.188371, 0.54902, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_m7h0w"]
 gradient = SubResource("Gradient_ufixn")
+fill_from = Vector2(0, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hd4h6"]
 
@@ -22,6 +29,21 @@ gradient = SubResource("Gradient_ufixn")
 [sub_resource type="Gradient" id="Gradient_h3xge"]
 colors = PackedColorArray(0.901961, 0.858824, 0, 0.784314, 0.901961, 0.858824, 0, 1)
 
+[sub_resource type="Gradient" id="Gradient_ksipe"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hh2qr"]
+gradient = SubResource("Gradient_ksipe")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ajbn7"]
+texture = SubResource("GradientTexture2D_hh2qr")
+modulate_color = Color(0.304462, 0.304462, 0.304462, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3408t"]
+bg_color = Color(0.154876, 0.154876, 0.154876, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2pv2"]
+bg_color = Color(0, 0, 0, 1)
+
 [node name="optionsMenu" type="TextureRect"]
 z_index = 1
 offset_left = 128.0
@@ -34,13 +56,15 @@ metadata/_edit_use_anchors_ = true
 
 [node name="close" type="Button" parent="."]
 layout_mode = 0
-offset_left = 19.999
-offset_top = 819.0
-offset_right = 171.999
-offset_bottom = 900.0
+anchor_left = 0.0111602
+anchor_top = 0.890217
+anchor_right = 0.103794
+anchor_bottom = 0.978261
+offset_right = -14.0
 size_flags_horizontal = 0
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_ke0qf")
 theme_override_font_sizes/font_size = 60
@@ -50,6 +74,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_b6y7e")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_hxo6u")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_t2hbv")
 text = "Close "
+script = ExtResource("3_rauql")
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2(0, 8.085)
@@ -67,6 +92,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_ke0qf")
 theme_override_font_sizes/font_size = 60
@@ -76,6 +102,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_b6y7e")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_hxo6u")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_t2hbv")
 text = "Graphics "
+script = ExtResource("3_rauql")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -86,6 +113,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_ke0qf")
 theme_override_font_sizes/font_size = 60
@@ -95,8 +123,10 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_b6y7e")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_hxo6u")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_t2hbv")
 text = "Conrtols"
+script = ExtResource("3_rauql")
 
 [node name="graphicsSettings" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -108,6 +138,7 @@ offset_top = -330.0
 offset_bottom = 460.0
 grow_horizontal = 0
 grow_vertical = 2
+script = ExtResource("4_vsg3n")
 
 [node name="graphicsHeaders" type="MarginContainer" parent="graphicsSettings"]
 layout_mode = 1
@@ -199,6 +230,7 @@ popup/item_4/text = "2560 x 1440"
 popup/item_4/id = 4
 popup/item_5/text = "3840 x 2160"
 popup/item_5/id = 5
+script = ExtResource("3_rauql")
 
 [node name="MarginContainer" type="MarginContainer" parent="graphicsSettings/graphicSelectors/VBoxContainer"]
 layout_mode = 2
@@ -209,10 +241,13 @@ custom_minimum_size = Vector2(245, 50)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-item_count = 2
+item_count = 3
 popup/item_0/text = "Fullscreen"
 popup/item_1/text = "Windowed"
 popup/item_1/id = 1
+popup/item_2/text = "Borderless Windowed"
+popup/item_2/id = 2
+script = ExtResource("3_rauql")
 
 [node name="MarginContainer2" type="MarginContainer" parent="graphicsSettings/graphicSelectors/VBoxContainer"]
 layout_mode = 2
@@ -223,6 +258,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_ke0qf")
 theme_override_font_sizes/font_size = 45
@@ -232,6 +268,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_b6y7e")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_hxo6u")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_t2hbv")
 text = "On"
+script = ExtResource("3_rauql")
 
 [node name="MarginContainer3" type="MarginContainer" parent="graphicsSettings/graphicSelectors/VBoxContainer"]
 layout_mode = 2
@@ -257,8 +294,123 @@ popup/item_6/text = "240"
 popup/item_6/id = 6
 popup/item_7/text = "Unlimited"
 popup/item_7/id = 7
+script = ExtResource("3_rauql")
 
+[node name="controlsSettings" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -872.0
+offset_top = -330.0
+offset_bottom = 460.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("5_o56v0")
+
+[node name="PanelContainer" type="PanelContainer" parent="controlsSettings"]
+custom_minimum_size = Vector2(871, 790)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="graphicsHeaders" type="MarginContainer" parent="controlsSettings/PanelContainer"]
+custom_minimum_size = Vector2(871, 790)
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="controlsSettings/PanelContainer/graphicsHeaders"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="controlsSettings/PanelContainer/graphicsHeaders/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionList" type="VBoxContainer" parent="controlsSettings/PanelContainer/graphicsHeaders/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputButton" parent="controlsSettings/PanelContainer/graphicsHeaders/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("6_ow3x4")]
+layout_mode = 2
+
+[node name="reset" type="Button" parent="controlsSettings/PanelContainer/graphicsHeaders/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_ke0qf")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxTexture_ajbn7")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3408t")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_e2pv2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ajbn7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e2pv2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3408t")
+text = "Default"
+
+[node name="remapMsg" type="MarginContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(792, 420)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.279018
+anchor_top = 0.271739
+anchor_right = 0.720982
+anchor_bottom = 0.728261
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_xdal6")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="remapMsg"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.9)
+
+[node name="remapText" type="Label" parent="remapMsg/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0391414
+anchor_top = 0.111905
+anchor_right = 0.962121
+anchor_bottom = 0.257143
+offset_left = 1.0
+offset_right = -1.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_ke0qf")
+theme_override_font_sizes/font_size = 45
+text = "Currently remapping Keyboard key"
+metadata/_edit_use_anchors_ = true
+
+[node name="awaiting" type="Label" parent="remapMsg/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.304293
+anchor_top = 0.542857
+anchor_right = 0.695707
+anchor_bottom = 0.688095
+offset_left = 1.52588e-05
+offset_top = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_ke0qf")
+theme_override_font_sizes/font_size = 45
+text = "Awaiting Input
+"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="HBoxContainer/graphics" to="." method="_on_graphics_pressed"]
 [connection signal="item_selected" from="graphicsSettings/graphicSelectors/VBoxContainer/resolutionButton" to="." method="_on_resolution_button_item_selected"]
 [connection signal="item_selected" from="graphicsSettings/graphicSelectors/VBoxContainer/screenModeButton" to="." method="_on_screen_mode_button_item_selected"]
 [connection signal="pressed" from="graphicsSettings/graphicSelectors/VBoxContainer/vsyncButton" to="." method="_on_vsync_button_pressed"]
 [connection signal="item_selected" from="graphicsSettings/graphicSelectors/VBoxContainer/framerateButton" to="." method="_on_framerate_button_item_selected"]
+[connection signal="pressed" from="controlsSettings/PanelContainer/graphicsHeaders/VBoxContainer/reset" to="controlsSettings" method="_on_reset_pressed"]

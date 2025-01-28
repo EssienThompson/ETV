@@ -4,12 +4,14 @@ extends Node3D
 @onready var start: Button = $CanvasLayer/Control/MarginContainer/VBoxContainer/start
 @onready var options: Button = $CanvasLayer/Control/MarginContainer/VBoxContainer/options
 @onready var quit: Button = $CanvasLayer/Control/MarginContainer/VBoxContainer/quit
-@onready var options_menu: TextureRect = $CanvasLayer/Control/optionsMenu
+#@onready var options_menu: TextureRect = $CanvasLayer/Control/optionsMenu
+@onready var options_menu: TextureRect = $CanvasLayer/optionsMenu
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	continueBut.focus()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,11 +20,12 @@ func _process(delta: float) -> void:
 
 
 func _on_continue_pressed() -> void:
-	pass # Replace with function body.
+	Events.loadRun.emit()
+	#saveManager.load_saved_run()
 
 
 func _on_start_pressed() -> void:
-	pass # Replace with function body.
+	Events.newRun.emit()
 
 
 func _on_options_pressed() -> void:
@@ -46,6 +49,8 @@ func toggleMMButtons(opt:bool) -> void:
 
 
 func _on_close_pressed() -> void:
+	continueBut.focus()
+	options_menu.saveSetting()
 	animation_player.play("optionsOut")
 	toggleMMButtons(false)
 	options_menu.toggleAllButtons(true)

@@ -8,7 +8,8 @@ var hurtType
 var postureDamage
 var userOrigin
 var active := false
-var hurtboxHit := []
+#var hurtboxHit := []
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,9 +18,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if user.dying:
-		activeOff()
 	if user != null:
+		if user.dying :
+			activeOff()
 		damage = user.damage
 		team = user.team
 		hurtType = user.hurtType

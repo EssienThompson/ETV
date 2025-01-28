@@ -12,3 +12,4 @@ func _process(delta: float) -> void:
 	if cutter != null:
 		material_override.set_shader_parameter("cutplane", cutter.transform)
 		
+		

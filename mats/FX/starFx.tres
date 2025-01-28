@@ -1,0 +1,123 @@
+[gd_resource type="ArrayMesh" load_steps=5 format=4 uid="uid://bt4dab3wyr6g"]
+
+[sub_resource type="Shader" id="Shader_c61yy"]
+code = "shader_type spatial;
+render_mode unshaded, cull_disabled;
+
+// https://godotshaders.com/shader/sobel-edge-outline-shader-per-object/
+
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear;
+uniform sampler2D NORMAL_TEXTURE: hint_normal_roughness_texture, filter_linear;
+
+uniform float outline_threshold = 0.1; //0.1
+uniform vec3 outline_color: source_color = vec3(0.043, 0.282, 0.467);
+uniform float brightness: hint_range(0.1, 20.0, 0.01) = 6.0; // 6
+
+const mat3 sobel_y = mat3(
+	vec3(1.0, 0.0, -1.0),
+	vec3(2.0, 0.0, -2.0),
+	vec3(1.0, 0.0, -1.0)
+);
+
+const mat3 sobel_x = mat3(
+	vec3(1.0, 2.0, 1.0),
+	vec3(0.0, 0.0, 0.0),
+	vec3(-1.0, -2.0, -1.0)
+);
+
+bool is_edge(in vec2 uv, in vec3 normal, in vec2 offset) {
+	vec3 n = texture(NORMAL_TEXTURE, uv + vec2(0.0, -offset.y)).rgb;
+	vec3 s = texture(NORMAL_TEXTURE, uv + vec2(0.0, offset.y)).rgb;
+	vec3 e = texture(NORMAL_TEXTURE, uv + vec2(offset.x, 0.0)).rgb;
+	vec3 w = texture(NORMAL_TEXTURE, uv + vec2(-offset.x, 0.0)).rgb;
+	vec3 nw = texture(NORMAL_TEXTURE, uv + vec2(-offset.x, -offset.y)).rgb;
+	vec3 ne = texture(NORMAL_TEXTURE, uv + vec2(offset.x, -offset.y)).rgb;
+	vec3 sw = texture(NORMAL_TEXTURE, uv + vec2(-offset.x, offset.y)).rgb;
+	vec3 se = texture(NORMAL_TEXTURE, uv + vec2(offset.x, offset.y)).rgb;
+
+	mat3 surrounding_pixels = mat3(
+		vec3(length(nw-normal), length(n-normal), length(ne-normal)),
+		vec3(length(w-normal), length(normal-normal), length(e-normal)),
+		vec3(length(sw-normal), length(s-normal), length(se-normal))
+	);
+
+	float edge_x = dot(sobel_x[0], surrounding_pixels[0]) + dot(sobel_x[1], surrounding_pixels[1]) + dot(sobel_x[2], surrounding_pixels[2]);
+	float edge_y = dot(sobel_y[0], surrounding_pixels[0]) + dot(sobel_y[1], surrounding_pixels[1]) + dot(sobel_y[2], surrounding_pixels[2]);
+
+	float edge = sqrt(pow(edge_x, 2.0)+pow(edge_y, 2.0));
+
+	return edge > outline_threshold;
+}
+
+void fragment() {
+	vec2 uv = SCREEN_UV;
+	vec3 screen_color = texture(SCREEN_TEXTURE, uv).rgb;
+	vec3 screen_normal = texture(NORMAL_TEXTURE, uv).rgb;
+	screen_normal = screen_normal * 2.0 - 1.0;
+	vec2 offset = 1.0 / VIEWPORT_SIZE;
+
+	if (is_edge(uv, screen_normal, offset)) {
+		ALBEDO = outline_color * brightness;
+	} else {
+		ALBEDO = screen_color * brightness;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q57bq"]
+render_priority = 0
+shader = SubResource("Shader_c61yy")
+shader_parameter/outline_threshold = 0.1
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/brightness = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb73r"]
+resource_name = "Material"
+next_pass = SubResource("ShaderMaterial_q57bq")
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+anisotropy = 1.0
+heightmap_scale = 4.61
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_flip_tangent = true
+heightmap_flip_binormal = true
+subsurf_scatter_strength = 1.0
+refraction_texture_channel = 4
+detail_blend_mode = 3
+disable_receive_shadows = true
+billboard_keep_scale = true
+point_size = 128.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fk6hm"]
+_surfaces = [{
+"aabb": AABB(-1.26462, -1.94034, -0.0352411, 2.52924, 3.96102, 0.197717),
+"format": 34896613377,
+"index_count": 132,
+"index_data": PackedByteArray("CQAAAAIACQAIAAAAAwAHAAEAAwAEAAcAAAAGAAIAAAAFAAYAAwAIAAkAAwABAAgAEAASABEAEgAUABMAFAAWABUAFgAQABcAEAAUABIAEAAWABQADwAKAA4ADwAMAAoADQAHAAQADQALAAcACgAGAAUACgAMAAYADQAOAAsADQAPAA4AAwANAAQADQAMAA8ADAACAAYAAgADAAkAAwAMAA0AAwACAAwAAQARAAgAAQAQABEACAASAAAACAARABIAAAATAAUAAAASABMABQAUAAoABQATABQACgAVAA4ACgAUABUADgAWAAsADgAVABYACwAXAAcACwAWABcABwAQAAEABwAXABAA"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("86gNknRlAAAJp5VqdGUAAPOoDZIAAAAACaeVagAAAAD/fwAAAAAAAP9///90ZQAA/3///wAAAAD/fwAAdGUAAP//7X50ZQAA///tfgAAAAALVw2SdGUAAPVYlWp0ZQAAC1cNkgAAAAD1WJVqAAAAAAAA7X50ZQAAAADtfgAAAAAFldd0/v8AAADArH7+/wAABZeth/7/AAD/f33F/v8AAPlorYf+/wAA/j+sfv//AAD5atd0/v8AAP9/cTv+/wAA")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "StarEff_Cube"
+_surfaces = [{
+"aabb": AABB(-1.26462, -1.94034, -0.0352411, 2.52924, 3.96102, 0.197717),
+"attribute_data": PackedByteArray("/5//f/+f/3//n/9//5//f/9f/3//X/9//1//f/9f/3//3/9//5//v//f/3//H/9//1//v/8f/3//H/9f/x//X/8f/1+yn/9fsp//X7Kf/1+yn/9f/985YP/fOWD/3zlg/1//X/9f/1//X/9f/1//X/9//3//f/9//3//f/9//3//f/+//3//v/9//7//n/9//5//f/+f/3//n/9//1//f/9f/3//X/9//1//f/+f/7//n/+//9//f/8f/3//X/+//x//f/9//3//f/9//3//f/9//3//f/+//3//v/9//7/fdfd833X3fN9193wVgGR/FYBkfxWAZH9KiQ59SokOfUqJDn1NnUdwTZ1HcE2dR3BKiQ59SokOfUqJDn0VgGR/FYBkfxWAZH/fdfd833X3fN9193y2YgJxtmICcbZiAnE="),
+"format": 34896613399,
+"index_count": 132,
+"index_data": PackedByteArray("IQABAAkAIQAeAAEADQAZAAcADQAPABkAAwAWAAoAAwASABYADAAfACIADAAFAB8AOAA+ADsAPgBEAEEARABKAEcASgA4AE0AOABEAD4AOABKAEQANgAkADMANgAsACQAMAAbABAAMAAqABsAJgAXABQAJgAtABcALwA0ACgALwA3ADQACwAuAA4ALgArADUAKwAIABUACAALACAACwArAC4ACwAIACsABAA9AB0ABAA5AD0AHAA/AAAAHAA8AD8AAgBCABEAAgBAAEIAEwBGACUAEwBDAEYAIwBIADEAIwBFAEgAMgBLACcAMgBJAEsAKQBPABoAKQBMAE8AGAA6AAYAGABOADoA"),
+"material": SubResource("StandardMaterial3D_sb73r"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 80,
+"vertex_data": PackedByteArray("86gNknRl8vLzqA2SdGV49vOoDZJ0Zf6v86gNknRlksAJp5VqdGXEogmnlWp0ZTDBCaeVanRlndUJp5VqdGVi+fOoDZIAAP//86gNkgAAePbzqA2SAACMwAmnlWoAAP//CaeVagAAMMEJp5VqAABi+f9/AAAAAP///38AAAAAYvn/fwAAAAB2P/9///90ZYmW/3///3Rlh8H/f///dGU+pf9///90ZTUL/3///wAAAAD/f///AAB+wf9///8AABQL/38AAHRldVn/fwAAdGVi+f9/AAB0ZUFp/38AAHRldj///+1+dGVg2v//7X50ZT6Z///tfnRlePb//+1+dGUwwf//7X4AAAAA///tfgAAePb//+1+AAAwwQtXDZJ0ZVtdC1cNknRl4z4LVw2SdGWhKgtXDZJ0ZdgG9ViVanRlig31WJVqdGXiCfVYlWp0ZUpQ9ViVanRldj8LVw2SAAD//wtXDZIAAOM+C1cNkgAAuAb1WJVqAAD///VYlWoAAOIJ9ViVagAAdj8AAO1+dGUHZwAA7X50Za4oAADtfnRl4z4AAO1+dGXiCQAA7X4AAP//AADtfgAA4z4AAO1+AADiCQWV13T+//5/BZXXdP7/vqcFldd0/v91WQDArH7+/3K/AMCsfv7/u5UAwKx+/v/kmwWXrYf+/5fiBZeth/7/G+0Fl62H/v9ZtP9/fcX+/wCA/399xf7/6Jf/f33F/v8+pflorYf+/3dY+With/7/1Ff5aK2H/v8+pf4/rH7//3M//j+sfv//HmT+P6x+//9davlq13T+/89w+WrXdP7/KhP5atd0/v+XS/9/cTv+//5//39xO/7/dVn/f3E7/v+zZ+YZVQQPO+AJdyb3C1CY7QsMAGE4gBD/XrIIHRv7BnzD/MABvw874AlRmCgM/MABv4AQ/177BnzD////f/sGfMMAaP/zPauICyOY/AOc2pzlkP1cP2XOZk4kmDcEbf1GPw8kShr7BnzD81N/9QBo//PG4zAEJQz5RQ874AmAEP9e/MABvw874AmAEP9edf9VOPTvFKBP99XkCPmIPCDmgfscxcT1Xdn78wBo//MA3f6i9O8UoOf4dDyo7VaSHMXE9QBo//MX9NS4aBz++vTvFKAcxcT1qO1WkvTvFKAcxcT1/////6UD+s4PJEoa/////y7gD0yoB+5A/////88adQIsI0kN/3///xCxcgec2pzl/////4H7OzCc2pzl/////xT5lb6zIEiz/////zvlTP3v3I/y/3///w8kShrYTb75")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_fk6hm")

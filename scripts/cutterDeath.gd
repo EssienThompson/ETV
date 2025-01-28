@@ -4,8 +4,10 @@ extends MeshInstance3D
 var death := false
 var mat
 @export var cutPos : float
+@export var endpos : float
 const CUTTERMAT = preload("res://mats/cutter.tres")
 var cut := false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,7 +32,7 @@ func _process(delta: float) -> void:
 		cutter.global_position.y = cutPos
 	elif cut:
 		material_override.set_shader_parameter("cutplane", cutter.transform)
-		cutPos = lerpf(cutPos, 0, 0.002)
+		cutPos = lerpf(cutPos, endpos, 0.005)
 		cutter.global_position.y = cutPos
 		
 		

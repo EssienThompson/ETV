@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://r7rq8dwv02br"]
+
+[ext_resource type="PackedScene" uid="uid://dn7om6ifrd040" path="res://models/levels/rock.tscn" id="1_1dtl7"]
+[ext_resource type="Script" path="res://scripts/campfire.gd" id="1_oitr6"]
+[ext_resource type="PackedScene" uid="uid://bl8fgnxjpeptm" path="res://scenes/effects/fire.tscn" id="1_rcdua"]
+[ext_resource type="PackedScene" uid="uid://40sd3xtxbxs5" path="res://models/levels/log.tscn" id="2_f7xpd"]
+[ext_resource type="PackedScene" uid="uid://btx7omj5rrbn1" path="res://scenes/menu&ui/interactable.tscn" id="4_qu3db"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ujvfn"]
+radius = 0.55
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0kcyv"]
+size = Vector3(5.98706, 1, 6.03954)
+
+[node name="campfire" type="Node3D"]
+script = ExtResource("1_oitr6")
+
+[node name="fire" parent="." instance=ExtResource("1_rcdua")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.102331, 0)
+
+[node name="fireHead" parent="fire" index="2"]
+visible = false
+
+[node name="camp" type="Node3D" parent="."]
+
+[node name="rock" parent="camp" instance=ExtResource("1_1dtl7")]
+transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0.0120426, 0.0744563, 0.840232)
+
+[node name="rock2" parent="camp" instance=ExtResource("1_1dtl7")]
+transform = Transform3D(0.155209, -1.10271e-08, -0.126135, 0, -0.2, 1.74846e-08, -0.126135, -1.35688e-08, -0.155209, 0.449063, 0.252745, 0.358214)
+
+[node name="rock3" parent="camp" instance=ExtResource("1_1dtl7")]
+transform = Transform3D(0.0938249, 0.172064, -0.0398869, -0.00134724, 0.0458611, 0.194666, 0.176621, -0.091054, 0.0226737, 0.377009, 0.0700033, -0.116975)
+
+[node name="rock4" parent="camp" instance=ExtResource("1_1dtl7")]
+transform = Transform3D(0.199921, 0, -0.00561924, 0, 0.2, 0, 0.00561924, 0, 0.199921, 0.0415044, -0.131731, -0.594392)
+
+[node name="rock5" parent="camp" instance=ExtResource("1_1dtl7")]
+transform = Transform3D(-0.0822718, -0.173231, 0.0567649, -0.0275585, -0.0497432, -0.191745, 0.180199, -0.0866978, -0.00340769, -0.389808, 0.105633, -0.184007)
+
+[node name="rock6" parent="camp" instance=ExtResource("1_1dtl7")]
+transform = Transform3D(-0.100067, -0.119381, 0.125439, 0.00396147, 0.14326, 0.139502, -0.173121, 0.0722822, -0.0693134, -0.465399, -2.38419e-07, 0.274955)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="camp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.342852, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_ujvfn")
+skeleton = NodePath("../..")
+
+[node name="tree2" parent="camp" instance=ExtResource("2_f7xpd")]
+transform = Transform3D(-0.129172, -0.00293007, -0.0143505, 0.00189376, 0.122962, -0.0421524, 0.0145236, -0.0420931, -0.122136, 0.0464101, -0.889867, 0.562754)
+
+[node name="tree3" parent="camp" instance=ExtResource("2_f7xpd")]
+transform = Transform3D(0.098539, -0.043506, -0.0727826, 0.0217878, 0.120829, -0.0427277, 0.0819473, 0.020189, 0.0988789, 0.473977, -0.889867, -0.251098)
+
+[node name="tree4" parent="camp" instance=ExtResource("2_f7xpd")]
+transform = Transform3D(0.0740337, 0.0470245, 0.0959568, -0.0156445, 0.120248, -0.0468583, -0.105708, 0.0151376, 0.074139, -0.539913, -0.889867, -0.1617)
+
+[node name="interactable" parent="." instance=ExtResource("4_qu3db")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.14694, 0)
+
+[node name="interactArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 17
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="interactArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0057373, 0.504164, -0.000831604)
+shape = SubResource("BoxShape3D_0kcyv")
+
+[connection signal="body_entered" from="interactArea" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="interactArea" to="." method="_on_interact_area_body_exited"]
+
+[editable path="fire"]

@@ -4,6 +4,7 @@ extends Area3D
 @export var user : Node3D
 var hitboxesHit := []
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	connect("area_entered", self._on_area_entered)
@@ -17,28 +18,29 @@ func _process(delta):
 			hitboxesHit.erase(box)
 
 
-func _on_area_entered(hitB: hitbox):
+func _on_area_entered(hitB: Area3D):
 	if hitB == null:
 		return
 	elif hitB.user == user:
 		return
-	elif hitB.active && hitboxesHit.has(hitB) == false:
-		var hitboxInfo = []
-		hitboxInfo.append(hitB.team)
-		hitboxInfo.append(hitB.damage)
-		hitboxInfo.append(hitB.postureDamage)
-		hitboxInfo.append(hitB.hurtType)
-		hitboxInfo.append(hitB.userOrigin)
-		if user != null:
-			if user.name == "Player":
-				if user.floorStuck == false:
+	elif hitboxesHit.has(hitB) == false && hitB is hitbox:
+		if hitB.active:
+			var hitboxInfo = []
+			hitboxInfo.append(hitB.team)
+			hitboxInfo.append(hitB.damage)
+			hitboxInfo.append(hitB.postureDamage)
+			hitboxInfo.append(hitB.hurtType)
+			hitboxInfo.append(hitB.userOrigin)
+			if user != null:
+				if user.name == "Player":
+					if user.floorStuck == false:
+						user.isHit(hitboxInfo)
+						#hitB.activeOff()
+						hitboxesHit.append(hitB)
+				else:
 					user.isHit(hitboxInfo)
-					#hitB.activeOff()
 					hitboxesHit.append(hitB)
-			else:
-				user.isHit(hitboxInfo)
-				hitboxesHit.append(hitB)
-				#hitB.activeOff()
+					#hitB.activeOff()
 			
 func check_overlap():
 	var overlap = get_overlapping_areas()

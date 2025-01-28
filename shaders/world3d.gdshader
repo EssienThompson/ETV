@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded;
+render_mode unshaded, cull_disabled, blend_mix;
 
 // https://godotshaders.com/shader/sobel-edge-outline-shader-per-object/
 
@@ -7,8 +7,8 @@ uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear;
 uniform sampler2D NORMAL_TEXTURE: hint_normal_roughness_texture, filter_linear;
 
 uniform float outline_threshold = 0.1; //0.1
-uniform vec3 outline_color: source_color = vec3(0.043, 0.282, 0.467);
-uniform float brightness: hint_range(0.1, 20.0, 0.01) = 6.0; // 6
+uniform vec3 outline_color: source_color = vec3(1, 1, 1);
+uniform float brightness: hint_range(0.1, 20.0, 0.01) = 1.0; // 6
 
 const mat3 sobel_y = mat3(
 	vec3(1.0, 0.0, -1.0),

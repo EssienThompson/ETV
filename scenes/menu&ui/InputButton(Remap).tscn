@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://dj5na2y36sjs"]
+
+[ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="1_166rl"]
+[ext_resource type="Script" path="res://scripts/remapButton.gd" id="1_vykoh"]
+
+[sub_resource type="Gradient" id="Gradient_2gyxb"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0363b"]
+gradient = SubResource("Gradient_2gyxb")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mq58w"]
+texture = SubResource("GradientTexture2D_0363b")
+modulate_color = Color(0.54, 0.54, 0.54, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u2p6g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ctnyj"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3dxu"]
+bg_color = Color(0.154876, 0.154876, 0.154876, 1)
+
+[node name="InputButton" type="Button"]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+theme_override_colors/font_hover_color = Color(0.54, 0.54, 0.54, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.54, 0.54, 0.54, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxTexture_mq58w")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_u2p6g")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ctnyj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mq58w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ctnyj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_o3dxu")
+script = ExtResource("1_vykoh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LabelAction" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("1_166rl")
+theme_override_font_sizes/font_size = 35
+text = "Action Name"
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="LabelInput" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("1_166rl")
+theme_override_font_sizes/font_size = 35
+text = "Action Input"
+vertical_alignment = 1

@@ -6,23 +6,32 @@ extends Node3D
 @onready var cam_root = $"../camRoot"
 @onready var dodgeVec = player.input_dir
 @onready var swordObj = $Armature/Skeleton3D/BoneAttachment3D/swordCont
-@onready var sparks: GPUParticles3D = $Armature/Skeleton3D/BoneAttachment3D/swordCont/sword/sword/sparks
-@onready var sparks_2: GPUParticles3D = $sparks2
+@onready var sparks: GPUParticles3D = $sparks
+@onready var animation_player: AnimationPlayer = $Armature/Skeleton3D/AnimationPlayer
+@onready var sp1: Marker3D = $Armature/Skeleton3D/BoneAttachment3D/swordCont/sP1
+@onready var sp2: Marker3D = $Armature/sP2
+@onready var sp3: Marker3D = $Armature/sP3
+@onready var sp4: Marker3D = $Armature/sP4
+@onready var line: GPUParticles3D = $sparks/line
 
 
 var blendVal := 0.0
+var tes
+
 #var blendAmt := 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#tes = animation_tree.get("parameters/walkJog/current_state")
 	#blendAmt = animation_tree.get("parameters/blockBlends/blend_amount")
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta): # add dodge animations to tree
-	 
-	pass
+	if player.is_on_floor():
+		animation_tree.set("parameters/fallAtk/blend_amount", 0.0)
+	
 	
 func fallSword():
 	#animation_tree.set("parameters/fallAtk/blend_amount", 0)
@@ -224,10 +233,29 @@ func abortOneShot():
 func cancelSword():
 	animation_tree.set("parameters/swordAtt/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 	
-func sparksActi():
+func sparksActi(pos : int = 1):
 	sparks.restart()
+	match pos:
+		1:
+			sparks.global_position = sp1.global_position
+		2:
+			sparks.global_position = sp2.global_position
+		3:
+			sparks.global_position = sp3.global_position
+		4:
+			sparks.global_position = sp4.global_position
 	sparks.emitting = true
 	
-func sparksActi2():
-	sparks_2.restart()
-	sparks_2.emitting = true
+	
+func lineActi(pos : int = 1):
+	line.restart()
+	match pos:
+		1:
+			line.global_position = sp1.global_position
+		2:
+			line.global_position = sp2.global_position
+		3:
+			line.global_position = sp3.global_position
+		4:
+			line.global_position = sp4.global_position
+	line.emitting = true

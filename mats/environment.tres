@@ -42,7 +42,7 @@ shader_parameter/stars_sky_color = Color(0, 0, 0, 1)
 shader_parameter/offset_stars = 0.0130001
 shader_parameter/stars_intensity = -2.829
 shader_parameter/star_falloff = 1.79
-shader_parameter/stars_fade_modulation = 0.91
+shader_parameter/stars_fade_modulation = 0.93
 shader_parameter/stars_texture = SubResource("NoiseTexture2D_nwqmb")
 shader_parameter/cloud_edge_day_color = Color(0.9, 0.9, 0.9, 1)
 shader_parameter/cloud_main_day_color = Color(1, 1, 1, 1)
@@ -64,9 +64,15 @@ sky_material = SubResource("ShaderMaterial_125nf")
 
 [resource]
 background_mode = 2
-background_energy_multiplier = 0.3
+background_energy_multiplier = 3.0
 sky = SubResource("Sky_awhw6")
 ssao_radius = 0.01
 ssao_horizon = 0.0
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.2
+glow_blend_mode = 1
+glow_hdr_threshold = 3.0
+glow_map_strength = 1.0
 adjustment_enabled = true
 adjustment_contrast = 1.5

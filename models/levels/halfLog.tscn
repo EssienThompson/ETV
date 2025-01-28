@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=4 uid="uid://dyavsxbdkljmj"]
+
+[ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="1_otwfu"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ulruw"]
+_surfaces = [{
+"aabb": AABB(-0.537027, -5.32093, -1.08019, 0.977207, 10.6419, 1.90097),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray("AAAJAAEACQACAAMACAAJAAAACQAIAAIAAgAFAAMAAgAEAAUABAAHAAUABAAGAAcABgABAAcABgAAAAEABgAIAAAACAAEAAIACAAGAAQAAwABAAkAAQAFAAcAAQADAAUA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("Zv8AAAAAAABm////AAAAALyNAAD//wAAvI3/////AAAAAAAAoaQAAAAA//+hpAAAlTIAALQyAACVMv//tDIAAGb/AAD//wAA////////AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hnrbc"]
+resource_name = "halfLog_Cylinder"
+_surfaces = [{
+"aabb": AABB(-0.537027, -5.32093, -1.08019, 0.977207, 10.6419, 1.90097),
+"attribute_data": PackedByteArray("/7+Ogv///38AAP9//z+Ogv8/joIAAAAAVqVa97Zt/3+2bf9/VyVa97ZtAAC2bQAAGYSrzSRJ/38kSf9/GQSrzSRJAAAkSQAA9o+wmZIk/3+SJP9/9g+wmZIkAACSJAAA/79a9/9//38jQFr3GIAAAA=="),
+"format": 34896613399,
+"index_count": 48,
+"index_data": PackedByteArray("AQAbAAQAGwAHAAoAGQAbAAEAGwAZAAcACAAQAAsACAANABAADgAXABEADgAUABcAEwAFABYAEwACAAUAEgAYAAAAGAAMAAYAGAASAAwACQADABoAAwAPABUAAwAJAA8A"),
+"material": ExtResource("1_otwfu"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 28,
+"vertex_data": PackedByteArray("Zv8AAAAA/z9m/wAAAADatmb/AAAAALXtZv///wAA/79m////AADSL2b///8AALXtvI0AAP///z+8jQAA///atryNAAD//5GkvI3//////7+8jf/////atryN/////5GkAAAAAKGk/z8AAAAAoaSRpAAAAAChpCPJAAD//6Gk/78AAP//oaSRpAAA//+hpCPJlTIAALQy/z+VMgAAtDK17ZUyAAC0MiPJlTL//7Qy/7+VMv//tDK17ZUy//+0MiPJZv8AAP///z9m/wAA///atv////////+/////////2rYAAP9//X8DAP9///////9/SqeRWP9///8AAP9/7n8JAP9///////9/7n8JAP9///8AAP9//3////9///////9//3////9///8AAP9//3////9///////9//3////9///8AAP9/938FAP///3/wfwgA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ulruw")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dl3gu"]
+size = Vector3(0.987183, 1.90417, 10.634)
+
+[node name="halfLog" type="Node3D"]
+
+[node name="Cylinder" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.042016, 0.857718, 1.01591)
+mesh = SubResource("ArrayMesh_hnrbc")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0899048, 0.982971, 1.00769)
+shape = SubResource("BoxShape3D_dl3gu")

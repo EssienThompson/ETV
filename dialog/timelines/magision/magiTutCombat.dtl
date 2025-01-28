@@ -1,0 +1,23 @@
+join magision center
+[signal arg="magiNeutral"]
+magision: Behind this rock, there is a bad guy and we all hate bad guys right?
+- Yea, fuck those bad guys!
+	[signal arg="magiSmile"]
+	magision: That's the spirit lad
+- No?
+	[signal arg="magiFrown"]
+	magision: Well, too bad
+[signal arg="magiNeutral"]
+if {player.inDevice} == "cont":
+	magision: Now use your right bumper to attack and left bumper to block, and the B/Circle button to dodge and run
+elif {player.inDevice} == "key":
+	magision: Now use your left click to attack and right click to block, and Shift to dodge and run
+magision: Blocking attacks will increase your posture and if that bar get filled, you get staggered
+magision: And getting staggered isn't fun, so if you block just before it hits you parry it, recovering a tiny bit of posture
+[signal arg="magiResetMou"]
+[signal arg="magiAgro"]
+magision: NOW FIGHT OR BE FORGOTTEN!!!
+[signal arg="magiResetEye"]
+[signal arg="rockDrop"]
+[signal arg="stopTalk"]
+[end_timeline]

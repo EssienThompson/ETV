@@ -1,20 +1,24 @@
+// NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
+
 shader_type spatial;
-render_mode unshaded, cull_disabled;
-uniform sampler2D _albedo: source_color;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_toon, specular_toon, shadows_disabled, unshaded;
+
 global uniform vec4 borderColor: source_color;
 uniform sampler2D _noise;
+
+uniform vec4 albedo : source_color;
 uniform mat4 cutplane;
 varying vec3 wvtx;
 
-// https://godotshaders.com/shader/sobel-edge-outline-shader-per-object/
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
 
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear;
 uniform sampler2D NORMAL_TEXTURE: hint_normal_roughness_texture, filter_linear;
 
 uniform float outline_threshold = 0.1; //0.1
-uniform vec3 outline_color: source_color = vec3(0.043, 0.282, 0.467);
-uniform vec3 screen_color: source_color = vec3(0.043, 0.282, 0.467);
-uniform float brightness: hint_range(0.1, 20.0, 0.01) = 6.0; // 6
+uniform vec3 outline_color: source_color = vec3(1, 1, 1);
+uniform float brightness: hint_range(0.1, 20.0, 0.01) = 1.0; // 6
 
 const mat3 sobel_y = mat3(
 	vec3(1.0, 0.0, -1.0),
@@ -53,16 +57,13 @@ bool is_edge(in vec2 uv, in vec3 normal, in vec2 offset) {
 }
 
 void vertex() {
-	// Called for every vertex the material is visible on.
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
 	wvtx = (MODEL_MATRIX * vec4(VERTEX,1.0)).xyz;
+	//POSITION = vec4(VERTEX.xy,1.0,1.0); //use quad for camera
 }
 
 void fragment() {
-	vec2 uv = SCREEN_UV;
-	//vec3 screen_color = texture(SCREEN_TEXTURE, uv).rgb;
-	vec3 screen_normal = texture(NORMAL_TEXTURE, uv).rgb;
-	screen_normal = screen_normal * 2.0 - 1.0;
-	vec2 offset = 1.0 / VIEWPORT_SIZE;
+	vec2 base_uv = UV;
 
 	vec3 planeNormal = normalize(-cutplane[1].xyz);
 	float planeDistance = dot(planeNormal, cutplane[3].xyz);
@@ -70,29 +71,31 @@ void fragment() {
 	float dist = vertexDistance - planeDistance;
 
 	vec4 clip_pos = PROJECTION_MATRIX * vec4(VERTEX, 1.0);
-	vec2 uvo = clip_pos.xy/5.0;
+	vec2 uv = clip_pos.xy/5.0;
 
-	uvo += TIME * 0.03;
-	float noise = texture(_noise, uvo).r;
+	uv += TIME * 0.03;
+	float noise = texture(_noise, uv).r;
 	dist += noise * 0.03;
 
-	if (dist < 0.0){
-		discard;
-	}
+	if (dist < 0.0) discard;
 
 	float borderDist = smoothstep(0.0, 0.3, dist);
-	vec4 albColor = texture(_albedo, UV);
-	vec4 screen4 = vec4(screen_color, 1.0);
 
-
-	//ALBEDO = (mix(borderColor, albColor, borderDist)).rgb;
-	//EMISSION = (mix(borderColor*5.0, vec4(0.0), borderDist)).rgb;
-
-	if (is_edge(uv, screen_normal, offset)) {
+	vec2 uvScr = SCREEN_UV;
+	vec3 screen_color = texture(SCREEN_TEXTURE, uvScr).rgb;
+	vec3 screen_normal = texture(NORMAL_TEXTURE, uvScr).rgb;
+	screen_normal = screen_normal * 2.0 - 1.0;
+	vec2 offset = 1.0 / VIEWPORT_SIZE;
+	vec3 bedo = screen_color * brightness;
+	vec4 al = vec4(bedo,1);
+	ALBEDO = albedo.rgb;
+	if (is_edge(uvScr, screen_normal, offset)) {
 		ALBEDO = outline_color * brightness;
 	} else {
-		ALBEDO = ((mix(borderColor, screen4, borderDist)).rgb) * brightness;
-
-		EMISSION = (mix(borderColor*5.0, vec4(0.0), borderDist)).rgb;
+		ALBEDO = albedo.rgb;
 	}
+
+
+	//EMISSION = (mix(borderColor*5.0, vec4(0.0), borderDist)).rgb;
+
 }

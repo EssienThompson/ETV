@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://bl8fgnxjpeptm"]
+
+[ext_resource type="Shader" uid="uid://602qaorwjwoy" path="res://shaders/fire.tres" id="1_rcju1"]
+[ext_resource type="ArrayMesh" uid="uid://dd8fk0xbrn28i" path="res://mats/FX/campFireFx3.tres" id="2_1837k"]
+[ext_resource type="Shader" uid="uid://bad6fpq46eyxb" path="res://shaders/fireHead.tres" id="4_06ad1"]
+[ext_resource type="ArrayMesh" uid="uid://o00baerw3ee1" path="res://mats/FX/campFireFx2.tres" id="4_j28lg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7yvby"]
+render_priority = 0
+shader = ExtResource("1_rcju1")
+shader_parameter/firecolor = Color(1, 1, 1, 1)
+shader_parameter/bright = 3.0
+shader_parameter/speed = Vector2(0, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7p3n"]
+render_priority = 0
+shader = ExtResource("1_rcju1")
+shader_parameter/firecolor = Color(0, 0, 0, 1)
+shader_parameter/bright = -10.0
+shader_parameter/speed = Vector2(0, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7sqp"]
+render_priority = 1
+shader = ExtResource("4_06ad1")
+shader_parameter/ballColor = Color(0, 0, 0, 1)
+shader_parameter/bright = -10.0
+shader_parameter/frenelPow = -1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_mdj55"]
+radius = 0.45
+height = 0.9
+
+[node name="fireFx" type="Node3D"]
+
+[node name="outerFire" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0.903487, 0)
+material_override = SubResource("ShaderMaterial_7yvby")
+mesh = ExtResource("4_j28lg")
+
+[node name="innerFire" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.645, 0, 0, 0, 0.645, 0, 0, 0, 0.645, 0, 0.36951, 0)
+sorting_offset = 1.0
+material_override = SubResource("ShaderMaterial_q7p3n")
+mesh = ExtResource("2_1837k")
+
+[node name="fireHead" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.175, 0, 0, 0, 1.175, 0, 0, 0, 1.175, -0.0132141, 0.272612, 0)
+material_override = SubResource("ShaderMaterial_v7sqp")
+mesh = SubResource("SphereMesh_mdj55")
