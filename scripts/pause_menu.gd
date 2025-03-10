@@ -7,6 +7,7 @@ extends Control
 @onready var canvasLayer: CanvasLayer = $CanvasLayer
 
 var gamePause := false
+var optionsOn := false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -26,6 +27,10 @@ func _process(delta: float) -> void:
 			Events.gamePaused.emit()
 		else:
 			Events.emit_signal("gameResumed")
+			
+	if Input.is_action_just_pressed("menu_back") or Input.is_action_just_pressed("esc") && optionsOn:
+		_on_close_pressed()
+		
 	
 
 func gameIsPaused() -> void:
@@ -59,6 +64,7 @@ func _on_options_button_pressed() -> void:
 	Events.optionsOpened.emit()
 	options_menu.toggleAllButtons(false)
 	options_menu.setFocus()
+	optionsOn = true
 
 
 func _on_quit_button_pressed() -> void:
@@ -76,7 +82,9 @@ func _on_close_pressed() -> void:
 	Events.optionsClosed.emit()
 	options_menu.saveSetting()
 	options_menu.toggleAllButtons(true)
+	options_menu.closeAllPages()
 	resume_button.focus()
+	optionsOn = false
 
 
 func togglePMButtons(opt:bool) -> void:

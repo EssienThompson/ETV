@@ -7,14 +7,14 @@ render_mode use_half_res_pass;
 group_uniforms horizon;
 uniform float offset_horizon : hint_range(-1.0, 1.0, 0.001) = 0.236;
 uniform float horizon_intensity : hint_range(-10.0, 5.0, 0.001) = -0.443;
-uniform vec4 sun_set : source_color = vec4(0.56, 0.24, 0.0, 1.0);
-uniform vec4 horizon_color_day : source_color = vec4(0.57, 0.53, 0.26, 1.0);
-uniform vec4 horizon_color_night : source_color = vec4(0.09, 0.16, 0.04, 1.0);
+uniform vec4 sun_set : source_color = vec4(0, 0, 0.0, 1.0);
+uniform vec4 horizon_color_day : source_color = vec4(0, 0, 0.0, 1.0);
+uniform vec4 horizon_color_night : source_color = vec4(0, 0, 0.0, 1.0);
 
 // Sun
 group_uniforms sun;
 uniform vec4 sun_color : source_color = vec4(1.0);
-uniform float sun_radius : hint_range(0.0, 2.0, 0.001) = 0.2;
+uniform float sun_radius : hint_range(0.0, 2.0, 0.001) = 0.35;
 uniform bool flat_sun = true;
 
 // Moon
@@ -34,25 +34,25 @@ uniform float horizon_fade_blend = 0.1;
 
 // Day Background Colors
 group_uniforms day_bg_color;
-uniform vec4 day_bottom_color : source_color = vec4(0.4, 1.0, 1.0, 1.0);
-uniform vec4 day_top_color : source_color = vec4(0.0, 0.8, 1.0, 1.0);
+uniform vec4 day_bottom_color : source_color = vec4(0, 0, 0.0, 1.0);
+uniform vec4 day_top_color : source_color = vec4(0, 0, 0.0, 1.0);
 
 // Night Background Colors
 group_uniforms night_bg_color;
-uniform vec4 night_bottom_color : source_color = vec4(0.0, 0.0, 0.2, 1.0);
-uniform vec4 night_top_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform vec4 night_bottom_color : source_color = vec4(0, 0, 0.0, 1.0);
+uniform vec4 night_top_color : source_color = vec4(0.15, 0.15, 0.15, 1.0);
 
 // stars
 group_uniforms stars;
 uniform sampler2D stars_texture : hint_default_black;
 uniform sampler2D base_noise : hint_default_black;
-uniform float stars_speed : hint_range(0.0, 1.0, 0.001) = 0.2;
-uniform float stars_cutoff : hint_range(0.0, 1.0, 0.001) = 0.702;
-uniform vec4 stars_sky_color : source_color = vec4(0.0, 0.11, 0.05, 1);
-uniform float offset_stars : hint_range(-2.0, 2.0, 0.001) = 0.083;
+uniform float stars_speed : hint_range(0.0, 1.0, 0.001) = 0.859;
+uniform float stars_cutoff : hint_range(0.0, 1.0, 0.001) = 0.751;
+uniform vec4 stars_sky_color : source_color = vec4(0.0, 0.0, 0.0, 1);
+uniform float offset_stars : hint_range(-2.0, 2.0, 0.001) = 0.013;
 uniform float stars_intensity : hint_range(-10.0, 10.0, 0.001) = -2.829;
 uniform float star_falloff : hint_range(1.0, 10.0, 0.001) = 1.79;
-uniform float stars_fade_modulation : hint_range(-1.80, 1.80, 0.001) = 0.91;
+uniform float stars_fade_modulation : hint_range(-1.80, 1.80, 0.001) = 0.93;
 
 // Cloud stuff
 group_uniforms clouds;
@@ -60,8 +60,8 @@ uniform sampler2D cloud_noise1 : hint_default_black;
 uniform sampler2D cloud_noise2 : hint_default_black;
 uniform vec4 cloud_edge_day_color : source_color = vec4(0.9, 0.9, 0.9, 1.0);
 uniform vec4 cloud_main_day_color : source_color = vec4(1.0);
-uniform vec4 cloud_edge_night_color : source_color = vec4(0.15, 0.19, 0.25, 1.0);
-uniform vec4 cloud_main_night_color : source_color = vec4(0.15, 0.16, 0.20, 1.0);
+uniform vec4 cloud_edge_night_color : source_color = vec4(0.0, 0.0, 0.0, 1);
+uniform vec4 cloud_main_night_color : source_color = vec4(0.0, 0.0, 0.0, 1);
 uniform float cloud_speed_1 = 0.01;
 uniform float cloud_speed_2 = 0.02;
 uniform float cloud_speed_3 = 0.02;

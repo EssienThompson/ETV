@@ -7,6 +7,7 @@ extends TextureRect
 @onready var controls: Button = $HBoxContainer/controls
 @onready var close: Button = $close
 @onready var graphics_settings: Control = $graphicsSettings
+@onready var controls_settings: Control = $controlsSettings
 
 
 var vsync := true
@@ -130,18 +131,13 @@ func toggleAllButtons(opt:bool) -> void:
 	close.disabled = opt
 	graphics.disabled = opt
 	controls.disabled = opt
-	graphics_settings.toggleButtons(opt)
-	#framerate_button.disabled = opt
-	#vsync_button.disabled = opt
-	#screen_mode_button.disabled = opt
-	#resolution_button.disabled = opt
 	if opt == false:
 		focus = true
 		timer = 0
 		
 func setFocus():
 	graphics.focus()
-	graphics_settings.closePage(false)
+	_on_graphics_pressed()
 	
 func loadSetting():
 	var sets = saveManager.loadSettings()
@@ -154,12 +150,23 @@ func loadSetting():
 	_on_framerate_button_item_selected(sets.fpsCap)
 	vsync = sets.vsync
 	changeVsync()
+	controls_settings.call_deferred("loadRemap", sets.remap)
 	
 func saveSetting():
 	#print(setting," save")
+	setting.remap = controls_settings.remapDict
 	saveManager.saveSettings(setting)
-
+	
+func closeAllPages():
+	graphics_settings.closePage(true)
+	controls_settings.closePage(true)
 
 func _on_graphics_pressed() -> void:
 	graphics_settings.closePage(false)
+	controls_settings.closePage(true)
 	# close other pages added
+	
+
+func _on_controls_pressed() -> void:
+	graphics_settings.closePage(true)
+	controls_settings.closePage(false)

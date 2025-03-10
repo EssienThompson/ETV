@@ -5,4 +5,4 @@ class_name SettingData
 @export var vsync := true
 @export var fpsCap := 1
 @export var screenMode := 1
-@export var remap : Array[Array]
+@export var remap : Dictionary

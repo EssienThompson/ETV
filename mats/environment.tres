@@ -20,22 +20,22 @@ shader = ExtResource("1_sedxl")
 shader_parameter/offset_horizon = 0.236
 shader_parameter/horizon_intensity = -0.443
 shader_parameter/sun_set = Color(0, 0, 0, 1)
-shader_parameter/horizon_color_day = Color(0, 0, 0, 1)
+shader_parameter/horizon_color_day = Color(0.799174, 0.483002, 0.96789, 1)
 shader_parameter/horizon_color_night = Color(0, 0, 0, 1)
-shader_parameter/sun_color = Color(1, 1, 1, 1)
+shader_parameter/sun_color = Color(0.387024, 0.722181, 0.406701, 1)
 shader_parameter/sun_radius = 0.35
 shader_parameter/flat_sun = true
-shader_parameter/moon_color = Color(1, 1, 1, 1)
+shader_parameter/moon_color = Color(0.509804, 0, 1, 1)
 shader_parameter/moon_radius = 0.05
 shader_parameter/moon_crescent = -0.024
 shader_parameter/dark_falloff = 3.915
 shader_parameter/enable_horizon_fade = true
 shader_parameter/horizon_fade_size = 0.2
 shader_parameter/horizon_fade_blend = 0.1
-shader_parameter/day_bottom_color = Color(0, 0, 0, 1)
-shader_parameter/day_top_color = Color(0, 0, 0, 1)
-shader_parameter/night_bottom_color = Color(0, 0, 0, 1)
-shader_parameter/night_top_color = Color(0.157274, 0.157274, 0.157274, 1)
+shader_parameter/day_bottom_color = Color(0.835626, 0.384711, 0.0427851, 1)
+shader_parameter/day_top_color = Color(1.92523e-07, 0.555361, 0.721483, 1)
+shader_parameter/night_bottom_color = Color(6.06447e-06, 0.494709, 0.576773, 1)
+shader_parameter/night_top_color = Color(0.156863, 0.156863, 0.156863, 1)
 shader_parameter/stars_speed = 0.859
 shader_parameter/stars_cutoff = 0.751
 shader_parameter/stars_sky_color = Color(0, 0, 0, 1)
@@ -61,6 +61,7 @@ shader_parameter/cloud_fuzziness = 0.261
 
 [sub_resource type="Sky" id="Sky_awhw6"]
 sky_material = SubResource("ShaderMaterial_125nf")
+radiance_size = 5
 
 [resource]
 background_mode = 2

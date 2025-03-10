@@ -401,7 +401,7 @@ func _process(delta: float) -> void:
 	healthBar.value = currhp
 	staggerBar.value = currPosture
 		
-	if (postureTimer <= 3 && postLower == false && !isBlocking) or (postureTimer <= 1.5 && postLower == false && isBlocking):#TODO maybe add blocking reduce faster
+	if (postureTimer <= 3 && postLower == false && !isBlocking) or (postureTimer <= 1.5 && postLower == false && isBlocking):
 		postureTimer += delta
 	else:
 		if currPosture > 0:
@@ -472,12 +472,12 @@ func _process(delta: float) -> void:
 						enemy.barVisible = false
 					barTimer = 0
 	
-	if input_dir.length() > 0 and (!cam_root.lockOn && !isAttacking && !floorStuck && !hitStunned && !hitBlocked && !performDodge && !dying && !stagger && !isTalking && !inBetweenAtk):
+	if input_dir.length() > 0 and (!cam_root.lockOn && !isAttacking && !floorStuck && !hitStunned && !hitBlocked && !performDodge && !dying && !stagger && !isTalking && !inBetweenAtk && !isSprintAttacking):
 		facing_angle = Vector2(direction.z, direction.x).angle()
 	elif (inBetweenAtk or performDodge && !floorStuck && !dying && !stagger) && !cam_root.lockOn: #inbetweenAtk or at start comma(removed)
 		facing_angle = Vector2(non0Dir.z, non0Dir.x).angle()
-	elif isSprintAttacking:
-		facing_angle = Vector2(atkDir.z, atkDir.x).angle()
+	#elif isSprintAttacking:
+		#facing_angle = Vector2(atkDir.z, atkDir.x).angle()
 	elif hitStunned or hitBlocked:
 		facing_angle = Vector2(attackerDir.z, attackerDir.x).angle()
 	elif cam_root.lockOn && (isSprint && !performDodge && !isAttacking):
@@ -1072,9 +1072,15 @@ func nextSwing():
 	elif swing4 == true:
 		swing4 = false
 		swing1 = true
+	elif isSprintAttacking == true:
+		isSprintAttacking = false
+		swing1 = true
 		
 func swingFalse():
-	var swing1 := false 
-	var swing2 := false 
-	var swing3 := false 
-	var swing4 := false 
+	swing1 = false 
+	swing2 = false 
+	swing3 = false 
+	swing4 = false 
+	isSprintAttacking = false
+	isfallAttacking = false
+	

@@ -62,7 +62,7 @@ animation = &"swBlockHit"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_bp4ce"]
 fadein_time = 0.1
-fadeout_time = 0.05
+fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s5kf0"]
 animation = &"swBlock"
@@ -330,6 +330,7 @@ input_1/reset = true
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_waoty"]
 filters = ["Armature/Skeleton3D:Bicep.R", "Armature/Skeleton3D:Spine.002", "Armature/Skeleton3D:forearm.R", "Armature/Skeleton3D:head.001", "Armature/Skeleton3D:neck.001", "Armature/Skeleton3D:shoulder.R", "Armature/Skeleton3D:spine.001", "Armature/Skeleton3D:spine.003", "Armature/Skeleton3D:thumb.R", "Armature/Skeleton3D:thumbBase.R", "Armature/Skeleton3D:thumbTip.R"]
 fadein_time = 0.1
+fadeout_time = 0.3
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_088u2"]
 animation = &"swSwing1"
@@ -374,7 +375,7 @@ input_1/reset = true
 animation = &"swWalk"
 
 [resource]
-graph_offset = Vector2(-1111.93, -578.822)
+graph_offset = Vector2(-47.3892, -385.01)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_g8vwd")
 nodes/Animation/position = Vector2(-600, -426.667)
 nodes/SwordSwingChange/node = SubResource("AnimationNodeTransition_bl2ex")

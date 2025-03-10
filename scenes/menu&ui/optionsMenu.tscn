@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://8hmmjoiptn3q"]
+[gd_scene load_steps=22 format=3 uid="uid://8hmmjoiptn3q"]
 
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_bgs1l"]
 [ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="2_ke0qf"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/controlsSettings.gd" id="5_o56v0"]
 [ext_resource type="PackedScene" uid="uid://dj5na2y36sjs" path="res://scenes/menu&ui/InputButton(Remap).tscn" id="6_ow3x4"]
 [ext_resource type="Script" path="res://scripts/remap_msg.gd" id="7_xdal6"]
+[ext_resource type="Texture2D" uid="uid://w04i4juq5kda" path="res://images/icons/Homebutton.png" id="8_w7q7t"]
 
 [sub_resource type="Gradient" id="Gradient_ufixn"]
 colors = PackedColorArray(0.188371, 0.188371, 0.188371, 0.54902, 0, 0, 0, 1)
@@ -126,7 +127,6 @@ text = "Conrtols"
 script = ExtResource("3_rauql")
 
 [node name="graphicsSettings" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -297,6 +297,7 @@ popup/item_7/id = 7
 script = ExtResource("3_rauql")
 
 [node name="controlsSettings" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -343,7 +344,6 @@ layout_mode = 2
 
 [node name="reset" type="Button" parent="controlsSettings/PanelContainer/graphicsHeaders/VBoxContainer"]
 layout_mode = 2
-focus_mode = 0
 theme_override_fonts/font = ExtResource("2_ke0qf")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxTexture_ajbn7")
@@ -353,32 +353,31 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_ajbn7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_e2pv2")
 theme_override_styles/normal = SubResource("StyleBoxFlat_3408t")
 text = "Default"
+script = ExtResource("3_rauql")
 
-[node name="remapMsg" type="MarginContainer" parent="."]
+[node name="remapMsg" type="MarginContainer" parent="controlsSettings"]
 visible = false
 custom_minimum_size = Vector2(792, 420)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.279018
-anchor_top = 0.271739
-anchor_right = 0.720982
-anchor_bottom = 0.728261
-grow_horizontal = 2
-grow_vertical = 2
+anchor_left = -0.481651
+anchor_top = 0.151899
+anchor_right = 0.426605
+anchor_bottom = 0.683544
 script = ExtResource("7_xdal6")
 metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect" type="ColorRect" parent="remapMsg"]
+[node name="ColorRect" type="ColorRect" parent="controlsSettings/remapMsg"]
 layout_mode = 2
 color = Color(0, 0, 0, 0.9)
 
-[node name="remapText" type="Label" parent="remapMsg/ColorRect"]
+[node name="remapText" type="Label" parent="controlsSettings/remapMsg/ColorRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0391414
+anchor_left = 0.0265151
 anchor_top = 0.111905
-anchor_right = 0.962121
-anchor_bottom = 0.257143
+anchor_right = 0.981061
+anchor_bottom = 0.526191
 offset_left = 1.0
 offset_right = -1.0
 grow_horizontal = 2
@@ -386,15 +385,17 @@ size_flags_horizontal = 4
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("2_ke0qf")
 theme_override_font_sizes/font_size = 45
-text = "Currently remapping Keyboard key"
+text = "This button is already mapped. Are you sure you want to replace it?"
+horizontal_alignment = 1
+autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="awaiting" type="Label" parent="remapMsg/ColorRect"]
+[node name="awaiting" type="Label" parent="controlsSettings/remapMsg/ColorRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.304293
+anchor_left = 0.292929
 anchor_top = 0.542857
-anchor_right = 0.695707
+anchor_right = 0.732323
 anchor_bottom = 0.688095
 offset_left = 1.52588e-05
 offset_top = -1.52588e-05
@@ -404,13 +405,80 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("2_ke0qf")
 theme_override_font_sizes/font_size = 45
-text = "Awaiting Input
-"
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="TextureRect" type="TextureRect" parent="controlsSettings/remapMsg/ColorRect/awaiting"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.345161
+anchor_top = -0.327865
+anchor_right = 0.667742
+anchor_bottom = 1.31148
+offset_right = -11.6129
+texture = ExtResource("8_w7q7t")
+expand_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="yes" type="Button" parent="controlsSettings/remapMsg/ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -110.0
+offset_right = 282.0
+offset_bottom = -29.0
+grow_vertical = 0
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ke0qf")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hd4h6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vqmbf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_b6y7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hxo6u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t2hbv")
+text = "Yes"
+script = ExtResource("3_rauql")
+
+[node name="no" type="Button" parent="controlsSettings/remapMsg/ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 513.0
+offset_top = -110.0
+offset_right = 755.0
+offset_bottom = -28.9999
+grow_vertical = 0
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ke0qf")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hd4h6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vqmbf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_b6y7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hxo6u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t2hbv")
+text = "No"
+script = ExtResource("3_rauql")
+
 [connection signal="pressed" from="HBoxContainer/graphics" to="." method="_on_graphics_pressed"]
+[connection signal="pressed" from="HBoxContainer/controls" to="." method="_on_controls_pressed"]
 [connection signal="item_selected" from="graphicsSettings/graphicSelectors/VBoxContainer/resolutionButton" to="." method="_on_resolution_button_item_selected"]
 [connection signal="item_selected" from="graphicsSettings/graphicSelectors/VBoxContainer/screenModeButton" to="." method="_on_screen_mode_button_item_selected"]
 [connection signal="pressed" from="graphicsSettings/graphicSelectors/VBoxContainer/vsyncButton" to="." method="_on_vsync_button_pressed"]
 [connection signal="item_selected" from="graphicsSettings/graphicSelectors/VBoxContainer/framerateButton" to="." method="_on_framerate_button_item_selected"]
 [connection signal="pressed" from="controlsSettings/PanelContainer/graphicsHeaders/VBoxContainer/reset" to="controlsSettings" method="_on_reset_pressed"]
+[connection signal="pressed" from="controlsSettings/remapMsg/ColorRect/yes" to="controlsSettings" method="_on_yes_pressed"]
+[connection signal="pressed" from="controlsSettings/remapMsg/ColorRect/no" to="controlsSettings" method="_on_no_pressed"]

@@ -23,7 +23,7 @@ signal switchToMenu
 signal newRun
 signal loadRun
 signal loadRelics
-signal buttonRemapped(input:String) #for msg not actually remapping
+#signal buttonRemapped(input:String) #for msg not actually remapping
 signal inputType(input:String)
 
 const GREYL_POP = preload("res://scenes/relics/GreylPop.tscn")

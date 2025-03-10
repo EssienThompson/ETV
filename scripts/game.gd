@@ -46,12 +46,12 @@ func _input(event):
 	if event is InputEventKey:
 		if inputDevice != "Keyboard":
 			inputDevice = "Keyboard"
-		Events.inputType.emit(inputDevice)
+		#Events.inputType.emit(inputDevice)
 		Dialogic.VAR.player.inDevice = "key"
 		
 	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		if inputDevice != "Controller":
 			inputDevice = "Controller"
-		Events.inputType.emit(inputDevice)
+		#Events.inputType.emit(inputDevice)
 		Dialogic.VAR.player.inDevice = "cont"
 	
