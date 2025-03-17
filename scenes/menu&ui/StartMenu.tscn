@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://c07ge7h3c8w3w"]
 
-[ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_7iyqe"]
+[ext_resource type="Script" uid="uid://7ihb14jp3ala" path="res://scripts/start_menu.gd" id="1_7iyqe"]
 [ext_resource type="FontFile" uid="uid://cb0p8y1fs5mb2" path="res://fonts/bubba/BubbaRegular-YzYXo.ttf" id="1_cqa01"]
 [ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="2_75f50"]
 [ext_resource type="Environment" uid="uid://dh35wtmm60qnx" path="res://mats/environment.tres" id="3_ckegr"]
-[ext_resource type="Script" path="res://scripts/button.gd" id="4_acovw"]
+[ext_resource type="Script" uid="uid://c1e7lapu5irfn" path="res://scripts/button.gd" id="4_acovw"]
 [ext_resource type="PackedScene" uid="uid://8hmmjoiptn3q" path="res://scenes/menu&ui/optionsMenu.tscn" id="4_qbfka"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ehcle"]
@@ -131,10 +131,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gb152"]
 _data = {
-"RESET": SubResource("Animation_mwlu0"),
-"options": SubResource("Animation_l6ykj"),
-"optionsOut": SubResource("Animation_bo72v"),
-"start": SubResource("Animation_36ixy")
+&"RESET": SubResource("Animation_mwlu0"),
+&"options": SubResource("Animation_l6ykj"),
+&"optionsOut": SubResource("Animation_bo72v"),
+&"start": SubResource("Animation_36ixy")
 }
 
 [node name="StartMenu" type="Node3D"]
@@ -197,9 +197,9 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_75f50")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ehcle")
@@ -214,9 +214,9 @@ script = ExtResource("4_acovw")
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_75f50")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ehcle")
@@ -231,9 +231,9 @@ script = ExtResource("4_acovw")
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_75f50")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ehcle")
@@ -248,9 +248,9 @@ script = ExtResource("4_acovw")
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_hover_color = Color(0.539663, 0.539663, 0.539663, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.541176, 0.541176, 0.541176, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_75f50")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ehcle")
@@ -283,7 +283,7 @@ transform = Transform3D(0.944791, 0.272117, 0.182543, -0.0240441, -0.498013, 0.8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_gb152")
+&"": SubResource("AnimationLibrary_gb152")
 }
 
 [connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/continue" to="." method="_on_continue_pressed"]

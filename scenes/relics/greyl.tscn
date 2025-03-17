@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=4 uid="uid://c70owo4ydyf0t"]
 
-[ext_resource type="Shader" path="res://shaders/world3d.gdshader" id="1_mx6x3"]
-[ext_resource type="Script" path="res://scripts/relic.gd" id="1_nycbd"]
+[ext_resource type="Shader" uid="uid://bd1xenb8dm4jo" path="res://shaders/world3d.gdshader" id="1_mx6x3"]
+[ext_resource type="Script" uid="uid://75dfkt40audh" path="res://scripts/relic.gd" id="1_nycbd"]
 [ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="2_em50o"]
 [ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="3_q8d80"]
 [ext_resource type="PackedScene" uid="uid://btx7omj5rrbn1" path="res://scenes/menu&ui/interactable.tscn" id="5_5oimm"]

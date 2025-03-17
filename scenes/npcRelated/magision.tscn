@@ -1,9 +1,9 @@
 [gd_scene load_steps=57 format=4 uid="uid://cwtnlojrisbnh"]
 
 [ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="1_3oid5"]
-[ext_resource type="Script" path="res://scripts/magision.gd" id="1_hgxq4"]
-[ext_resource type="Script" path="res://scripts/cutterDeath.gd" id="3_84m2y"]
-[ext_resource type="Shader" path="res://shaders/world3d.gdshader" id="3_t07bi"]
+[ext_resource type="Script" uid="uid://bmmirvmahrfmh" path="res://scripts/magision.gd" id="1_hgxq4"]
+[ext_resource type="Script" uid="uid://cqpddtdl2b6ng" path="res://scripts/cutterDeath.gd" id="3_84m2y"]
+[ext_resource type="Shader" uid="uid://bd1xenb8dm4jo" path="res://shaders/world3d.gdshader" id="3_t07bi"]
 [ext_resource type="PackedScene" uid="uid://btx7omj5rrbn1" path="res://scenes/menu&ui/interactable.tscn" id="4_82ytf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2inb1"]
@@ -3008,20 +3008,20 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oynub"]
 _data = {
-"Armature_001": SubResource("Animation_nnyry"),
-"RESET": SubResource("Animation_4hqm0"),
-"agroEyes": SubResource("Animation_0iciq"),
-"annoy": SubResource("Animation_thl2r"),
-"click": SubResource("Animation_sttgf"),
-"eyeClose": SubResource("Animation_4mhts"),
-"frown": SubResource("Animation_yxew4"),
-"headTurn": SubResource("Animation_ye1o1"),
-"idle": SubResource("Animation_aaqi7"),
-"neutral": SubResource("Animation_hayh7"),
-"resetEye": SubResource("Animation_nuom5"),
-"resetMou": SubResource("Animation_u8kep"),
-"shocked": SubResource("Animation_bxyxi"),
-"smile": SubResource("Animation_ob5le")
+&"Armature_001": SubResource("Animation_nnyry"),
+&"RESET": SubResource("Animation_4hqm0"),
+&"agroEyes": SubResource("Animation_0iciq"),
+&"annoy": SubResource("Animation_thl2r"),
+&"click": SubResource("Animation_sttgf"),
+&"eyeClose": SubResource("Animation_4mhts"),
+&"frown": SubResource("Animation_yxew4"),
+&"headTurn": SubResource("Animation_ye1o1"),
+&"idle": SubResource("Animation_aaqi7"),
+&"neutral": SubResource("Animation_hayh7"),
+&"resetEye": SubResource("Animation_nuom5"),
+&"resetMou": SubResource("Animation_u8kep"),
+&"shocked": SubResource("Animation_bxyxi"),
+&"smile": SubResource("Animation_ob5le")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i5fys"]
@@ -3660,13 +3660,13 @@ endpos = -2.0
 [node name="Mask\'" type="MeshInstance3D" parent="meshes/Armature/Skeleton3D" node_paths=PackedStringArray("cutter", "user")]
 mesh = SubResource("ArrayMesh_st26s")
 skin = SubResource("Skin_jveqs")
-blend_shapes/eyesClose = 0.91434
-blend_shapes/eyesEndsDown = 0.0
 blend_shapes/eyesLevel = 0.0
+blend_shapes/eyesClose = 0.91434
 blend_shapes/eyesTilted = 0.0
-blend_shapes/mouthFrwon = 0.0
+blend_shapes/eyesEndsDown = 0.0
 blend_shapes/mouthNeutral = 0.0
 blend_shapes/mouthSmile = 0.0
+blend_shapes/mouthFrwon = 0.0
 script = ExtResource("3_84m2y")
 cutter = NodePath("../../../../cutter")
 user = NodePath("../../../..")
@@ -3676,7 +3676,7 @@ endpos = -2.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="meshes/Armature"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_oynub")
+&"": SubResource("AnimationLibrary_oynub")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="meshes/Armature"]

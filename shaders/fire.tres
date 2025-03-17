@@ -58,7 +58,7 @@ code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded, shadows_disabled, ambient_light_disabled;
 
 uniform vec4 firecolor : source_color;
-uniform float bright = 1;
+uniform float bright = 1.0;
 uniform vec2 speed = vec2(0.000000, 2.000000);
 uniform sampler2D tex_frg_3;
 uniform sampler2D tex_frg_4 : source_color;

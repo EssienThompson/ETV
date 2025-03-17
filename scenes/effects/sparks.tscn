@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://db05p6cx6bvlb"]
 
-[ext_resource type="Shader" path="res://shaders/world3d.gdshader" id="1_0xrkl"]
+[ext_resource type="Shader" uid="uid://bd1xenb8dm4jo" path="res://shaders/world3d.gdshader" id="1_0xrkl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v3d50"]
 render_priority = 0
@@ -46,7 +46,7 @@ scale_max = 0.1
 size = Vector3(0.25, 1, 0.25)
 
 [sub_resource type="Curve" id="Curve_dcqeg"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.453211, 0, 0, Vector2(0.99999, -1), 0.0, 0.0, 0, 0, Vector2(1, -1024), 0.0, 0.0, 0, 0]
 point_count = 3
 

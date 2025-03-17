@@ -1,10 +1,10 @@
 [gd_scene load_steps=38 format=4 uid="uid://p24yrskk7fbf"]
 
 [ext_resource type="PackedScene" uid="uid://d31edaotg38x7" path="res://scenes/utilities/hurtbox.tscn" id="1_04f6q"]
-[ext_resource type="Script" path="res://scripts/dog.gd" id="1_6xnc5"]
+[ext_resource type="Script" uid="uid://bjtde1id5wv8y" path="res://scripts/dog.gd" id="1_6xnc5"]
 [ext_resource type="Material" uid="uid://0t7wuwwhp2hy" path="res://mats/wireframe3d.tres" id="3_34v33"]
 [ext_resource type="PackedScene" uid="uid://5w126xrqegkb" path="res://scenes/utilities/hitbox.tscn" id="3_wuauh"]
-[ext_resource type="Script" path="res://scripts/cutterDeath.gd" id="4_mc4a4"]
+[ext_resource type="Script" uid="uid://cqpddtdl2b6ng" path="res://scripts/cutterDeath.gd" id="4_mc4a4"]
 [ext_resource type="Material" uid="uid://clrea6vtpxrs6" path="res://mats/shadowChara.tres" id="5_iquqg"]
 [ext_resource type="PackedScene" uid="uid://bgks8x1vq1bm3" path="res://scenes/menu&ui/health_bar_3d.tscn" id="6_epq8y"]
 
@@ -849,13 +849,13 @@ tracks/14/keys = PackedFloat32Array(0, 1, 0.0178698, -6.56e-08, 0.773735, 0.6332
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qjfft"]
 _data = {
-"RESET": SubResource("Animation_xusrv"),
-"atk": SubResource("Animation_roier"),
-"hurt": SubResource("Animation_fqhkh"),
-"idle": SubResource("Animation_1rtcm"),
-"jog": SubResource("Animation_m4xcd"),
-"stagger": SubResource("Animation_54byo"),
-"staggerIdle": SubResource("Animation_2gyhi")
+&"RESET": SubResource("Animation_xusrv"),
+&"atk": SubResource("Animation_roier"),
+&"hurt": SubResource("Animation_fqhkh"),
+&"idle": SubResource("Animation_1rtcm"),
+&"jog": SubResource("Animation_m4xcd"),
+&"stagger": SubResource("Animation_54byo"),
+&"staggerIdle": SubResource("Animation_2gyhi")
 }
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4lplu"]
@@ -1114,7 +1114,7 @@ shape = SubResource("BoxShape3D_bc6us")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ani_scele/Armature"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_qjfft")
+&"": SubResource("AnimationLibrary_qjfft")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="ani_scele/Armature/AnimationPlayer"]

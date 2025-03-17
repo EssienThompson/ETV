@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dj5na2y36sjs"]
 
 [ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="1_166rl"]
-[ext_resource type="Script" path="res://scripts/remapButton.gd" id="1_vykoh"]
+[ext_resource type="Script" uid="uid://d1ho3l6hc7p80" path="res://scripts/remapButton.gd" id="1_vykoh"]
 [ext_resource type="Texture2D" uid="uid://t1hfooen0ox8" path="res://images/icons/Ybutton.png" id="3_l4am1"]
 
 [sub_resource type="Gradient" id="Gradient_2gyxb"]

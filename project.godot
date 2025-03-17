@@ -28,8 +28,17 @@ saveManager="*res://scripts/save.gd"
 
 [dialogic]
 
-directories/dch_directory={}
-directories/dtl_directory={}
+directories/dch_directory={
+"God": "res://dialog/charracters/God.dch",
+"magision": "res://dialog/charracters/magision.dch"
+}
+directories/dtl_directory={
+"magiTutCombat": "res://dialog/timelines/magision/magiTutCombat.dtl",
+"magiTutElite": "res://dialog/timelines/magision/magiTutElite.dtl",
+"magiTutRelic": "res://dialog/timelines/magision/magiTutRelic.dtl",
+"magiTutRest": "res://dialog/timelines/magision/magiTutRest.dtl",
+"magisionTutor": "res://dialog/timelines/magision/magisionTutor.dtl"
+}
 glossary/default_case_sensitive=true
 layout/style_list=["res://dialog/styleRelated/style.tres", "res://dialog/styleRelated/wh9ite.tres"]
 layout/default_style="res://dialog/style.tres"

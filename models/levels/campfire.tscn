@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://r7rq8dwv02br"]
 
 [ext_resource type="PackedScene" uid="uid://dn7om6ifrd040" path="res://models/levels/rock.tscn" id="1_1dtl7"]
-[ext_resource type="Script" path="res://scripts/campfire.gd" id="1_oitr6"]
+[ext_resource type="Script" uid="uid://bqwkh2mlu4xe2" path="res://scripts/campfire.gd" id="1_oitr6"]
 [ext_resource type="PackedScene" uid="uid://bl8fgnxjpeptm" path="res://scenes/effects/fire.tscn" id="1_rcdua"]
 [ext_resource type="PackedScene" uid="uid://40sd3xtxbxs5" path="res://models/levels/log.tscn" id="2_f7xpd"]
 [ext_resource type="PackedScene" uid="uid://btx7omj5rrbn1" path="res://scenes/menu&ui/interactable.tscn" id="4_qu3db"]

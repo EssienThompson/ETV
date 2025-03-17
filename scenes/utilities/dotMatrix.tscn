@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://4rgikknb1do"]
 
-[ext_resource type="Shader" path="res://shaders/dotMatrix.gdshader" id="1_boj7h"]
+[ext_resource type="Shader" uid="uid://d0whwbyt8t1p6" path="res://shaders/dotMatrix.gdshader" id="1_boj7h"]
 [ext_resource type="Texture2D" uid="uid://b4n7p1b3r3dse" path="res://images/owo.png" id="2_u22tl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_87c57"]

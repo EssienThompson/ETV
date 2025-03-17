@@ -69,7 +69,7 @@ vec3 filter(vec3 screen, vec2 uv){
 	//if(screen.x <= 0.3 && screen.y <= 0.3 && screen.z <= 0.3){
 		//return vec3(0.7, 0.7, 0.7); //grey
 	//}
-	if(screen.x >= 0.5 && screen.y >= 0.5 && screen.z >= 0.5 && 
+	if(screen.x >= 0.5 && screen.y >= 0.5 && screen.z >= 0.5 &&
              abs(screen.x - screen.y) < approx && abs(screen.y - screen.z) < approx) {
 		if(rand2 <= 0.7){
 			return vec3(1.0, 1.0, 1.0); //white
@@ -77,7 +77,7 @@ vec3 filter(vec3 screen, vec2 uv){
 		else if(rand2 > 0.7){
 			return randC(rand);
 		}
-		
+
 	}
 	else if(abs(screen.x - screen.y) < approx && abs(screen.y - screen.z) > approx) { //yellow
 		if(rand2 <= 0.6){
@@ -117,7 +117,7 @@ vec3 filter(vec3 screen, vec2 uv){
 		}
 		else if(rand2 > 0.6){
 			return randC(rand);
-		} 
+		}
 	}
 	else if(screen.z > screen.y && screen.z > screen.x){
 		if(rand2 <= 0.6){
@@ -138,51 +138,51 @@ void fragment()
 	vec2 u = SCREEN_UV,
          v = SCREEN_UV * 0.1,
          n = noise(v*200.); // Displacement
-	
+
     vec4 screenColor = texture(iChannel0, SCREEN_UV);
-	
+
     fragColor = textureLod(iChannel0, u, 2.5);
-	
+
 	float frequency2 = frequency_uniform;
     if (is_breath) {
         frequency2 = breath_freq * sin(TIME * breath_speed);
     }
-    
+
 	vec4 albedo_tex = texture(iChannel0,u);
     albedo_tex *= COLOR;
 	float oh_no = cos(u.x* TIME*speed)+ sin(u.y* TIME*speed);
     float oh_god = sin(u.y* TIME*speed)+ cos(u.x* TIME*speed);
     float oh_feck = sin(u.y* TIME*speed)+ cos(u.x* TIME*speed);
-	
+
 	vec3 waveColor = vec3(
         sin(oh_no * frequency2 * TIME * speed),
         cos(oh_god * frequency2 * TIME * speed),
         tan(oh_feck * frequency2 * TIME * speed)
     );
-	
+
     // Loop through the different inverse sizes of drops
     for (float r = 4. ; r > frequency ; r--) {
         vec2 x = iResolution.xy * r * size,  // Number of potential drops (in a grid)
              p = 6.28 * u * x + (n - .5) * 2.,
              s = sin(p);
-        
+
         // Current drop properties. Coordinates are rounded to ensure a
         // consistent value among the fragment of a given drop.
         //vec4 d = texture(iChannel1, round(u * x - 0.25) / x);
         vec2 v = round(u * x - 0.25) / x;
         vec4 d = vec4(noise(v*200.), noise(v));
-        
+
         // Drop shape and fading
         float t = (s.x+s.y) * max(0., 1. - fract(iTime * (d.b + .1) + d.g) * 2.);;
-        
+
         // d.r -> only x% of drops are kept on, with x depending on the size of drops
         if (d.r < (5.-r)*.08 && t > .5) {
             // Drop normal
             vec3 v = normalize(-vec3(cos(p), mix(.2, 2., t-.5)));
              //fragColor = vec4(v * 0.5 + 0.5, 1.0);  // show normals
-			
+
 			vec2 refractedUv = UV + v.xy * refractionStrength;
-			
+
 			vec3 color;
 			color.r = texture(iChannel0, refractedUv + vec2(chromaticAberration, 0.0)).r;
 			color.g = texture(iChannel0, refractedUv).g;
@@ -190,10 +190,10 @@ void fragment()
 			//vec3 lightDir = normalize(vec3(1.0, 1.0, 1.0));
 			//float specular = pow(max(dot(v, lightDir), 0.0), 32.0) * specularIntensity;
 			//color += specular * vec3(1.0);
-			
+
 			// Poor man's refraction (no visual need to do more)
 			vec4 dropColor = texture(iChannel0, u - v.xy * 0.3);
-			
+
 			if (distant == true){
 				vec2 dropletCenter = round(u * x - 0.25) / x;
 				float distanceToDropletCenter = length(u - dropletCenter);
@@ -201,22 +201,22 @@ void fragment()
 					vec3 distantColor = filter(screenColor.rgb, u);
 					if(t < 0.75){
 						fragColor = vec4(waveColor, 1.0);
-					} 
+					}
 					else{
 						fragColor = vec4(distantColor, 1.0);
 					}
-					
+
 				} else {
 					fragColor = mix(dropColor, vec4(color, 1.0), blend_factor);//mix(dropColor, solidColor, blend_factor);
 				}
-				
+
 			} else{
 				fragColor = dropColor;
 			}
-           
+
         }
     }
-    
+
     // Debug noise function
     //f = vec4(n, 0.0, 1.0);
 }

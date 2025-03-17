@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://ctlqnrlug1ucc"]
 
 [ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="1_8ts3w"]
-[ext_resource type="Script" path="res://scripts/act1LevelMan.gd" id="1_u407u"]
+[ext_resource type="Script" uid="uid://dmd50bccngi8e" path="res://scripts/act1LevelMan.gd" id="1_u407u"]
 [ext_resource type="Material" uid="uid://xlcs6o2eykhi" path="res://mats/shadow.tres" id="2_alrh2"]
 [ext_resource type="PackedScene" uid="uid://dn7om6ifrd040" path="res://models/levels/rock.tscn" id="3_5hoew"]
 [ext_resource type="PackedScene" uid="uid://40sd3xtxbxs5" path="res://models/levels/log.tscn" id="4_4x55s"]

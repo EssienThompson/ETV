@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://crejrduqj7841"]
 
-[ext_resource type="Script" path="res://scripts/mapRoom.gd" id="1_744a6"]
+[ext_resource type="Script" uid="uid://trnevbcitpki" path="res://scripts/mapRoom.gd" id="1_744a6"]
 [ext_resource type="Texture2D" uid="uid://b864whov2yu6v" path="res://images/greylE.png" id="2_hjp6v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idpj2"]
@@ -142,12 +142,12 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_68sac"]
 _data = {
-"RESET": SubResource("Animation_ipbol"),
-"focus": SubResource("Animation_gveqb"),
-"focusHighlight": SubResource("Animation_4jbxl"),
-"highlight": SubResource("Animation_rmj1r"),
-"select": SubResource("Animation_hy6f6"),
-"still": SubResource("Animation_o1jpj")
+&"RESET": SubResource("Animation_ipbol"),
+&"focus": SubResource("Animation_gveqb"),
+&"focusHighlight": SubResource("Animation_4jbxl"),
+&"highlight": SubResource("Animation_rmj1r"),
+&"select": SubResource("Animation_hy6f6"),
+&"still": SubResource("Animation_o1jpj")
 }
 
 [node name="mapRoom" type="Area2D" groups=["persist"]]
@@ -170,7 +170,7 @@ shape = SubResource("RectangleShape2D_idpj2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_68sac")
+&"": SubResource("AnimationLibrary_68sac")
 }
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

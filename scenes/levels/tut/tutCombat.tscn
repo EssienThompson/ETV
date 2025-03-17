@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://efa254t6vi6d"]
 
-[ext_resource type="Script" path="res://scripts/act1LevelMan.gd" id="1_b0377"]
+[ext_resource type="Script" uid="uid://dmd50bccngi8e" path="res://scripts/act1LevelMan.gd" id="1_b0377"]
 [ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="1_ka40l"]
 [ext_resource type="Material" uid="uid://xlcs6o2eykhi" path="res://mats/shadow.tres" id="2_pp5m2"]
 [ext_resource type="Environment" uid="uid://dh35wtmm60qnx" path="res://mats/environment.tres" id="3_dpot6"]

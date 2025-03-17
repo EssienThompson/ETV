@@ -1,7 +1,7 @@
 [gd_scene load_steps=67 format=4 uid="uid://dfaeiy3427lfp"]
 
 [ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="1_2u7q5"]
-[ext_resource type="Script" path="res://scripts/cabin.gd" id="1_8em4h"]
+[ext_resource type="Script" uid="uid://qnf1221tkaa3" path="res://scripts/cabin.gd" id="1_8em4h"]
 [ext_resource type="Material" uid="uid://b3bcnspskkc4k" path="res://mats/shadowObj.tres" id="3_1x6o5"]
 [ext_resource type="PackedScene" uid="uid://btx7omj5rrbn1" path="res://scenes/menu&ui/interactable.tscn" id="3_7eta8"]
 
@@ -88,9 +88,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f467l"]
 _data = {
-"RESET": SubResource("Animation_7b2fd"),
-"doorClose": SubResource("Animation_aw4j3"),
-"doorOpen": SubResource("Animation_gqt34")
+&"RESET": SubResource("Animation_7b2fd"),
+&"doorClose": SubResource("Animation_aw4j3"),
+&"doorOpen": SubResource("Animation_gqt34")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rbwci"]
@@ -921,7 +921,7 @@ script = ExtResource("1_8em4h")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_f467l")
+&"": SubResource("AnimationLibrary_f467l")
 }
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]

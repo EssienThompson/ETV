@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=3 uid="uid://dtwjciss2vtao"]
 
-[ext_resource type="Script" path="res://scripts/Player.gd" id="1_fasjh"]
+[ext_resource type="Script" uid="uid://yu5nubeqoy5e" path="res://scripts/Player.gd" id="1_fasjh"]
 [ext_resource type="PackedScene" uid="uid://bqv541ik6c4nw" path="res://scenes/player/man(rigify).tscn" id="2_0mdui"]
-[ext_resource type="Script" path="res://scripts/cutterDeath.gd" id="3_v3nje"]
+[ext_resource type="Script" uid="uid://cqpddtdl2b6ng" path="res://scripts/cutterDeath.gd" id="3_v3nje"]
 [ext_resource type="PackedScene" uid="uid://djgxuudg7kwp6" path="res://scenes/player/manBoneAtt.tscn" id="4_j3l4g"]
-[ext_resource type="Script" path="res://scripts/playerCamera.gd" id="5_0u0xj"]
+[ext_resource type="Script" uid="uid://chiag73t0btcl" path="res://scripts/playerCamera.gd" id="5_0u0xj"]
 [ext_resource type="PackedScene" uid="uid://d31edaotg38x7" path="res://scenes/utilities/hurtbox.tscn" id="6_khj3j"]
 [ext_resource type="PackedScene" uid="uid://cwh0w0lnu8dpq" path="res://scenes/menu&ui/pauseMenu.tscn" id="7_556xs"]
 

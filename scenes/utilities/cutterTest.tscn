@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://dog2nh15n6u36"]
 
 [ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="1_ruao6"]
-[ext_resource type="Shader" path="res://shaders/cutter.gdshader" id="2_xs4sn"]
-[ext_resource type="Script" path="res://scripts/testy.gd" id="3_owvf2"]
+[ext_resource type="Shader" uid="uid://b6v0f0q7epn26" path="res://shaders/cutter.gdshader" id="2_xs4sn"]
+[ext_resource type="Script" uid="uid://dt440mmwi2t8o" path="res://scripts/testy.gd" id="3_owvf2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_i8qrd"]
 size = Vector3(10, 10, 10)
@@ -19,18 +19,18 @@ noise = SubResource("FastNoiseLite_tibyr")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_riybv"]
 render_priority = 1
 shader = ExtResource("2_xs4sn")
-shader_parameter/cutplane = null
+shader_parameter/_noise = SubResource("NoiseTexture2D_k6ede")
+shader_parameter/cutplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/albedo = Color(0, 0, 0, 1)
 shader_parameter/point_size = 0.1
 shader_parameter/roughness = 0.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = null
-shader_parameter/metallic = null
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
-shader_parameter/uv2_scale = null
-shader_parameter/uv2_offset = null
-shader_parameter/_noise = SubResource("NoiseTexture2D_k6ede")
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_y7web"]
 size = Vector3(10, 10, 10)
@@ -85,7 +85,7 @@ shader = SubResource("Shader_bobgj")
 shader_parameter/albedo = Color(0, 0, 0, 1)
 shader_parameter/point_size = 128.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)

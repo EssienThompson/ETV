@@ -1,10 +1,10 @@
 [gd_scene load_steps=60 format=4 uid="uid://c0gdwr424qs6s"]
 
-[ext_resource type="Script" path="res://scripts/zomb.gd" id="1_12rxw"]
+[ext_resource type="Script" uid="uid://dw1ahpng5dqaq" path="res://scripts/zomb.gd" id="1_12rxw"]
 [ext_resource type="PackedScene" uid="uid://d31edaotg38x7" path="res://scenes/utilities/hurtbox.tscn" id="2_j6iad"]
 [ext_resource type="PackedScene" uid="uid://bgks8x1vq1bm3" path="res://scenes/menu&ui/health_bar_3d.tscn" id="3_c4wur"]
 [ext_resource type="PackedScene" uid="uid://5w126xrqegkb" path="res://scenes/utilities/hitbox.tscn" id="3_krmwn"]
-[ext_resource type="Script" path="res://scripts/cutterDeath.gd" id="4_2sqle"]
+[ext_resource type="Script" uid="uid://cqpddtdl2b6ng" path="res://scripts/cutterDeath.gd" id="4_2sqle"]
 [ext_resource type="Material" uid="uid://0t7wuwwhp2hy" path="res://mats/wireframe3d.tres" id="4_38l8u"]
 [ext_resource type="Material" uid="uid://clrea6vtpxrs6" path="res://mats/shadowChara.tres" id="6_5dth7"]
 [ext_resource type="PackedScene" uid="uid://db05p6cx6bvlb" path="res://scenes/effects/sparks.tscn" id="7_ecexj"]
@@ -5643,21 +5643,21 @@ tracks/43/keys = PackedFloat32Array(0, 1, -0.127871, 2.8934e-08, -0.00249357, 0.
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kygn4"]
 _data = {
-"Armature_001": SubResource("Animation_gqhkc"),
-"atk1": SubResource("Animation_vu6qo"),
-"atk2": SubResource("Animation_ce0bn"),
-"block": SubResource("Animation_55cm3"),
-"blockHit1": SubResource("Animation_hsrgq"),
-"blockHit2": SubResource("Animation_scsny"),
-"hurt1": SubResource("Animation_uj8qq"),
-"hurt2": SubResource("Animation_c6nuo"),
-"hurt3": SubResource("Animation_3a5jx"),
-"hurt4": SubResource("Animation_b4mxv"),
-"idle": SubResource("Animation_u1r6j"),
-"jogLeft": SubResource("Animation_m4vyk"),
-"jogRight": SubResource("Animation_t5qcd"),
-"jogStr": SubResource("Animation_hg05e"),
-"stagger": SubResource("Animation_6wgni")
+&"Armature_001": SubResource("Animation_gqhkc"),
+&"atk1": SubResource("Animation_vu6qo"),
+&"atk2": SubResource("Animation_ce0bn"),
+&"block": SubResource("Animation_55cm3"),
+&"blockHit1": SubResource("Animation_hsrgq"),
+&"blockHit2": SubResource("Animation_scsny"),
+&"hurt1": SubResource("Animation_uj8qq"),
+&"hurt2": SubResource("Animation_c6nuo"),
+&"hurt3": SubResource("Animation_3a5jx"),
+&"hurt4": SubResource("Animation_b4mxv"),
+&"idle": SubResource("Animation_u1r6j"),
+&"jogLeft": SubResource("Animation_m4vyk"),
+&"jogRight": SubResource("Animation_t5qcd"),
+&"jogStr": SubResource("Animation_hg05e"),
+&"stagger": SubResource("Animation_6wgni")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0mvlk"]
@@ -6197,7 +6197,7 @@ shape = SubResource("BoxShape3D_y0c6u")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="zomb/Armature/Skeleton3D"]
 root_node = NodePath("../../..")
 libraries = {
-"": SubResource("AnimationLibrary_kygn4")
+&"": SubResource("AnimationLibrary_kygn4")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="zomb/Armature/Skeleton3D/AnimationPlayer"]

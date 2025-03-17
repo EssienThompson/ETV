@@ -36,6 +36,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_exy60")
 
 [node name="sword" type="Node3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0.791707, 0, 0)

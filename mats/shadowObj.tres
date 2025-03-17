@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b3bcnspskkc4k"]
 
-[ext_resource type="Shader" path="res://shaders/shadow+hatch.gdshader" id="1_tx3y7"]
+[ext_resource type="Shader" uid="uid://4se2q0p2gp37" path="res://shaders/shadow+hatch.gdshader" id="1_tx3y7"]
 
 [resource]
 render_priority = 0

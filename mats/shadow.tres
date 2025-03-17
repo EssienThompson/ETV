@@ -1,13 +1,13 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://xlcs6o2eykhi"]
 
-[ext_resource type="Shader" path="res://shaders/shadow+hatch.gdshader" id="1_o456t"]
+[ext_resource type="Shader" uid="uid://4se2q0p2gp37" path="res://shaders/shadow+hatch.gdshader" id="1_o456t"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_o456t")
 shader_parameter/shadow_color = Color(1, 1, 1, 1)
 shader_parameter/hatchColor = Color(1, 1, 1, 1)
-shader_parameter/farShadowColor = null
+shader_parameter/farShadowColor = Color(0, 0, 0, 1)
 shader_parameter/back_color = Color(0, 0, 0, 1)
 shader_parameter/HBack_color = Color(0, 0, 0, 1)
 shader_parameter/FSBackColor = Color(1, 1, 1, 1)

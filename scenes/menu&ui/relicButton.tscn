@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://df6xky32r6u56"]
 
 [ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="1_78ymf"]
-[ext_resource type="Script" path="res://scripts/relicButton.gd" id="2_27wwl"]
+[ext_resource type="Script" uid="uid://b5syde2yl3pne" path="res://scripts/relicButton.gd" id="2_27wwl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejst7"]
 

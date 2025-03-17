@@ -1,7 +1,7 @@
 [gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://qjy736ia770r"]
 
-[ext_resource type="Shader" path="res://shaders/world3d.gdshader" id="1_3o4wp"]
-[ext_resource type="Shader" path="res://shaders/outerOutline.gdshader" id="2_y8x4p"]
+[ext_resource type="Shader" uid="uid://bd1xenb8dm4jo" path="res://shaders/world3d.gdshader" id="1_3o4wp"]
+[ext_resource type="Shader" uid="uid://fwm7f1ck6cem" path="res://shaders/outerOutline.gdshader" id="2_y8x4p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7bdyv"]
 render_priority = -1
