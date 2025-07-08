@@ -1,0 +1,153 @@
+[gd_resource type="BehaviorTree" load_steps=40 format=3 uid="uid://bvapnte7vdj8r"]
+
+[ext_resource type="Script" uid="uid://bweni3fq5b0nt" path="res://scripts/tasks/attack.gd" id="1_ffj83"]
+[ext_resource type="Script" uid="uid://cplhmliidro7a" path="res://scripts/tasks/udpVariables.gd" id="1_rkto1"]
+[ext_resource type="Script" uid="uid://dvag2on5pv1t6" path="res://scripts/tasks/moveToTarget.gd" id="2_1g20y"]
+[ext_resource type="Script" uid="uid://brerbtswy2b31" path="res://scripts/tasks/queueFree.gd" id="2_xd5ln"]
+[ext_resource type="Script" uid="uid://16s6631ddlyw" path="res://scripts/tasks/runAway.gd" id="3_2byji"]
+[ext_resource type="Script" uid="uid://djktod6178j5n" path="res://scripts/tasks/chooseRand.gd" id="5_rkto1"]
+[ext_resource type="Script" uid="uid://b3u0d1e8hgf22" path="res://scripts/tasks/moveToRand.gd" id="6_xd5ln"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_l3anj"]
+var/distToTarget/name = &"distToTarget"
+var/distToTarget/type = 3
+var/distToTarget/value = 0.0
+var/distToTarget/hint = 0
+var/distToTarget/hint_string = ""
+var/isAtking/name = &"isAtking"
+var/isAtking/type = 1
+var/isAtking/value = false
+var/isAtking/hint = 0
+var/isAtking/hint_string = ""
+var/target/name = &"target"
+var/target/type = 24
+var/target/hint = 0
+var/target/hint_string = ""
+var/dying/name = &"dying"
+var/dying/type = 1
+var/dying/value = false
+var/dying/hint = 0
+var/dying/hint_string = ""
+
+[sub_resource type="BTAction" id="BTAction_c4y1p"]
+script = ExtResource("1_rkto1")
+
+[sub_resource type="BBVariant" id="BBVariant_nhujq"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_mes2d"]
+variable = &"dying"
+value = SubResource("BBVariant_nhujq")
+
+[sub_resource type="BTWait" id="BTWait_rkto1"]
+duration = 3.5
+
+[sub_resource type="BTAction" id="BTAction_nhujq"]
+script = ExtResource("2_xd5ln")
+
+[sub_resource type="BTSequence" id="BTSequence_ylsnw"]
+custom_name = "death"
+children = [SubResource("BTAction_c4y1p"), SubResource("BTCheckVar_mes2d"), SubResource("BTWait_rkto1"), SubResource("BTAction_nhujq")]
+
+[sub_resource type="BTAction" id="BTAction_4hkur"]
+script = ExtResource("1_rkto1")
+
+[sub_resource type="BBVariant" id="BBVariant_xd5ln"]
+saved_value = null
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_ecagn"]
+variable = &"target"
+check_type = 5
+value = SubResource("BBVariant_xd5ln")
+
+[sub_resource type="BBVariant" id="BBVariant_ffj83"]
+type = 3
+saved_value = 10.0
+resource_name = "10.0"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_k2vni"]
+variable = &"distToTarget"
+check_type = 2
+value = SubResource("BBVariant_ffj83")
+
+[sub_resource type="BBVariant" id="BBVariant_rkto1"]
+type = 1
+saved_value = false
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_xd5ln"]
+variable = &"isAtking"
+value = SubResource("BBVariant_rkto1")
+
+[sub_resource type="BTAction" id="BTAction_k2vni"]
+script = ExtResource("1_ffj83")
+
+[sub_resource type="BTSequence" id="BTSequence_ffj83"]
+custom_name = "attack"
+children = [SubResource("BTAction_4hkur"), SubResource("BTCheckVar_ecagn"), SubResource("BTCheckVar_k2vni"), SubResource("BTCheckVar_xd5ln"), SubResource("BTAction_k2vni")]
+
+[sub_resource type="BTAction" id="BTAction_rkto1"]
+script = ExtResource("1_rkto1")
+
+[sub_resource type="BBVariant" id="BBVariant_ecagn"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_yjn8w"]
+variable = &"isAtking"
+value = SubResource("BBVariant_ecagn")
+
+[sub_resource type="BTAction" id="BTAction_ecagn"]
+script = ExtResource("3_2byji")
+
+[sub_resource type="BTSequence" id="BTSequence_5so8h"]
+custom_name = "runAway"
+children = [SubResource("BTAction_rkto1"), SubResource("BTCheckVar_yjn8w"), SubResource("BTAction_ecagn")]
+
+[sub_resource type="BTAction" id="BTAction_xd5ln"]
+script = ExtResource("1_rkto1")
+
+[sub_resource type="BBVariant" id="BBVariant_01egm"]
+saved_value = null
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_2byji"]
+variable = &"target"
+check_type = 5
+value = SubResource("BBVariant_01egm")
+
+[sub_resource type="BTAction" id="BTAction_2byji"]
+script = ExtResource("2_1g20y")
+
+[sub_resource type="BTSequence" id="BTSequence_rkto1"]
+custom_name = "chase"
+children = [SubResource("BTAction_xd5ln"), SubResource("BTCheckVar_2byji"), SubResource("BTAction_2byji")]
+
+[sub_resource type="BTSelector" id="BTSelector_k2vni"]
+custom_name = "chase/runAway"
+children = [SubResource("BTSequence_ffj83"), SubResource("BTSequence_5so8h"), SubResource("BTSequence_rkto1")]
+
+[sub_resource type="BTAction" id="BTAction_yjn8w"]
+script = ExtResource("5_rkto1")
+
+[sub_resource type="BTAction" id="BTAction_5so8h"]
+script = ExtResource("6_xd5ln")
+
+[sub_resource type="BTSequence" id="BTSequence_l3anj"]
+custom_name = "idle"
+children = [SubResource("BTAction_yjn8w"), SubResource("BTAction_5so8h")]
+
+[sub_resource type="BTCooldown" id="BTCooldown_01egm"]
+duration = 5.0
+children = [SubResource("BTSequence_l3anj")]
+
+[sub_resource type="BTSelector" id="BTSelector_1g20y"]
+children = [SubResource("BTSequence_ylsnw"), SubResource("BTSelector_k2vni"), SubResource("BTCooldown_01egm")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_l3anj")
+root_task = SubResource("BTSelector_1g20y")

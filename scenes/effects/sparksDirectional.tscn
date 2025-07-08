@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://brdgn43t5rx0t"]
+
+[ext_resource type="Shader" uid="uid://bd1xenb8dm4jo" path="res://shaders/world3d.gdshader" id="1_sjvmx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3d50"]
+render_priority = 0
+shader = ExtResource("1_sjvmx")
+shader_parameter/outline_threshold = 0.1
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/brightness = 6.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u20b7"]
+resource_name = "Material"
+next_pass = SubResource("ShaderMaterial_v3d50")
+cull_mode = 2
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+heightmap_scale = 4.61
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_flip_tangent = true
+heightmap_flip_binormal = true
+refraction_texture_channel = 4
+detail_blend_mode = 3
+disable_receive_shadows = true
+billboard_keep_scale = true
+point_size = 128.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x842j"]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(0, 1, 0)
+spread = 15.0
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, -5, 0)
+scale_min = 0.02
+scale_max = 0.1
+turbulence_noise_strength = 0.0
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.194
+collision_mode = 1
+collision_friction = 0.15
+collision_bounce = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_kihgc"]
+size = Vector3(0.25, 1, 0.25)
+
+[node name="sparkHol" type="Node3D"]
+
+[node name="sparks" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_u20b7")
+cast_shadow = 0
+emitting = false
+amount = 100
+lifetime = 0.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_x842j")
+draw_pass_1 = SubResource("BoxMesh_kihgc")

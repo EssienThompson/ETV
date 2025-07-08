@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://c07ge7h3c8w3w"]
 
-[ext_resource type="Script" uid="uid://7ihb14jp3ala" path="res://scripts/start_menu.gd" id="1_7iyqe"]
+[ext_resource type="Script" uid="uid://7ihb14jp3ala" path="res://scripts/ui/start_menu.gd" id="1_7iyqe"]
 [ext_resource type="FontFile" uid="uid://cb0p8y1fs5mb2" path="res://fonts/bubba/BubbaRegular-YzYXo.ttf" id="1_cqa01"]
 [ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="2_75f50"]
-[ext_resource type="Environment" uid="uid://dh35wtmm60qnx" path="res://mats/environment.tres" id="3_ckegr"]
-[ext_resource type="Script" uid="uid://c1e7lapu5irfn" path="res://scripts/button.gd" id="4_acovw"]
+[ext_resource type="Environment" uid="uid://dh35wtmm60qnx" path="res://mats/env/environment.tres" id="3_ckegr"]
+[ext_resource type="Script" uid="uid://c1e7lapu5irfn" path="res://scripts/ui/button.gd" id="4_acovw"]
 [ext_resource type="PackedScene" uid="uid://8hmmjoiptn3q" path="res://scenes/menu&ui/optionsMenu.tscn" id="4_qbfka"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ehcle"]

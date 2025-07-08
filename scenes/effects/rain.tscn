@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq64pv6u6kow"]
+
+[sub_resource type="Gradient" id="Gradient_ftlgb"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_57qji"]
+gradient = SubResource("Gradient_ftlgb")
+width = 32
+height = 128
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pb0jo"]
+transparency = 2
+alpha_scissor_threshold = 0.802
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = SubResource("GradientTexture2D_57qji")
+disable_receive_shadows = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ipjee"]
+particle_flag_align_y = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 10)
+gravity = Vector3(0, -30, 0)
+collision_mode = 2
+
+[sub_resource type="Curve" id="Curve_ki0cu"]
+_data = [Vector2(0, 0.146768), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_6c1bn"]
+sections = 20
+curve = SubResource("Curve_ki0cu")
+
+[node name="rain" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00336123, 0, 0)
+material_override = SubResource("StandardMaterial3D_pb0jo")
+cast_shadow = 0
+amount = 100
+lifetime = 1.5
+randomness = 0.4
+collision_base_size = 0.1
+visibility_aabb = AABB(-10, -40, -10, 20, 40, 20)
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_ipjee")
+draw_pass_1 = SubResource("RibbonTrailMesh_6c1bn")

@@ -1,12 +1,12 @@
 [gd_scene load_steps=22 format=3 uid="uid://8hmmjoiptn3q"]
 
-[ext_resource type="Script" uid="uid://grggj6imnab" path="res://scripts/options_menu.gd" id="1_bgs1l"]
+[ext_resource type="Script" uid="uid://grggj6imnab" path="res://scripts/ui/options_menu.gd" id="1_bgs1l"]
 [ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="2_ke0qf"]
-[ext_resource type="Script" uid="uid://c1e7lapu5irfn" path="res://scripts/button.gd" id="3_rauql"]
-[ext_resource type="Script" uid="uid://2pn6iexvk2t3" path="res://scripts/graphicsSettings.gd" id="4_vsg3n"]
-[ext_resource type="Script" uid="uid://hdg3xmfbiurd" path="res://scripts/controlsSettings.gd" id="5_o56v0"]
+[ext_resource type="Script" uid="uid://c1e7lapu5irfn" path="res://scripts/ui/button.gd" id="3_rauql"]
+[ext_resource type="Script" uid="uid://2pn6iexvk2t3" path="res://scripts/ui/graphicsSettings.gd" id="4_vsg3n"]
+[ext_resource type="Script" uid="uid://hdg3xmfbiurd" path="res://scripts/ui/controlsSettings.gd" id="5_o56v0"]
 [ext_resource type="PackedScene" uid="uid://dj5na2y36sjs" path="res://scenes/menu&ui/InputButton(Remap).tscn" id="6_ow3x4"]
-[ext_resource type="Script" uid="uid://dssi74qn2urfy" path="res://scripts/remap_msg.gd" id="7_xdal6"]
+[ext_resource type="Script" uid="uid://dssi74qn2urfy" path="res://scripts/ui/remap_msg.gd" id="7_xdal6"]
 [ext_resource type="Texture2D" uid="uid://w04i4juq5kda" path="res://images/icons/Homebutton.png" id="8_w7q7t"]
 
 [sub_resource type="Gradient" id="Gradient_ufixn"]

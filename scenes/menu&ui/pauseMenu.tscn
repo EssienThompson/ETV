@@ -1,11 +1,11 @@
 [gd_scene load_steps=26 format=3 uid="uid://cwh0w0lnu8dpq"]
 
 [ext_resource type="Texture2D" uid="uid://ypk5f8ur83s0" path="res://images/evanDisrepect.png" id="1_gogy7"]
-[ext_resource type="Script" uid="uid://crbltdy6l4mw0" path="res://scripts/pause_menu.gd" id="1_y884d"]
+[ext_resource type="Script" uid="uid://crbltdy6l4mw0" path="res://scripts/ui/pause_menu.gd" id="1_y884d"]
 [ext_resource type="FontFile" uid="uid://bt6ux8wfyjoss" path="res://fonts/play-fair/PlayfairDisplayBold-nRv8g.ttf" id="2_q7vri"]
-[ext_resource type="Script" uid="uid://c1e7lapu5irfn" path="res://scripts/button.gd" id="4_afuyf"]
+[ext_resource type="Script" uid="uid://c1e7lapu5irfn" path="res://scripts/ui/button.gd" id="4_afuyf"]
 [ext_resource type="PackedScene" uid="uid://8hmmjoiptn3q" path="res://scenes/menu&ui/optionsMenu.tscn" id="4_imfwu"]
-[ext_resource type="Script" uid="uid://rho3otstnjvj" path="res://scripts/relicScrollBar.gd" id="5_u1v5k"]
+[ext_resource type="Script" uid="uid://rho3otstnjvj" path="res://scripts/ui/relicScrollBar.gd" id="5_u1v5k"]
 
 [sub_resource type="Animation" id="Animation_whikv"]
 length = 0.001

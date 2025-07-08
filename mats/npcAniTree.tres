@@ -1,0 +1,163 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=25 format=3 uid="uid://b8fbb15hhopx3"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0mvlk"]
+animation = &"jogStr"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gbih2"]
+animation = &"jogRight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ed7in"]
+animation = &"jogLeft"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2q3lo"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_0mvlk")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_gbih2")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_ed7in")
+blend_point_2/pos = Vector2(-1, 0)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qgqws"]
+animation = &"atk1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ofjx8"]
+animation = &"atk2"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_af1tp"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_bpaf2"]
+input_0/name = "atk1"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "atk2"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ojxsk"]
+animation = &"block"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_rg7nw"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jris3"]
+animation = &"blockHit1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wh5od"]
+animation = &"blockHit2"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_bi406"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_0k1tl"]
+input_0/name = "blockHit1"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "blockHit2"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h1m7y"]
+animation = &"hurt1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nw131"]
+animation = &"hurt2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0bmqx"]
+animation = &"hurt3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jcx2u"]
+animation = &"hurt4"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_lxxfu"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_v8odj"]
+input_0/name = "hit1"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "hit2"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "hit3"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "hit4"
+input_3/auto_advance = false
+input_3/break_loop_at_end = false
+input_3/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0d021"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_fv8bi"]
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "jog"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m5jy7"]
+animation = &"stagger"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_eg7qc"]
+input_0/name = "stagger"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "norm"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[resource]
+nodes/JogSpace2D/node = SubResource("AnimationNodeBlendSpace2D_2q3lo")
+nodes/JogSpace2D/position = Vector2(-693.333, 120)
+nodes/atk/node = SubResource("AnimationNodeAnimation_qgqws")
+nodes/atk/position = Vector2(-280, 373.333)
+nodes/atk2/node = SubResource("AnimationNodeAnimation_ofjx8")
+nodes/atk2/position = Vector2(-280, 493.333)
+nodes/atkOneShot/node = SubResource("AnimationNodeOneShot_af1tp")
+nodes/atkOneShot/position = Vector2(160, 146.667)
+nodes/atkTrans/node = SubResource("AnimationNodeTransition_bpaf2")
+nodes/atkTrans/position = Vector2(-26.6667, 400)
+nodes/block/node = SubResource("AnimationNodeAnimation_ojxsk")
+nodes/block/position = Vector2(-733.333, 306.667)
+nodes/blockBlend/node = SubResource("AnimationNodeBlend2_rg7nw")
+nodes/blockBlend/position = Vector2(-200, 160)
+nodes/blockHit/node = SubResource("AnimationNodeAnimation_jris3")
+nodes/blockHit/position = Vector2(-760, 440)
+nodes/blockHit2/node = SubResource("AnimationNodeAnimation_wh5od")
+nodes/blockHit2/position = Vector2(-760, 560)
+nodes/blockOneShot/node = SubResource("AnimationNodeOneShot_bi406")
+nodes/blockOneShot/position = Vector2(-493.333, 306.667)
+nodes/blockTrans/node = SubResource("AnimationNodeTransition_0k1tl")
+nodes/blockTrans/position = Vector2(-626.667, 466.667)
+nodes/hit1/node = SubResource("AnimationNodeAnimation_h1m7y")
+nodes/hit1/position = Vector2(-93.3333, -120)
+nodes/hit2/node = SubResource("AnimationNodeAnimation_nw131")
+nodes/hit2/position = Vector2(26.6667, -120)
+nodes/hit3/node = SubResource("AnimationNodeAnimation_0bmqx")
+nodes/hit3/position = Vector2(-93.3333, -13.3333)
+nodes/hit4/node = SubResource("AnimationNodeAnimation_jcx2u")
+nodes/hit4/position = Vector2(26.6667, -13.3333)
+nodes/hurtOneShot/node = SubResource("AnimationNodeOneShot_lxxfu")
+nodes/hurtOneShot/position = Vector2(440, 106.667)
+nodes/hurtTrans/node = SubResource("AnimationNodeTransition_v8odj")
+nodes/hurtTrans/position = Vector2(200, -120)
+nodes/idle/node = SubResource("AnimationNodeAnimation_0d021")
+nodes/idle/position = Vector2(-680, 0)
+nodes/idleJog/node = SubResource("AnimationNodeTransition_fv8bi")
+nodes/idleJog/position = Vector2(-426.667, 53.3333)
+nodes/output/position = Vector2(893.333, 146.667)
+nodes/stagger/node = SubResource("AnimationNodeAnimation_m5jy7")
+nodes/stagger/position = Vector2(440, -40)
+nodes/staggerTrans/node = SubResource("AnimationNodeTransition_eg7qc")
+nodes/staggerTrans/position = Vector2(666.667, 66.6667)
+node_connections = [&"atkOneShot", 0, &"blockBlend", &"atkOneShot", 1, &"atkTrans", &"atkTrans", 0, &"atk", &"atkTrans", 1, &"atk2", &"blockBlend", 0, &"idleJog", &"blockBlend", 1, &"blockOneShot", &"blockOneShot", 0, &"block", &"blockOneShot", 1, &"blockTrans", &"blockTrans", 0, &"blockHit", &"blockTrans", 1, &"blockHit2", &"hurtOneShot", 0, &"atkOneShot", &"hurtOneShot", 1, &"hurtTrans", &"hurtTrans", 0, &"hit1", &"hurtTrans", 1, &"hit2", &"hurtTrans", 2, &"hit3", &"hurtTrans", 3, &"hit4", &"idleJog", 0, &"idle", &"idleJog", 1, &"JogSpace2D", &"output", 0, &"staggerTrans", &"staggerTrans", 0, &"stagger", &"staggerTrans", 1, &"hurtOneShot"]

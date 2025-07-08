@@ -1,11 +1,11 @@
 [gd_scene load_steps=140 format=4 uid="uid://djgxuudg7kwp6"]
 
-[ext_resource type="Script" uid="uid://jm0df7sfpqix" path="res://scripts/man.gd" id="1_wq2yj"]
+[ext_resource type="Script" uid="uid://jm0df7sfpqix" path="res://scripts/enities/player/man.gd" id="1_wq2yj"]
 [ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="2_vdcvw"]
-[ext_resource type="PackedScene" uid="uid://bhs55wjd4wtpl" path="res://models/weapons/sword.blend" id="3_8us84"]
+[ext_resource type="PackedScene" uid="uid://bhs55wjd4wtpl" path="res://models(exports)/weapons/sword.blend" id="3_8us84"]
 [ext_resource type="Material" uid="uid://clrea6vtpxrs6" path="res://mats/shadowChara.tres" id="3_jot8q"]
-[ext_resource type="Script" uid="uid://cn480256phwoi" path="res://scripts/hitbox.gd" id="4_j82tq"]
-[ext_resource type="PackedScene" uid="uid://djc08e04gwof" path="res://scenes/player/sword.tscn" id="5_omt6f"]
+[ext_resource type="Script" uid="uid://cn480256phwoi" path="res://scripts/util/hitbox.gd" id="4_j82tq"]
+[ext_resource type="PackedScene" uid="uid://c6nrapadquobg" path="res://scenes/props/weapons/sword.tscn" id="5_omt6f"]
 [ext_resource type="PackedScene" uid="uid://db05p6cx6bvlb" path="res://scenes/effects/sparks.tscn" id="6_gt0nm"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xqt7r"]

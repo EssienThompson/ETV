@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfar85rsg73kb"]
+
+[sub_resource type="Curve" id="Curve_dcqeg"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.453211, 0, 0, Vector2(0.99999, -1), 0.0, 0.0, 0, 0, Vector2(1, -1024), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_igk0o"]
+curve = SubResource("Curve_dcqeg")
+
+[sub_resource type="Curve" id="Curve_q7v7n"]
+_data = [Vector2(0.151703, 1), 0.0, 0.452224, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_h5bsp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_15u7a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_dkh2r"]
+curve_x = SubResource("Curve_q7v7n")
+curve_y = SubResource("Curve_h5bsp")
+curve_z = SubResource("Curve_15u7a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_av7vu"]
+angle_min = -25.0
+angle_max = 25.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveXYZTexture_dkh2r")
+emission_curve = SubResource("CurveTexture_igk0o")
+
+[sub_resource type="Gradient" id="Gradient_cm0xu"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c5odg"]
+gradient = SubResource("Gradient_cm0xu")
+width = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.495726)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y45ms"]
+transparency = 2
+alpha_scissor_threshold = 0.613
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_c5odg")
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_u74hx"]
+material = SubResource("StandardMaterial3D_y45ms")
+size = Vector2(4.5, 0.03)
+orientation = 2
+
+[node name="line" type="GPUParticles3D"]
+emitting = false
+amount = 1
+lifetime = 0.25
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_av7vu")
+draw_pass_1 = SubResource("PlaneMesh_u74hx")

@@ -21,10 +21,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DrawLine3d="*res://scripts/DrawLine3D.gd"
-Events="*res://scripts/events.gd"
+DrawLine3d="*res://scripts/ui/DrawLine3D.gd"
+Events="*res://scripts/util/events.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
-saveManager="*res://scripts/save.gd"
+saveManager="*res://scripts/util/save.gd"
 
 [dialogic]
 
@@ -102,6 +102,7 @@ interactable="interact via env not player"
 naviMesh=""
 persist="obj with scripts that need to be saved"
 shadow=""
+wall="for wall interactions"
 
 [importer_defaults]
 
@@ -300,16 +301,26 @@ menu_back={
 
 [layer_names]
 
+3d_render/layer_5="partArt"
 3d_physics/layer_1="env"
 3d_physics/layer_2="hitHurt"
 3d_physics/layer_4="floor"
 3d_physics/layer_5="player"
 3d_physics/layer_6="characters"
 3d_physics/layer_7="enemy"
+avoidance/layer_1="lost"
+avoidance/layer_2="town"
+
+[limbo_ai]
+
+behavior_tree/user_task_dirs=PackedStringArray("res://scripts/tasks")
 
 [physics]
 
 common/physics_jitter_fix=2.0
+3d/physics_engine="Jolt Physics"
+jolt_physics_3d/simulation/areas_detect_static_bodies=true
+3d/default_gravity=30.0
 
 [rendering]
 

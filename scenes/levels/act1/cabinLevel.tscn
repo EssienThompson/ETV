@@ -1,14 +1,14 @@
 [gd_scene load_steps=16 format=3 uid="uid://bedtqdcf4k3ab"]
 
 [ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="1_tihx7"]
+[ext_resource type="Environment" uid="uid://bgv136v44q4m7" path="res://mats/env/indoors.tres" id="1_xfl1l"]
 [ext_resource type="Material" uid="uid://xlcs6o2eykhi" path="res://mats/shadow.tres" id="2_3qq40"]
-[ext_resource type="PackedScene" uid="uid://kamh3sd27jnx" path="res://models/levels/tree.tscn" id="3_or1ci"]
-[ext_resource type="PackedScene" uid="uid://dfaeiy3427lfp" path="res://models/levels/cabin.tscn" id="5_oi1qb"]
-[ext_resource type="PackedScene" uid="uid://dn7om6ifrd040" path="res://models/levels/rock.tscn" id="6_hswat"]
-[ext_resource type="PackedScene" uid="uid://dyavsxbdkljmj" path="res://models/levels/halfLog.tscn" id="7_b61fr"]
-[ext_resource type="PackedScene" uid="uid://cbdb4ttmxifaa" path="res://models/levels/treeStump.tscn" id="8_mkms5"]
-[ext_resource type="Environment" uid="uid://dh35wtmm60qnx" path="res://mats/environment.tres" id="9_rg01h"]
-[ext_resource type="PackedScene" uid="uid://cptw7puxol7rg" path="res://models/levels/axe.tscn" id="10_c2ae2"]
+[ext_resource type="PackedScene" uid="uid://kamh3sd27jnx" path="res://scenes/props/levelProps/tree.tscn" id="3_or1ci"]
+[ext_resource type="PackedScene" uid="uid://dfaeiy3427lfp" path="res://scenes/props/levelProps/cabin.tscn" id="5_oi1qb"]
+[ext_resource type="PackedScene" uid="uid://dn7om6ifrd040" path="res://scenes/props/levelProps/rock.tscn" id="6_hswat"]
+[ext_resource type="PackedScene" uid="uid://dyavsxbdkljmj" path="res://scenes/props/levelProps/halfLog.tscn" id="7_b61fr"]
+[ext_resource type="PackedScene" uid="uid://cbdb4ttmxifaa" path="res://scenes/props/levelProps/treeStump.tscn" id="8_mkms5"]
+[ext_resource type="PackedScene" uid="uid://cptw7puxol7rg" path="res://scenes/props/weapons/axe.tscn" id="10_c2ae2"]
 [ext_resource type="PackedScene" uid="uid://bs01qwyxnt877" path="res://scenes/player/player.tscn" id="10_hl26k"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_kkjo8"]
@@ -34,11 +34,7 @@ size = Vector3(1, 20, 100)
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.761907, 0.180264, -34.0158)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("9_rg01h")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(0.944791, 0.272117, 0.182543, -0.30632, 0.535658, 0.786918, 0.116353, -0.799389, 0.58944, -0.11829, 13.6619, 0)
-shadow_enabled = true
+environment = ExtResource("1_xfl1l")
 
 [node name="axe" parent="." instance=ExtResource("10_c2ae2")]
 transform = Transform3D(-0.176046, 0.0805766, -0.0501526, 0, -0.105685, -0.169796, -0.0949098, -0.14946, 0.0930267, 6.19977, 2.4119, 3.65865)

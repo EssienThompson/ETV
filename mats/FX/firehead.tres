@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://byad4oavx4h7u"]
+
+[ext_resource type="Shader" uid="uid://bad6fpq46eyxb" path="res://shaders/fireHead.tres" id="1_5qp07"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_5qp07")
+shader_parameter/ballColor = Color(1, 1, 1, 1)
+shader_parameter/bright = 0.0
+shader_parameter/frenelPow = -1.0

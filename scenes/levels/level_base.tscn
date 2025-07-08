@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="1_8rllf"]
 [ext_resource type="Material" uid="uid://xlcs6o2eykhi" path="res://mats/shadow.tres" id="2_h3j4o"]
-[ext_resource type="Environment" uid="uid://dh35wtmm60qnx" path="res://mats/environment.tres" id="3_2e03t"]
+[ext_resource type="Environment" uid="uid://dh35wtmm60qnx" path="res://mats/env/environment.tres" id="3_2e03t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_34mii"]
 size = Vector3(100, 0.5, 100)

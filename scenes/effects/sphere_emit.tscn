@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://mq0c6e4dx63a"]
+
+[ext_resource type="Material" uid="uid://cra4uejhu38jr" path="res://mats/FX/pixArt.tres" id="1_ygruu"]
+
+[sub_resource type="Curve" id="Curve_aii5p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7375, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lu0yd"]
+curve = SubResource("Curve_aii5p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ovy5y"]
+lifetime_randomness = 1.0
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.75
+angle_min = -15.0
+angle_max = 15.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 0.999978
+linear_accel_min = -39.68
+linear_accel_max = -2.23517e-06
+radial_accel_min = -2.23517e-06
+radial_accel_max = 0.999998
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = 10.05
+scale_curve = SubResource("CurveTexture_lu0yd")
+collision_mode = 1
+collision_friction = 0.05
+collision_bounce = 0.03
+
+[sub_resource type="BoxMesh" id="BoxMesh_s2qj4"]
+material = ExtResource("1_ygruu")
+size = Vector3(0.01, 0.2, 0.01)
+
+[node name="sphereEmit" type="GPUParticles3D"]
+layers = 16
+amount = 88
+lifetime = 0.01
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ovy5y")
+draw_passes = 2
+draw_pass_1 = SubResource("BoxMesh_s2qj4")
+draw_pass_2 = null
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
+layers = 16
+strength = 128.0
+attenuation = 2.46229
+directionality = 0.1

@@ -333,16 +333,16 @@ fadein_time = 0.1
 fadeout_time = 0.3
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_088u2"]
-animation = &"swSwing1"
+animation = &"swSwing1V1.1"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_11hi4"]
-animation = &"swSwing2"
+animation = &"swSwing2V1.1"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hirm5"]
-animation = &"swSwing3"
+animation = &"swSwing3V1.1"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dwlxe"]
-animation = &"swSwing4"
+animation = &"swSwing4V1.1"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_bbud1"]
 
@@ -375,7 +375,7 @@ input_1/reset = true
 animation = &"swWalk"
 
 [resource]
-graph_offset = Vector2(-47.3892, -385.01)
+graph_offset = Vector2(-1290.67, -518.088)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_g8vwd")
 nodes/Animation/position = Vector2(-600, -426.667)
 nodes/SwordSwingChange/node = SubResource("AnimationNodeTransition_bl2ex")
@@ -472,7 +472,7 @@ nodes/runToggle/position = Vector2(-426.667, 546.667)
 nodes/runToggleSword/node = SubResource("AnimationNodeTransition_hh633")
 nodes/runToggleSword/position = Vector2(-1146.67, -853.333)
 nodes/sprintSwing/node = SubResource("AnimationNodeAnimation_7347d")
-nodes/sprintSwing/position = Vector2(626.667, 133.333)
+nodes/sprintSwing/position = Vector2(400, 280)
 nodes/stagger/node = SubResource("AnimationNodeAnimation_vuuw7")
 nodes/stagger/position = Vector2(1960, -333.333)
 nodes/staggerTrans/node = SubResource("AnimationNodeTransition_qo8l7")
@@ -480,13 +480,13 @@ nodes/staggerTrans/position = Vector2(2146.67, -160)
 nodes/swordAtt/node = SubResource("AnimationNodeOneShot_waoty")
 nodes/swordAtt/position = Vector2(1186.67, -240)
 nodes/swordSwing1/node = SubResource("AnimationNodeAnimation_088u2")
-nodes/swordSwing1/position = Vector2(813.333, 13.3333)
+nodes/swordSwing1/position = Vector2(653.333, 53.3333)
 nodes/swordSwing2/node = SubResource("AnimationNodeAnimation_11hi4")
-nodes/swordSwing2/position = Vector2(813.333, 133.333)
+nodes/swordSwing2/position = Vector2(840, 200)
 nodes/swordSwing3/node = SubResource("AnimationNodeAnimation_hirm5")
-nodes/swordSwing3/position = Vector2(813.333, 266.667)
+nodes/swordSwing3/position = Vector2(666.667, 320)
 nodes/swordSwing4/node = SubResource("AnimationNodeAnimation_dwlxe")
-nodes/swordSwing4/position = Vector2(626.667, 13.3333)
+nodes/swordSwing4/position = Vector2(413.333, 93.3333)
 nodes/swordSwingSpd/node = SubResource("AnimationNodeTimeScale_bbud1")
 nodes/swordSwingSpd/position = Vector2(1226.67, 40)
 nodes/walk/node = SubResource("AnimationNodeAnimation_b1xaf")

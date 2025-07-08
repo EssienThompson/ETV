@@ -1,0 +1,34 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://c2qsenuwtv53i"]
+
+[ext_resource type="Shader" uid="uid://cmsbq6j104v0" path="res://shaders/per-objSobel.gdshader" id="1_d63ob"]
+[ext_resource type="Shader" uid="uid://fwm7f1ck6cem" path="res://shaders/outerOutline.gdshader" id="2_0h770"]
+[ext_resource type="Shader" uid="uid://csemomox5gbib" path="res://shaders/DissolveKitsune.gdshader" id="3_4m0we"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8jlgn"]
+render_priority = 0
+shader = ExtResource("1_d63ob")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_threshold = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_466ig"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_8jlgn")
+shader = ExtResource("2_0h770")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_thickness = 0.5
+shader_parameter/neighbour_offset = 5.0
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_466ig")
+shader = ExtResource("3_4m0we")
+shader_parameter/baseColor = Color(0, 0, 0, 1)
+shader_parameter/dissolveSlider = 0.0
+shader_parameter/dissolveNoiseScale = 2.0
+shader_parameter/edgeNoiseScale = 0.0
+shader_parameter/edgesThickness = 0.01
+shader_parameter/edgeColor = Color(1, 1, 1, 1)
+shader_parameter/edgeEmissionSlider = 1.0
+shader_parameter/enable_dissolve_animation = true
+shader_parameter/animation_speed = 1.0
+shader_parameter/animation_intensity = 0.2

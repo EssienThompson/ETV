@@ -1,8 +1,8 @@
 [gd_scene load_steps=57 format=4 uid="uid://cwtnlojrisbnh"]
 
 [ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="1_3oid5"]
-[ext_resource type="Script" uid="uid://bmmirvmahrfmh" path="res://scripts/magision.gd" id="1_hgxq4"]
-[ext_resource type="Script" uid="uid://cqpddtdl2b6ng" path="res://scripts/cutterDeath.gd" id="3_84m2y"]
+[ext_resource type="Script" uid="uid://bmmirvmahrfmh" path="res://scripts/enities/npc/magision.gd" id="1_hgxq4"]
+[ext_resource type="Script" uid="uid://cqpddtdl2b6ng" path="res://scripts/util/cutterDeath.gd" id="3_84m2y"]
 [ext_resource type="Shader" uid="uid://bd1xenb8dm4jo" path="res://shaders/world3d.gdshader" id="3_t07bi"]
 [ext_resource type="PackedScene" uid="uid://btx7omj5rrbn1" path="res://scenes/menu&ui/interactable.tscn" id="4_82ytf"]
 
@@ -3516,7 +3516,7 @@ bones/47/parent = 46
 bones/47/rest = Transform3D(0.994508, -0.0171132, -0.103253, 0.104461, 0.10136, 0.98935, -0.00646526, -0.994703, 0.102591, -2.39816e-08, 0.809651, 5.23869e-09)
 bones/47/enabled = true
 bones/47/position = Vector3(-2.39816e-08, 0.809651, 5.23869e-09)
-bones/47/rotation = Quaternion(-0.697313, -0.0420261, 0.0257775, 0.715069)
+bones/47/rotation = Quaternion(-0.757794, -0.0372866, 0.0133416, 0.651291)
 bones/47/scale = Vector3(1, 1, 1)
 bones/48/name = "hipLow.L"
 bones/48/parent = 45

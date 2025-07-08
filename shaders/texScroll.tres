@@ -49,7 +49,7 @@ parameter_name = "MaskTex"
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_front, diffuse_lambert, specular_schlick_ggx, unshaded;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx;
 
 uniform vec2 texTiling = vec2(1.000000, 1.000000);
 uniform vec2 texSpeed = vec2(0.000000, -3.000000);
@@ -114,8 +114,7 @@ void fragment() {
 
 }
 "
-modes/cull = 1
-flags/unshaded = true
+modes/cull = 2
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_cwxht")
 nodes/fragment/2/position = Vector2(-2480, 560)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_b64ms")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=77 format=4 uid="uid://dhjr8yn0usk7h"]
 
-[ext_resource type="Script" uid="uid://jm0df7sfpqix" path="res://scripts/man.gd" id="1_mn3bs"]
-[ext_resource type="PackedScene" uid="uid://bhs55wjd4wtpl" path="res://models/weapons/sword.blend" id="2_pb1g6"]
+[ext_resource type="Script" uid="uid://jm0df7sfpqix" path="res://scripts/enities/player/man.gd" id="1_mn3bs"]
+[ext_resource type="PackedScene" uid="uid://bhs55wjd4wtpl" path="res://models(exports)/weapons/sword.blend" id="2_pb1g6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fy3fo"]
 resource_name = "Material"

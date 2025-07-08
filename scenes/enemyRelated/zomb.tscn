@@ -1,10 +1,10 @@
 [gd_scene load_steps=60 format=4 uid="uid://c0gdwr424qs6s"]
 
-[ext_resource type="Script" uid="uid://dw1ahpng5dqaq" path="res://scripts/zomb.gd" id="1_12rxw"]
+[ext_resource type="Script" uid="uid://dw1ahpng5dqaq" path="res://scripts/enities/enemies/zomb.gd" id="1_12rxw"]
 [ext_resource type="PackedScene" uid="uid://d31edaotg38x7" path="res://scenes/utilities/hurtbox.tscn" id="2_j6iad"]
 [ext_resource type="PackedScene" uid="uid://bgks8x1vq1bm3" path="res://scenes/menu&ui/health_bar_3d.tscn" id="3_c4wur"]
 [ext_resource type="PackedScene" uid="uid://5w126xrqegkb" path="res://scenes/utilities/hitbox.tscn" id="3_krmwn"]
-[ext_resource type="Script" uid="uid://cqpddtdl2b6ng" path="res://scripts/cutterDeath.gd" id="4_2sqle"]
+[ext_resource type="Script" uid="uid://cqpddtdl2b6ng" path="res://scripts/util/cutterDeath.gd" id="4_2sqle"]
 [ext_resource type="Material" uid="uid://0t7wuwwhp2hy" path="res://mats/wireframe3d.tres" id="4_38l8u"]
 [ext_resource type="Material" uid="uid://clrea6vtpxrs6" path="res://mats/shadowChara.tres" id="6_5dth7"]
 [ext_resource type="PackedScene" uid="uid://db05p6cx6bvlb" path="res://scenes/effects/sparks.tscn" id="7_ecexj"]
@@ -5699,6 +5699,7 @@ input_1/reset = true
 animation = &"block"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_rg7nw"]
+filters = ["rig/Skeleton3D/eyes/eyes:eyesClose", "rig/Skeleton3D/eyes/eyes:eyesEndsDown", "rig/Skeleton3D/eyes/eyes:eyesLevel", "rig/Skeleton3D/eyes/eyes:eyesRotatDown", "rig/Skeleton3D/eyes/eyes:mouthFrown", "rig/Skeleton3D/eyes/eyes:mouthNeutral", "rig/Skeleton3D/eyes/eyes:mouthSmile", "rig/Skeleton3D/mask/mask:eyesClose", "rig/Skeleton3D/mask/mask:eyesEndsDown", "rig/Skeleton3D/mask/mask:eyesLevel", "rig/Skeleton3D/mask/mask:eyesRotatDown", "rig/Skeleton3D/mask/mask:mouthFrown", "rig/Skeleton3D/mask/mask:mouthNeutral", "rig/Skeleton3D/mask/mask:mouthSmile", "rig/Skeleton3D/mouth/mouth:eyesClose", "rig/Skeleton3D/mouth/mouth:eyesEndsDown", "rig/Skeleton3D/mouth/mouth:eyesLevel", "rig/Skeleton3D/mouth/mouth:eyesRotatDown", "rig/Skeleton3D/mouth/mouth:mouthFrown", "rig/Skeleton3D/mouth/mouth:mouthNeutral", "rig/Skeleton3D/mouth/mouth:mouthSmile", "rig/Skeleton3D:DEF-f_index.01.L", "rig/Skeleton3D:DEF-f_index.01.R", "rig/Skeleton3D:DEF-f_index.02.L", "rig/Skeleton3D:DEF-f_index.02.R", "rig/Skeleton3D:DEF-f_index.03.L", "rig/Skeleton3D:DEF-f_index.03.R", "rig/Skeleton3D:DEF-f_middle.01.L", "rig/Skeleton3D:DEF-f_middle.01.R", "rig/Skeleton3D:DEF-f_middle.02.L", "rig/Skeleton3D:DEF-f_middle.02.R", "rig/Skeleton3D:DEF-f_middle.03.L", "rig/Skeleton3D:DEF-f_middle.03.R", "rig/Skeleton3D:DEF-f_pinky.01.L", "rig/Skeleton3D:DEF-f_pinky.01.R", "rig/Skeleton3D:DEF-f_pinky.02.L", "rig/Skeleton3D:DEF-f_pinky.02.R", "rig/Skeleton3D:DEF-f_pinky.03.L", "rig/Skeleton3D:DEF-f_pinky.03.R", "rig/Skeleton3D:DEF-f_ring.01.L", "rig/Skeleton3D:DEF-f_ring.01.R", "rig/Skeleton3D:DEF-f_ring.02.L", "rig/Skeleton3D:DEF-f_ring.02.R", "rig/Skeleton3D:DEF-f_ring.03.L", "rig/Skeleton3D:DEF-f_ring.03.R", "rig/Skeleton3D:DEF-forearm.L", "rig/Skeleton3D:DEF-forearm.L.001", "rig/Skeleton3D:DEF-forearm.R", "rig/Skeleton3D:DEF-forearm.R.001", "rig/Skeleton3D:DEF-hand.L", "rig/Skeleton3D:DEF-hand.R", "rig/Skeleton3D:DEF-spine", "rig/Skeleton3D:DEF-spine.001", "rig/Skeleton3D:DEF-spine.002", "rig/Skeleton3D:DEF-spine.003", "rig/Skeleton3D:DEF-spine.004", "rig/Skeleton3D:DEF-spine.005", "rig/Skeleton3D:DEF-spine.006", "rig/Skeleton3D:DEF-thumb.01.L", "rig/Skeleton3D:DEF-thumb.01.R", "rig/Skeleton3D:DEF-thumb.02.L", "rig/Skeleton3D:DEF-thumb.02.R", "rig/Skeleton3D:DEF-thumb.03.L", "rig/Skeleton3D:DEF-upper_arm.L", "rig/Skeleton3D:DEF-upper_arm.L.001", "rig/Skeleton3D:DEF-upper_arm.R", "rig/Skeleton3D:DEF-upper_arm.R.001", "rig/Skeleton3D:MCH-ROT-head", "rig/Skeleton3D:MCH-ROT-neck", "rig/Skeleton3D:MCH-f_index.01.L", "rig/Skeleton3D:MCH-f_index.01.R", "rig/Skeleton3D:MCH-f_index.01_drv.L", "rig/Skeleton3D:MCH-f_index.02.L", "rig/Skeleton3D:MCH-f_index.03.L", "rig/Skeleton3D:MCH-f_middle.01.L", "rig/Skeleton3D:MCH-f_middle.01.R", "rig/Skeleton3D:MCH-f_middle.01_drv.L", "rig/Skeleton3D:MCH-f_middle.02.L", "rig/Skeleton3D:MCH-f_middle.03.L", "rig/Skeleton3D:MCH-f_pinky.01.L", "rig/Skeleton3D:MCH-f_pinky.01.R", "rig/Skeleton3D:MCH-f_pinky.01_drv.L", "rig/Skeleton3D:MCH-f_pinky.02.L", "rig/Skeleton3D:MCH-f_pinky.03.L", "rig/Skeleton3D:MCH-f_ring.01.L", "rig/Skeleton3D:MCH-f_ring.01.R", "rig/Skeleton3D:MCH-f_ring.01_drv.L", "rig/Skeleton3D:MCH-f_ring.01_drv.R", "rig/Skeleton3D:MCH-f_ring.02.L", "rig/Skeleton3D:MCH-f_ring.03.L", "rig/Skeleton3D:MCH-forearm_ik.L", "rig/Skeleton3D:MCH-forearm_ik.R", "rig/Skeleton3D:MCH-forearm_tweak.L", "rig/Skeleton3D:MCH-forearm_tweak.L.001", "rig/Skeleton3D:MCH-forearm_tweak.R", "rig/Skeleton3D:MCH-forearm_tweak.R.001", "rig/Skeleton3D:MCH-hand_fk.L", "rig/Skeleton3D:MCH-hand_fk.R", "rig/Skeleton3D:MCH-pivot", "rig/Skeleton3D:MCH-spine.002", "rig/Skeleton3D:MCH-spine.003", "rig/Skeleton3D:MCH-spine.005", "rig/Skeleton3D:MCH-thumb.01.L", "rig/Skeleton3D:MCH-thumb.01.R", "rig/Skeleton3D:MCH-thumb.01_drv.L", "rig/Skeleton3D:MCH-thumb.01_drv.R", "rig/Skeleton3D:MCH-thumb.02.L", "rig/Skeleton3D:MCH-thumb.03.L", "rig/Skeleton3D:MCH-upper_arm_ik_swing.L", "rig/Skeleton3D:MCH-upper_arm_ik_swing.R", "rig/Skeleton3D:MCH-upper_arm_parent_widget.L", "rig/Skeleton3D:MCH-upper_arm_parent_widget.R", "rig/Skeleton3D:MCH-upper_arm_tweak.L", "rig/Skeleton3D:MCH-upper_arm_tweak.L.001", "rig/Skeleton3D:MCH-upper_arm_tweak.R", "rig/Skeleton3D:MCH-upper_arm_tweak.R.001", "rig/Skeleton3D:ORG-f_index.01.L", "rig/Skeleton3D:ORG-f_index.01.R", "rig/Skeleton3D:ORG-f_index.02.L", "rig/Skeleton3D:ORG-f_index.02.R", "rig/Skeleton3D:ORG-f_index.03.L", "rig/Skeleton3D:ORG-f_index.03.R", "rig/Skeleton3D:ORG-f_middle.01.L", "rig/Skeleton3D:ORG-f_middle.01.R", "rig/Skeleton3D:ORG-f_middle.02.L", "rig/Skeleton3D:ORG-f_middle.02.R", "rig/Skeleton3D:ORG-f_middle.03.L", "rig/Skeleton3D:ORG-f_middle.03.R", "rig/Skeleton3D:ORG-f_pinky.01.L", "rig/Skeleton3D:ORG-f_pinky.01.R", "rig/Skeleton3D:ORG-f_pinky.02.L", "rig/Skeleton3D:ORG-f_pinky.02.R", "rig/Skeleton3D:ORG-f_pinky.03.L", "rig/Skeleton3D:ORG-f_pinky.03.R", "rig/Skeleton3D:ORG-f_ring.01.L", "rig/Skeleton3D:ORG-f_ring.01.R", "rig/Skeleton3D:ORG-f_ring.02.L", "rig/Skeleton3D:ORG-f_ring.02.R", "rig/Skeleton3D:ORG-f_ring.03.L", "rig/Skeleton3D:ORG-f_ring.03.R", "rig/Skeleton3D:ORG-forearm.L", "rig/Skeleton3D:ORG-forearm.R", "rig/Skeleton3D:ORG-hand.L", "rig/Skeleton3D:ORG-hand.R", "rig/Skeleton3D:ORG-spine.004", "rig/Skeleton3D:ORG-spine.005", "rig/Skeleton3D:ORG-spine.006", "rig/Skeleton3D:ORG-thumb.01.L", "rig/Skeleton3D:ORG-thumb.01.R", "rig/Skeleton3D:ORG-thumb.02.L", "rig/Skeleton3D:ORG-thumb.02.R", "rig/Skeleton3D:ORG-thumb.03.L", "rig/Skeleton3D:ORG-upper_arm.L", "rig/Skeleton3D:ORG-upper_arm.R", "rig/Skeleton3D:VIS_thigh_ik_pole.L", "rig/Skeleton3D:VIS_thigh_ik_pole.R", "rig/Skeleton3D:VIS_upper_arm_ik_pole.L", "rig/Skeleton3D:VIS_upper_arm_ik_pole.R", "rig/Skeleton3D:chest", "rig/Skeleton3D:f_index.01.L", "rig/Skeleton3D:f_index.01.L.001", "rig/Skeleton3D:f_index.01.R", "rig/Skeleton3D:f_index.01_master.L", "rig/Skeleton3D:f_index.02.L", "rig/Skeleton3D:f_index.02.R", "rig/Skeleton3D:f_index.03.L", "rig/Skeleton3D:f_index.03.R", "rig/Skeleton3D:f_middle.01.L", "rig/Skeleton3D:f_middle.01.L.001", "rig/Skeleton3D:f_middle.01.R", "rig/Skeleton3D:f_middle.01_master.L", "rig/Skeleton3D:f_middle.02.L", "rig/Skeleton3D:f_middle.02.R", "rig/Skeleton3D:f_middle.03.L", "rig/Skeleton3D:f_middle.03.R", "rig/Skeleton3D:f_pinky.01.L", "rig/Skeleton3D:f_pinky.01.L.001", "rig/Skeleton3D:f_pinky.01.R", "rig/Skeleton3D:f_pinky.01_master.L", "rig/Skeleton3D:f_pinky.02.L", "rig/Skeleton3D:f_pinky.02.R", "rig/Skeleton3D:f_pinky.03.L", "rig/Skeleton3D:f_pinky.03.R", "rig/Skeleton3D:f_ring.01.L", "rig/Skeleton3D:f_ring.01.L.001", "rig/Skeleton3D:f_ring.01_master.L", "rig/Skeleton3D:f_ring.01_master.R", "rig/Skeleton3D:f_ring.02.L", "rig/Skeleton3D:f_ring.02.R", "rig/Skeleton3D:f_ring.03.L", "rig/Skeleton3D:f_ring.03.R", "rig/Skeleton3D:forearm_fk.L", "rig/Skeleton3D:forearm_fk.R", "rig/Skeleton3D:hand_fk.L", "rig/Skeleton3D:hand_fk.R", "rig/Skeleton3D:head", "rig/Skeleton3D:hips", "rig/Skeleton3D:neck", "rig/Skeleton3D:spine_fk.002", "rig/Skeleton3D:spine_fk.003", "rig/Skeleton3D:thumb.01.L", "rig/Skeleton3D:thumb.01.L.001", "rig/Skeleton3D:thumb.01.R.001", "rig/Skeleton3D:thumb.01_master.L", "rig/Skeleton3D:thumb.01_master.R", "rig/Skeleton3D:thumb.02.L", "rig/Skeleton3D:thumb.03.L", "rig/Skeleton3D:torso", "rig/Skeleton3D:upper_arm_fk.L", "rig/Skeleton3D:upper_arm_fk.R", "rig/Skeleton3D:upper_arm_ik.L", "rig/Skeleton3D:upper_arm_ik.R"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jris3"]
 animation = &"blockHit1"
@@ -5731,6 +5732,7 @@ animation = &"hurt3"
 animation = &"hurt4"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_lxxfu"]
+fadein_time = 0.1
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_v8odj"]
 input_0/name = "hit1"
@@ -5766,7 +5768,7 @@ input_1/reset = true
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m5jy7"]
 animation = &"stagger"
 
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_eg7qc"]
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_khffs"]
 input_0/name = "stagger"
 input_0/auto_advance = false
 input_0/break_loop_at_end = false
@@ -5776,35 +5778,36 @@ input_1/auto_advance = false
 input_1/break_loop_at_end = false
 input_1/reset = true
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_fl18v"]
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_khffs"]
+graph_offset = Vector2(-1032.32, -9.56358)
 nodes/JogSpace2D/node = SubResource("AnimationNodeBlendSpace2D_2q3lo")
 nodes/JogSpace2D/position = Vector2(-693.333, 120)
 nodes/atk/node = SubResource("AnimationNodeAnimation_qgqws")
 nodes/atk/position = Vector2(-280, 373.333)
 nodes/atk2/node = SubResource("AnimationNodeAnimation_ofjx8")
-nodes/atk2/position = Vector2(-280, 493.333)
+nodes/atk2/position = Vector2(-306.667, 560)
 nodes/atkOneShot/node = SubResource("AnimationNodeOneShot_af1tp")
 nodes/atkOneShot/position = Vector2(160, 146.667)
 nodes/atkTrans/node = SubResource("AnimationNodeTransition_bpaf2")
 nodes/atkTrans/position = Vector2(-26.6667, 400)
 nodes/block/node = SubResource("AnimationNodeAnimation_ojxsk")
-nodes/block/position = Vector2(-733.333, 306.667)
+nodes/block/position = Vector2(-813.333, 333.333)
 nodes/blockBlend/node = SubResource("AnimationNodeBlend2_rg7nw")
 nodes/blockBlend/position = Vector2(-200, 160)
 nodes/blockHit/node = SubResource("AnimationNodeAnimation_jris3")
-nodes/blockHit/position = Vector2(-760, 440)
+nodes/blockHit/position = Vector2(-1080, 480)
 nodes/blockHit2/node = SubResource("AnimationNodeAnimation_wh5od")
-nodes/blockHit2/position = Vector2(-760, 560)
+nodes/blockHit2/position = Vector2(-920, 626.667)
 nodes/blockOneShot/node = SubResource("AnimationNodeOneShot_bi406")
 nodes/blockOneShot/position = Vector2(-493.333, 306.667)
 nodes/blockTrans/node = SubResource("AnimationNodeTransition_0k1tl")
-nodes/blockTrans/position = Vector2(-626.667, 466.667)
+nodes/blockTrans/position = Vector2(-746.667, 493.333)
 nodes/hit1/node = SubResource("AnimationNodeAnimation_h1m7y")
-nodes/hit1/position = Vector2(-93.3333, -120)
+nodes/hit1/position = Vector2(-160, -213.333)
 nodes/hit2/node = SubResource("AnimationNodeAnimation_nw131")
-nodes/hit2/position = Vector2(26.6667, -120)
+nodes/hit2/position = Vector2(40, -226.667)
 nodes/hit3/node = SubResource("AnimationNodeAnimation_0bmqx")
-nodes/hit3/position = Vector2(-93.3333, -13.3333)
+nodes/hit3/position = Vector2(-186.667, -26.6667)
 nodes/hit4/node = SubResource("AnimationNodeAnimation_jcx2u")
 nodes/hit4/position = Vector2(26.6667, -13.3333)
 nodes/hurtOneShot/node = SubResource("AnimationNodeOneShot_lxxfu")
@@ -5817,9 +5820,9 @@ nodes/idleJog/node = SubResource("AnimationNodeTransition_fv8bi")
 nodes/idleJog/position = Vector2(-426.667, 53.3333)
 nodes/output/position = Vector2(893.333, 146.667)
 nodes/stagger/node = SubResource("AnimationNodeAnimation_m5jy7")
-nodes/stagger/position = Vector2(440, -40)
-nodes/staggerTrans/node = SubResource("AnimationNodeTransition_eg7qc")
-nodes/staggerTrans/position = Vector2(666.667, 66.6667)
+nodes/stagger/position = Vector2(440, -80)
+nodes/staggerTrans/node = SubResource("AnimationNodeTransition_khffs")
+nodes/staggerTrans/position = Vector2(666.667, 53.3333)
 node_connections = [&"atkOneShot", 0, &"blockBlend", &"atkOneShot", 1, &"atkTrans", &"atkTrans", 0, &"atk", &"atkTrans", 1, &"atk2", &"blockBlend", 0, &"idleJog", &"blockBlend", 1, &"blockOneShot", &"blockOneShot", 0, &"block", &"blockOneShot", 1, &"blockTrans", &"blockTrans", 0, &"blockHit", &"blockTrans", 1, &"blockHit2", &"hurtOneShot", 0, &"atkOneShot", &"hurtOneShot", 1, &"hurtTrans", &"hurtTrans", 0, &"hit1", &"hurtTrans", 1, &"hit2", &"hurtTrans", 2, &"hit3", &"hurtTrans", 3, &"hit4", &"idleJog", 0, &"idle", &"idleJog", 1, &"JogSpace2D", &"output", 0, &"staggerTrans", &"staggerTrans", 0, &"stagger", &"staggerTrans", 1, &"hurtOneShot"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_m63ay"]
@@ -5844,8 +5847,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.24067, 0.201469)
 shape = SubResource("CapsuleShape3D_nhc8l")
 
 [node name="HealthBar3D" parent="CollisionShape3D" instance=ExtResource("3_c4wur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.67787, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.67787, -0.194735)
 
 [node name="detectArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.00104, 0)
@@ -5861,7 +5863,7 @@ path_desired_distance = 4.0
 target_desired_distance = 4.0
 avoidance_enabled = true
 height = 3.0
-radius = 3.79
+radius = 1.25
 max_speed = 7.0
 
 [node name="zomb" type="Node3D" parent="."]
@@ -5912,7 +5914,7 @@ bones/5/rest = Transform3D(-0.197333, 0.979946, -0.0276529, -0.979946, -0.197972
 bones/5/enabled = true
 bones/5/position = Vector3(0, 0.267691, 7.45058e-09)
 bones/5/rotation = Quaternion(0.0487231, -0.0249895, -0.762553, 0.644604)
-bones/5/scale = Vector3(1.00033, 1.00033, 1.00033)
+bones/5/scale = Vector3(1.00031, 1.00031, 1.00031)
 bones/6/name = "Bicep.L"
 bones/6/parent = 5
 bones/6/rest = Transform3D(0.907871, 0.41336, -0.0700244, -0.419072, 0.889889, -0.180212, -0.0121783, 0.192954, 0.981132, -4.76139e-08, 0.430074, -1.02445e-08)
@@ -6045,7 +6047,7 @@ bones/24/rest = Transform3D(-0.197333, -0.979946, 0.0276529, 0.979946, -0.197972
 bones/24/enabled = true
 bones/24/position = Vector3(0, 0.267691, 7.45058e-09)
 bones/24/rotation = Quaternion(-0.114779, -0.107136, 0.805522, 0.571386)
-bones/24/scale = Vector3(1.00033, 1.00033, 1.00033)
+bones/24/scale = Vector3(1.00031, 1.00031, 1.00031)
 bones/25/name = "Bicep.R"
 bones/25/parent = 24
 bones/25/rest = Transform3D(0.907871, -0.41336, 0.0700244, 0.419072, 0.889889, -0.180212, 0.0121783, 0.192954, 0.981132, 4.76139e-08, 0.430074, -1.02445e-08)
@@ -6167,7 +6169,7 @@ skin = SubResource("Skin_jec1b")
 skeleton = NodePath("../..")
 
 [node name="sword" type="BoneAttachment3D" parent="zomb/Armature/Skeleton3D"]
-transform = Transform3D(-0.881419, -0.448079, -0.151627, 0.472791, -0.844845, -0.251736, -0.0152984, -0.293475, 0.956192, -0.767233, 0.624061, -0.16754)
+transform = Transform3D(-0.881402, -0.44807, -0.151624, 0.472782, -0.844828, -0.251731, -0.0152981, -0.293469, 0.956173, -0.767218, 0.624069, -0.167534)
 bone_name = "forearm.R"
 bone_idx = 26
 
@@ -6182,7 +6184,7 @@ shape = SubResource("BoxShape3D_dd4tt")
 transform = Transform3D(1, -1.78814e-07, 1.71363e-07, 0, 1, 1.19209e-07, -2.23517e-08, 1.3411e-07, 1, 0.0228112, 0.516584, -0.0487626)
 
 [node name="Hand" type="BoneAttachment3D" parent="zomb/Armature/Skeleton3D"]
-transform = Transform3D(-0.956935, 0.0979777, -0.274483, -0.192852, -0.919231, 0.34422, -0.218514, 0.382204, 0.898241, 0.731611, 0.547463, 0.262741)
+transform = Transform3D(-0.956916, 0.0979758, -0.274477, -0.192848, -0.919213, 0.344213, -0.21851, 0.382196, 0.898223, 0.731597, 0.547473, 0.262738)
 bone_name = "forearm.L"
 bone_idx = 7
 
@@ -6202,31 +6204,31 @@ libraries = {
 
 [node name="AnimationTree" type="AnimationTree" parent="zomb/Armature/Skeleton3D/AnimationPlayer"]
 root_node = NodePath("../../../..")
-tree_root = SubResource("AnimationNodeBlendTree_fl18v")
+tree_root = SubResource("AnimationNodeBlendTree_khffs")
 anim_player = NodePath("..")
-parameters/JogSpace2D/blend_position = Vector2(-0.00262666, 1)
-parameters/atkOneShot/active = false
-parameters/atkOneShot/internal_active = false
+parameters/JogSpace2D/blend_position = Vector2(0.00560331, 0.974874)
+parameters/atkOneShot/active = 0.0
+parameters/atkOneShot/internal_active = -0.0361111
 parameters/atkOneShot/request = 0
 parameters/atkTrans/current_state = "atk2"
-parameters/atkTrans/transition_request = ""
-parameters/atkTrans/current_index = 1
-parameters/blockBlend/blend_amount = 0
+parameters/atkTrans/transition_request = 0.3
+parameters/atkTrans/current_index = 0.3
+parameters/blockBlend/blend_amount = 0.0
 parameters/blockOneShot/active = false
-parameters/blockOneShot/internal_active = false
+parameters/blockOneShot/internal_active = 0.0
 parameters/blockOneShot/request = 0
 parameters/blockTrans/current_state = ""
 parameters/blockTrans/transition_request = ""
 parameters/blockTrans/current_index = -1
-parameters/hurtOneShot/active = false
-parameters/hurtOneShot/internal_active = false
+parameters/hurtOneShot/active = 0.0
+parameters/hurtOneShot/internal_active = -0.0361111
 parameters/hurtOneShot/request = 0
-parameters/hurtTrans/current_state = ""
-parameters/hurtTrans/transition_request = ""
-parameters/hurtTrans/current_index = -1
+parameters/hurtTrans/current_state = "hit1"
+parameters/hurtTrans/transition_request = 1.25
+parameters/hurtTrans/current_index = 0.977667
 parameters/idleJog/current_state = "idle"
 parameters/idleJog/transition_request = ""
-parameters/idleJog/current_index = 0
+parameters/idleJog/current_index = 0.997824
 parameters/staggerTrans/current_state = "norm"
 parameters/staggerTrans/transition_request = ""
 parameters/staggerTrans/current_index = 1
@@ -6236,6 +6238,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54699, 0)
 visible = false
 mesh = SubResource("BoxMesh_m63ay")
 
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+
 [editable path="hurtbox"]
 [editable path="zomb/Armature/Skeleton3D/sword/hitbox"]
+[editable path="zomb/Armature/Skeleton3D/sword/sparks"]
 [editable path="zomb/Armature/Skeleton3D/Hand/hitbox"]

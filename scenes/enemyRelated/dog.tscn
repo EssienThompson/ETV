@@ -1,10 +1,10 @@
 [gd_scene load_steps=38 format=4 uid="uid://p24yrskk7fbf"]
 
 [ext_resource type="PackedScene" uid="uid://d31edaotg38x7" path="res://scenes/utilities/hurtbox.tscn" id="1_04f6q"]
-[ext_resource type="Script" uid="uid://bjtde1id5wv8y" path="res://scripts/dog.gd" id="1_6xnc5"]
+[ext_resource type="Script" uid="uid://bjtde1id5wv8y" path="res://scripts/enities/enemies/dog.gd" id="1_6xnc5"]
 [ext_resource type="Material" uid="uid://0t7wuwwhp2hy" path="res://mats/wireframe3d.tres" id="3_34v33"]
 [ext_resource type="PackedScene" uid="uid://5w126xrqegkb" path="res://scenes/utilities/hitbox.tscn" id="3_wuauh"]
-[ext_resource type="Script" uid="uid://cqpddtdl2b6ng" path="res://scripts/cutterDeath.gd" id="4_mc4a4"]
+[ext_resource type="Script" uid="uid://cqpddtdl2b6ng" path="res://scripts/util/cutterDeath.gd" id="4_mc4a4"]
 [ext_resource type="Material" uid="uid://clrea6vtpxrs6" path="res://mats/shadowChara.tres" id="5_iquqg"]
 [ext_resource type="PackedScene" uid="uid://bgks8x1vq1bm3" path="res://scenes/menu&ui/health_bar_3d.tscn" id="6_epq8y"]
 
@@ -967,8 +967,8 @@ path_desired_distance = 4.0
 target_desired_distance = 4.0
 avoidance_enabled = true
 height = 3.0
-radius = 3.79
-max_speed = 7.0
+radius = 1.25
+max_speed = 9.0
 
 [node name="hurtbox" parent="." node_paths=PackedStringArray("user") instance=ExtResource("1_04f6q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.606494)
@@ -989,7 +989,7 @@ bones/0/name = "spine.001"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.59062e-11, 0.260923, 7.45058e-09)
 bones/0/enabled = true
-bones/0/position = Vector3(-6.59062e-11, 0.00567147, -2.26361e-08)
+bones/0/position = Vector3(-6.59062e-11, 0.121926, -2.26361e-08)
 bones/0/rotation = Quaternion(0.692232, 0, 0, 0.721675)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Spine.002"
@@ -1032,7 +1032,7 @@ bones/6/parent = 5
 bones/6/rest = Transform3D(0.907871, 0.41336, -0.0700244, -0.419072, 0.889889, -0.180212, -0.0121783, 0.192954, 0.981132, -4.76139e-08, 0.430074, -1.02445e-08)
 bones/6/enabled = true
 bones/6/position = Vector3(-4.76139e-08, 0.430074, -1.02445e-08)
-bones/6/rotation = Quaternion(0.269202, -0.67163, -0.0759063, 0.686063)
+bones/6/rotation = Quaternion(0.338811, -0.918246, 0.0231744, 0.203699)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "forearm.L"
 bones/7/parent = 6
@@ -1046,14 +1046,14 @@ bones/8/parent = 7
 bones/8/rest = Transform3D(0.999709, 0.0239565, -0.00294056, -0.0239568, 0.970052, -0.241712, -0.00293808, 0.241712, 0.970344, 2.01166e-07, 0.603585, 5.96046e-08)
 bones/8/enabled = true
 bones/8/position = Vector3(2.01166e-07, 0.603585, 5.96046e-08)
-bones/8/rotation = Quaternion(0.121771, -6.2612e-07, -0.012069, 0.992485)
+bones/8/rotation = Quaternion(0.121771, -6.27387e-07, -0.012069, 0.992485)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "foot.L"
 bones/9/parent = 8
 bones/9/rest = Transform3D(0.98842, 0.117535, -0.0959708, -0.119538, 0.213563, -0.969589, -0.0934652, 0.969833, 0.22514, 2.16067e-07, 0.715554, -2.98023e-07)
 bones/9/enabled = true
 bones/9/position = Vector3(2.16067e-07, 0.715554, -2.98023e-07)
-bones/9/rotation = Quaternion(0.625901, -0.239785, 0.132531, 0.730196)
+bones/9/rotation = Quaternion(0.625901, -0.239784, 0.132531, 0.730196)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "shoulder.R"
 bones/10/parent = 2
@@ -1067,7 +1067,7 @@ bones/11/parent = 10
 bones/11/rest = Transform3D(0.866055, -0.488212, 0.107692, 0.498647, 0.827982, -0.256509, 0.0360637, 0.275851, 0.960524, 4.76139e-08, 0.430074, -1.02445e-08)
 bones/11/enabled = true
 bones/11/position = Vector3(4.76139e-08, 0.430074, -1.02445e-08)
-bones/11/rotation = Quaternion(0.609479, 0.522685, 0.142279, 0.578872)
+bones/11/rotation = Quaternion(0.6859, 0.670281, -0.0478117, 0.279248)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "forearm.R"
 bones/12/parent = 11
@@ -1100,7 +1100,7 @@ skin = SubResource("Skin_h6cfq")
 skeleton = NodePath("../..")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="ani_scele/Armature/Skeleton3D"]
-transform = Transform3D(0.999274, 0.0178785, 0.0336543, -0.0023718, 0.910585, -0.413315, -0.0380346, 0.412935, 0.909966, 0.00673539, 0.065999, 1.01268)
+transform = Transform3D(0.999274, 0.0178785, 0.0336543, -0.0023718, 0.910585, -0.413315, -0.0380346, 0.412935, 0.909966, 0.00673539, 0.182254, 1.01268)
 bone_name = "head.001"
 bone_idx = 4
 
@@ -1146,6 +1146,8 @@ mesh = SubResource("BoxMesh_7ds8l")
 [node name="HealthBar3D" parent="." instance=ExtResource("6_epq8y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.194107, 1.71257, 0.0103827)
 visible = false
+
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 
 [editable path="hurtbox"]
 [editable path="ani_scele/Armature/Skeleton3D/BoneAttachment3D/hitbox"]

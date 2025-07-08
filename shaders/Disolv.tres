@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=26 format=3 uid="uid://btithw10ah7v3"]
 
-[ext_resource type="Script" uid="uid://cawiorqgsw1dc" path="res://scripts/PerlinNoise3DNode.gd" id="1_kqq4q"]
+[ext_resource type="Script" uid="uid://cawiorqgsw1dc" path="res://scripts/util/PerlinNoise3DNode.gd" id="1_ej014"]
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_u4b5d"]
 
@@ -61,7 +61,7 @@ function = 31
 [sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_anqgk"]
 default_input_values = [2, 0.0]
 initialized = true
-script = ExtResource("1_kqq4q")
+script = ExtResource("1_ej014")
 
 [sub_resource type="VisualShaderNodeVaryingSetter" id="VisualShaderNodeVaryingSetter_mvy4v"]
 varying_name = "worldPos"

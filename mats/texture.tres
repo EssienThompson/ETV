@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://k3loo6i7trid"]
+
+[ext_resource type="Shader" uid="uid://c7iwr4ksw06bd" path="res://shaders/texture.tres" id="1_vkj7e"]
+[ext_resource type="Texture2D" uid="uid://bipfp6o6iw8il" path="res://images/Fx/HitStar_suffix.png" id="2_f2r5d"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vkj7e")
+shader_parameter/Texture = ExtResource("2_f2r5d")
