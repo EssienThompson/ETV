@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=4 uid="uid://bva0j7uw67stn"]
+[gd_scene load_steps=117 format=4 uid="uid://bva0j7uw67stn"]
 
 [ext_resource type="Script" uid="uid://gpuyf66vwehg" path="res://scripts/enities/enemies/militia.gd" id="1_ncb0r"]
 [ext_resource type="Material" uid="uid://dwiyefclysbx3" path="res://mats/toonSecondaryColour.tres" id="2_ncb0r"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://bpemt4fpbnumr" path="res://scripts/util/mesh.gd" id="7_s3nkv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xdaqu"]
-height = 3.50172
+height = 4.66163
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hs3bo"]
 render_priority = 0
@@ -2976,6 +2976,12 @@ _surfaces = [{
 "vertex_data": PackedByteArray("D5mKJLzjNUDpucs+AAAAAMrBckDinyg+PlWiPleHckAF0ZY9PlWivleHckAF0ZY9AAAAAMrBckDinyg+D5mKJLzjNUDpucs+D5mKJBooNkCjW7c+nNmZPopScUD0ZI88AAAAAIVucUBx/Nc9D5mKJBooNkCjW7c+AAAAAIVucUBx/Nc9nNmZvopScUD0ZI88AAAAAMrBckDinyg+nNmZPopScUD0ZI88PlWiPleHckAF0ZY9AAAAAIVucUBx/Nc9PlWivleHckAF0ZY9nNmZvopScUD0ZI88PlWiPleHckAF0ZY9D5mKJBooNkCjW7c+D5mKJLzjNUDpucs+nNmZPopScUD0ZI88PlWivleHckAF0ZY9D5mKJBooNkCjW7c+nNmZvopScUD0ZI88D5mKJLzjNUDpucs+cBDWPsY3SEByZHA+AAAAAIIFXkDV+N8+FBzhvjhzW0B6IAU+AAAAAIIFXkDV+N8+cBDWvsY3SEByZHA+IrzXPmCnWkDdBcY9AAAAAKgnXUAVa7w+AAAAAKgnXUAVa7w+IrzXPmCnWkDdBcY9cBDWPsY3SEByZHA+FBzhvjhzW0B6IAU+cBDWvsY3SEByZHA+ExzhPjhzW0B6IAU+cBDWPsY3SEByZHA+AAAAAIIFXkDV+N8+ExzhPjhzW0B6IAU+AAAAAASPR0BTpuo+cBDWvsY3SEByZHA+AAAAAIIFXkDV+N8+AAAAAASPR0BTpuo+FBzhvjhzW0B6IAU+AAAAAASPR0BTpuo+AAAAAASPR0BTpuo+P1rMPs/7R0Cchkw+AAAAAKgnXUAVa7w+AAAAADx7R0Bt5cU+IrzXPmCnWkDdBcY9IrzXvmCnWkDdBcY9P1rMvs/7R0Cchkw+AAAAAKgnXUAVa7w+IrzXvmCnWkDdBcY9AAAAADx7R0Bt5cU+AAAAADx7R0Bt5cU+P1rMPs/7R0Cchkw+AAAAADx7R0Bt5cU+P1rMvs/7R0Cchkw+AAAAAMrBckDinyg+AAAAAIVucUBx/Nc9IrzXPmCnWkDdBcY9ExzhPjhzW0B6IAU+ExzhPjhzW0B6IAU+P1rMPs/7R0Cchkw+cBDWPsY3SEByZHA+FBzhvjhzW0B6IAU+IrzXvmCnWkDdBcY9cBDWvsY3SEByZHA+IrzXvmCnWkDdBcY9P1rMvs/7R0Cchkw+P1rMPs/7R0Cchkw+P1rMvs/7R0Cchkw+TKcUcPTzftl7obuiVk5J+3uhu6I3SEvwg167ose3sw+DXruiqLG1BLJYFHAKDIAmhgjL2arzyCc+JNsfHUfLDj4k2x/GTBYFePfL2VQMNtjA29sfOLPo+sDb2x/huDPxsqUf+P///79MWh/4////v0xaH/j///+/sqUf+P///7+ypR/4////v7KlH/j///+/du3mtf///7+OuLos////v464uiz///+/du3mtf///7+IEua1////v3BHuiz///+/iBLmtf///79wR7os////v0ynFHD0837Ze6G7ogq19PyDXruiGbJ/BYNeu6L0SgoDslgUcAoMgCY+JNsfpUxPBT4k2x8HtYACwNvbH/dKfv3l7d5J////v464uiz///+/GRLeSf///79wR7os////v3uhu6LlTX/6hKxBjFmlTfmErEGMiZvX/ISsQYxNsFr1hKxBjHlrSv16U0GMpVqxBnpTQYx1ZCcDelNBjIWUtAJ6U0GMsU+kCkynFHD0837ZslgUcAoMgCa8DJspoKSnBrwMmynxm2YDvAybKR9rsgK8DJspra/LCsDb2x9Zs6/6QvObKV5bV/lC85spDWSY/ELzmylRUDP1QvObKd+UTP2GCMvZqvPIJ4YIy9mq88gnePfL2VQMNth498vZVAw22ExaH/j///+/TFof+P///7927ea1////v3bt5rX///+/5e3eSf///7/l7d5J////v+Xt3kn///+/iBLmtf///7+IEua1////vxkS3kn///+/GRLeSf///78ZEt5J////v464uiz///+/cEe6LP///78=")
 }]
 blend_shape_mode = 0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hs3bo"]
+points = PackedVector3Array(-0.000195742, 1, -0.000195742, 0.194988, -1, -0.980814, -0.000195742, -1, -1, -0.195184, -1, -0.980814, -0.382733, -1, -0.924041, -0.555599, -1, -0.831637, -0.707126, -1, -0.707126, -0.831637, -1, -0.555599, -0.924041, -1, -0.382733, -0.980814, -1, -0.195184, -1, -1, -0.000195742, -0.980814, -1, 0.194988, -0.924041, -1, 0.382537, -0.831637, -1, 0.555403, -0.707126, -1, 0.70693, -0.555599, -1, 0.831441, -0.382733, -1, 0.923845, -0.195184, -1, 0.980619, -0.000195742, -1, 1, 0.194988, -1, 0.980619, 0.382537, -1, 0.923845, 0.555403, -1, 0.831441, 0.70693, -1, 0.70693, 0.831441, -1, 0.555403, 0.923845, -1, 0.382537, 0.980619, -1, 0.194988, 1, -1, -0.000195742, 0.980619, -1, -0.195184, 0.923845, -1, -0.382733, 0.831441, -1, -0.555599, 0.70693, -1, -0.707126, 0.555403, -1, -0.831637, 0.382537, -1, -0.924041)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hs3bo"]
+radius = 15.0
 
 [sub_resource type="Animation" id="Animation_6rabe"]
 resource_name = "battleAtk1"
@@ -88190,6 +88196,7 @@ input_1/break_loop_at_end = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jf8uh"]
+graph_offset = Vector2(-1185.78, -130.593)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_p2fyo")
 nodes/Animation/position = Vector2(-360, -160)
 "nodes/Animation 10/node" = SubResource("AnimationNodeAnimation_v008t")
@@ -88271,10 +88278,10 @@ nodes/staggerTrans/node = SubResource("AnimationNodeTransition_eg7qc")
 nodes/staggerTrans/position = Vector2(1240, 53.3333)
 node_connections = [&"atkOneShot", 0, &"blockBlend", &"atkOneShot", 1, &"atkTrans", &"atkTrans", 0, &"atk", &"battlePeace", 0, &"Animation 2", &"battlePeace", 1, &"peaceTrans", &"blockBlend", 0, &"idleJog", &"blockBlend", 1, &"blockOneShot", &"blockOneShot", 0, &"parryBlend", &"blockOneShot", 1, &"blockTrans", &"blockTrans", 0, &"blockHit", &"feint", 0, &"atkOneShot", &"feint", 1, &"Animation 5", &"feintPunish", 0, &"feint", &"feintPunish", 1, &"feintPunishScale", &"feintPunishScale", 0, &"Animation 6", &"hurtOneShot", 0, &"feintPunish", &"hurtOneShot", 1, &"hurtTrans", &"hurtTrans", 0, &"hit1", &"hurtTrans", 1, &"hit2", &"hurtTrans", 2, &"hit3", &"hurtTrans", 3, &"hit4", &"hurtTrans", 4, &"Animation", &"hurtTrans", 5, &"Animation 8", &"hurtTrans", 6, &"Animation 9", &"idleJog", 0, &"battlePeace", &"idleJog", 1, &"jogScale", &"jogScale", 0, &"JogSpace2D", &"output", 0, &"staggerTrans", &"parryBlend", 0, &"block", &"parryBlend", 1, &"parryOneShot", &"parryOneShot", 0, &"Animation 4", &"parryOneShot", 1, &"parryScale", &"parryScale", 0, &"Animation 7", &"peaceTrans", 0, &"idle", &"peaceTrans", 1, &"Animation 10", &"staggerBlend", 0, &"hurtOneShot", &"staggerBlend", 1, &"Animation 3", &"staggerTrans", 0, &"stagger", &"staggerTrans", 1, &"staggerBlend"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_hs3bo"]
-radius = 60.0
-
-[node name="militia" type="CharacterBody3D"]
+[node name="militia" type="CharacterBody3D" groups=["enemy", "lockOn"]]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+collision_layer = 96
+collision_mask = 105
 script = ExtResource("1_ncb0r")
 
 [node name="hurtbox" parent="." node_paths=PackedStringArray("user") instance=ExtResource("2_nldl3")]
@@ -88282,18 +88289,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7655, 0)
 user = NodePath("..")
 
 [node name="CollisionShape3D" parent="hurtbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.586911, 0)
 shape = SubResource("CapsuleShape3D_xdaqu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7655, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.33965, 0)
 shape = SubResource("CapsuleShape3D_xdaqu")
 
 [node name="HealthBar3D" parent="CollisionShape3D" instance=ExtResource("3_ami0b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00615311, 2.09017, -0.00136995)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00615311, 2.83401, -0.00136995)
+reversed = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+height = 3.0
+radius = 1.25
+max_speed = 7.0
+avoidance_layers = 2
+avoidance_mask = 2
 
 [node name="rig" type="Node3D" parent="."]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="rig"]
 bones/0/name = "root"
@@ -91303,6 +91318,7 @@ transform = Transform3D(1, 0, -2.79397e-08, 0, 1, -7.45058e-09, 2.98023e-08, 1.1
 material_override = SubResource("ShaderMaterial_q0xqv")
 mesh = SubResource("ArrayMesh_s3nkv")
 skeleton = NodePath("")
+script = ExtResource("7_s3nkv")
 
 [node name="hitbox" parent="rig/Skeleton3D/spear" node_paths=PackedStringArray("user") instance=ExtResource("3_xdaqu")]
 user = NodePath("../../../..")
@@ -91404,6 +91420,23 @@ mesh = SubResource("ArrayMesh_0qca0")
 skin = SubResource("Skin_xelvy")
 script = ExtResource("7_s3nkv")
 
+[node name="vision" type="Area3D" parent="rig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.24454, 0.345981)
+collision_layer = 0
+collision_mask = 48
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rig/vision"]
+transform = Transform3D(15, 0, 0, 0, -6.55671e-07, 15, 0, -15, -6.55671e-07, 0, 0, 14.4231)
+shape = SubResource("ConvexPolygonShape3D_hs3bo")
+
+[node name="aggroRange" type="Area3D" parent="rig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.69056, 0)
+collision_layer = 0
+collision_mask = 48
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rig/aggroRange"]
+shape = SubResource("SphereShape3D_hs3bo")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_xexlm")
@@ -91460,23 +91493,11 @@ parameters/staggerTrans/current_state = "norm"
 parameters/staggerTrans/transition_request = ""
 parameters/staggerTrans/current_index = 1
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 4.0
-target_desired_distance = 4.0
-avoidance_enabled = true
-height = 3.0
-radius = 1.25
-max_speed = 7.0
-avoidance_layers = 2
-avoidance_mask = 2
-
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.54003)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_hs3bo")
+[node name="lockOn" type="Node3D" parent="." groups=["lockOn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55146, 0.139469)
 
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="body_entered" from="rig/vision" to="." method="_on_vision_body_entered"]
 
 [editable path="hurtbox"]
 [editable path="rig/Skeleton3D/spear/hitbox"]

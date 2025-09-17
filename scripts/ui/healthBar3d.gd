@@ -7,12 +7,14 @@ extends Node3D
 var timer := 0.0
 var oldHealth := 0.0
 var timerStart := false
+var lerpTime := 0.0
+var lerpDuration := 2
+@export var reversed := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	stagger_particles.emitting = false
 	var fillBar = damage_bar.get_theme_stylebox("fill")
-	print(fillBar.bg_color)
 	
 
 
@@ -21,13 +23,16 @@ func _process(delta: float) -> void:
 	if timerStart:
 		timer += delta
 		
-	if timer >= 2.5:
-		print(damage_bar.value)
-		damage_bar.value = lerpf(damage_bar.value, health_bar.value, 0.02)
-		if abs(damage_bar.value - health_bar.value) <= 0.3:
+	if timer >= 2:#time before dmg bar starts moving
+		lerpTime += delta
+		var progress = lerpTime/lerpDuration
+		damage_bar.value = lerpf(damage_bar.value, health_bar.value, progress)
+		if abs(damage_bar.value - health_bar.value) <= 0.2:
 			damage_bar.value = health_bar.value
 			timerStart = false
 			timer = 0.0
+			lerpTime = 0.0
+
 
 func setStaggerMax(max):
 	stagger_bar.max_value = max
@@ -36,18 +41,17 @@ func setHealthMax(max):
 	health_bar.max_value = max
 	damage_bar.max_value = max
 	
-func healthCurr(dmg):
+func healthCurr(newHp):
 	oldHealth = health_bar.value
-	health_bar.value = dmg
-	if oldHealth > dmg:
+	health_bar.value = newHp
+	if oldHealth > newHp:
 		timerStart = true
 		timer = 0.0
-		print("wok")
 	else:
-		damage_bar.value = dmg
+		damage_bar.value = newHp
 		
-func staggerCurr(dmg):
-	stagger_bar.value = dmg
+func staggerCurr(val):
+	stagger_bar.value = val
 		
 func fullBar():
 	stagger_bar.value = stagger_bar.max_value
@@ -74,8 +78,15 @@ func staggerColor():
 	#rgb = clampf(rgb, 0.3, 1)
 	var fillBar = stagger_bar.get_theme_stylebox("fill")
 	fillBar.bg_color = Color(rgb, rgb, rgb)
-	if stagger_bar.value == stagger_bar.max_value:
-		stagger_particles.emitting = true
+	if reversed:
+		if stagger_bar.value == 0.0:
+			stagger_particles.emitting = true
+		else:
+			stagger_particles.emitting = false
 	else:
-		stagger_particles.emitting = false
+		if stagger_bar.value == stagger_bar.max_value:
+			stagger_particles.emitting = true
+		else:
+			stagger_particles.emitting = false
+		
 	

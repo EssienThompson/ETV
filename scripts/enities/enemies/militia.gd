@@ -17,6 +17,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var tunic_plate: MeshInstance3D = $rig/Skeleton3D/tunicPlate
 @onready var health_bar_3d: Node3D = $CollisionShape3D/HealthBar3D
 @onready var rig: Node3D = $rig
+@onready var lockOn: Node3D = $lockOn
+@onready var aggro_range: Area3D = $rig/aggroRange
+@onready var vision: Area3D = $rig/vision
 
 const SPEED = 7 #7
 const ACCELERATION = 45
@@ -173,11 +176,11 @@ func _physics_process(delta):
 			
 	move_and_slide()
 	var rot
-	if rotati == true:
-		rot = facing_angle - global_rotation.y
-		rig.rotation.y = lerp_angle(rig.rotation.y, rot, 0.08)
-	else:
-		rig.rotation.y = lerp_angle(rig.rotation.y, facing_angle, 0.08)
+	#if rotati == true:
+	rot = facing_angle - global_rotation.y
+	rig.rotation.y = lerp_angle(rig.rotation.y, rot, 0.08)
+	#else:
+		#rig.rotation.y = lerp_angle(rig.rotation.y, facing_angle, 0.08)
 	
 func _process(delta):
 	if barVisible == true:
@@ -206,11 +209,6 @@ func _process(delta):
 	
 	if posture <= 0:
 		currState = State.STAGGERED
-		#health_bar_3d.staggerColorRed()
-	#elif posture >= maxPosture/2:
-		#health_bar_3d.staggerColorOrange()
-	#else:
-		#health_bar_3d.staggerColorYellow()
 		
 	if hp <= 0:
 		currState = State.DEATH 
@@ -223,43 +221,50 @@ func _process(delta):
 		elif "dying" in tar:
 			if dying == true:
 				unfeintable.erase(tar)
+				
+	if target != null and target.is_inside_tree():
+		checkValidTarget()
 		
 	match currState: 
 		State.IDLE:
 			idle()
 			
 		State.CHASE:
+			#print("chase")
+			#if target == null or !target.is_inside_tree():
+				#print("invalid tar")
 			var jogVector := Vector2(0, 1)
 			jog(jogVector)
 			jogScale(1.0)
-			if target == null:
-				return
+			if target != null && target.is_inside_tree():
+				targetPos = target.global_transform.origin
+				nav.target_position = targetPos
+				#print(target)
+				#print(alert)
+			elif alert:
+				nav.target_position = alertPos
 			else:
-				if target:
-					targetPos = target.global_transform.origin
-					nav.target_position = targetPos
-				if alert:
-					nav.target_position = alertPos
-				direction = (nav.get_next_path_position() - global_transform.origin).normalized()
-				var distToTar = global_transform.origin.distance_to(nav.target_position)
-				if alert && distToTar <= 0.25:
-					currState = State.SEARCHING
-				if distToTar <= 3.5:
-					rando = randi_range(1, 2)
-					if rando == 2 && blockRepeat == false:
-						rando = randi_range(1, 3)
-						if rando == 1:
-							currState = State.PARRY
-							
-						currState = State.BLOCK
-						isBlocking = true
+				return # go to guard state from no target and no alert
+			direction = (nav.get_next_path_position() - global_transform.origin).normalized()
+			var distToTar = global_transform.origin.distance_to(nav.target_position)
+			if alert && distToTar <= 0.25:
+				currState = State.SEARCHING
+			if distToTar <= 3.5 && !alert:
+				rando = randi_range(1, 2)
+				if rando == 2 && blockRepeat == false:
+					rando = randi_range(1, 3)
+					if rando == 1:
+						currState = State.PARRY
+						
+					currState = State.BLOCK
+					isBlocking = true
+				else:
+					rando = randi_range(1, 3)
+					if rando == 1:
+						currState = State.FEINT
 					else:
-						rando = randi_range(1, 3)
-						if rando == 1:
-							currState = State.FEINT
-						else:
-							currState = State.ATTACK
-						rando = 0
+						currState = State.ATTACK
+					rando = 0
 						
 			#facing_angle = Vector2(direction.z, direction.x).angle() ##IS IN VELO COMPUTED
 			
@@ -309,7 +314,18 @@ func _process(delta):
 			blockEndAni = false
 			targetPos = target.global_transform.origin
 			
+			angle = wrapf(angle, 0, PI * 2)  # Keep the angle within the range [0, 2π]
+			var x = hoverRadius * cos(angle)
+			var z = hoverRadius * sin(angle)
+			var new_position = targetPos + Vector3(x, 0, z)
+			nav.target_position = new_position
+			direction = (nav.get_next_path_position() - global_transform.origin).normalized()
+			
 			if groupTactic and !groupCancel:
+				var jogVector = (Vector2(direction.x, direction.z)).normalized()
+				jog(jogVector)
+				jogScale(0.6)
+				print("jogging")
 				if leftFlank == rightFlank:
 					var rand = randi_range(1, 2)
 					if rand == 1:
@@ -336,18 +352,11 @@ func _process(delta):
 				if right:
 					angle -= SPEED/1.5 * delta/hoverRadius  
 				elif left:
-					angle += SPEED/1.5 * delta/hoverRadius  
+					angle += SPEED/1.5 * delta/hoverRadius 
 					
-				angle = wrapf(angle, 0, PI * 2)  # Keep the angle within the range [0, 2π]
-				var x = hoverRadius * cos(angle)
-				var z = hoverRadius * sin(angle)
-				var new_position = targetPos + Vector3(x, 0, z)
-				nav.target_position = new_position
-				direction = (nav.get_next_path_position() - global_transform.origin).normalized()
-				var jogVector = (Vector2(direction.x, direction.z)).normalized()
-				jog(jogVector)
-				jogScale(0.6)
-				
+			else:
+				battleIdle() 
+					
 			
 			if blockRepeat == true:
 				currState = State.CHASE
@@ -489,6 +498,7 @@ func _process(delta):
 				currState = State.CHASE
 				
 		State.SEARCHING:
+			#print("searching")
 			var jogVector := Vector2(0, 1)
 			jog(jogVector)
 			jogScale(1.0)
@@ -498,6 +508,7 @@ func _process(delta):
 			if timer >= 12.0:
 				timer = 0
 				currState = State.GUARD
+				alert = false
 			if searchTimer >= 3.0 and searchMoving == false:
 				getSearchPosition()
 				nav.target_position = searchPos
@@ -597,6 +608,7 @@ func isHit(hitInfo):
 		
 		if entity != null and entity.is_inside_tree():
 			target = entity
+			#print("target set via hit")
 			Events.militiaSuspects.append(entity)
 			Events.militiaAlert.emit(global_position)
 		
@@ -679,7 +691,7 @@ func parried():
 	currState = State.DEFLECTED
 	
 func runToAlert(alertPosition):
-	if target == null or target.is_inside_tree():
+	if (target == null or !target.is_inside_tree()):
 		var distToAlert := global_transform.origin.distance_to(alertPosition)
 		if distToAlert < 60.0: #60m to hear alerts
 			# for circle
@@ -694,7 +706,7 @@ func runToAlert(alertPosition):
 			var offsetX = randf_range(-width/2, width/2)
 			var offsetZ = randf_range(-depth/2, depth/2)
 			
-			var randomPos = alertPosition + Vector3(offsetX, alertPosition, offsetZ)
+			var randomPos = alertPosition + Vector3(offsetX, alertPosition.y, offsetZ)
 			nav.target_position = randomPos
 			await get_tree().process_frame
 			var validPoint = nav.get_next_path_position()
@@ -702,6 +714,7 @@ func runToAlert(alertPosition):
 				currState = State.CHASE
 				alertPos = randomPos 
 				alert = true
+				print("alert via signal")
 			else:
 				runToAlert(alertPosition) # recur to try get a valid point
 			
@@ -841,7 +854,69 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	velocity.x = safe_velocity.x
 	velocity.z = safe_velocity.z
 	
+	
 	if currState == State.CHASE:
 		facing_angle = Vector2(safe_velocity.z, safe_velocity.x).angle()
 	
 	
+func checkLos(targetPos, origin) -> Object:
+	var space_state = get_world_3d().direct_space_state
+	var enemyDir = (targetPos - origin).normalized()
+	var distToEnemy = origin.distance_to(targetPos)
+	var end = origin + enemyDir * distToEnemy
+	var colliMask: int =  (1 << 0) | (1 << 4) | (1 << 5)
+	var query = PhysicsRayQueryParameters3D.create(origin, end, colliMask)
+	var rid_array = []
+	rid_array.append(get_rid())
+	query.exclude = rid_array
+	var result = space_state.intersect_ray(query)
+	#DrawLine3d.DrawLine(origin, end, Color(0, 1, 0), 2)
+	var coll = result.get("collider")
+	return coll
+
+func _on_vision_body_entered(body: Node3D) -> void:
+	if (target == null or !target.is_inside_tree()): #body in Events.militiaSuspects (removed for testing) TODO
+		var coll = checkLos(body.global_position, vision.global_position)
+		if coll == body:
+			#rotati = true
+			target = body
+			#print("target vis vision")
+			alert = false
+			currState = State.CHASE
+		
+func targetOutOfLos():
+	alert = true
+	print("alert via los")
+	alertPos = target.global_position
+	target = null
+	currState = State.CHASE
+	
+func checkValidTarget():
+	var tarPos
+	if "lockOn" in target:
+		tarPos = target.lockOn.global_position
+	else:
+		tarPos = target.global_position
+	var losObj = checkLos(tarPos, vision.global_position)
+	#var distToTar = global_transform.origin.distance_to(target.global_position)
+	var overlapBodies = vision.get_overlapping_bodies()
+	var overlap = false
+	for body in overlapBodies:
+		if body == target:
+			overlap = true
+			
+	var aggroBodies = aggro_range.get_overlapping_bodies()
+	var aggro = false
+	for body in aggroBodies:
+		if body == target:
+			aggro = true
+			
+	if (!aggro && !overlap) or losObj != target:
+		#print("tar lost")
+		if !aggro:
+			print("aggro lsot")
+		if !overlap:
+			print("out of sight")
+		if losObj != target:
+			print("no los")
+		targetOutOfLos()

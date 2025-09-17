@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://shbact1orxrb"]
+[gd_scene load_steps=29 format=3 uid="uid://shbact1orxrb"]
 
 [ext_resource type="Script" uid="uid://dkiwqvall4f1g" path="res://scripts/level/restLevel.gd" id="1_3pdoo"]
 [ext_resource type="Material" uid="uid://b3bcnspskkc4k" path="res://mats/shadowObj.tres" id="3_c1ej4"]
 [ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="3_cal31"]
+[ext_resource type="Material" path="res://mats/brick.tres" id="3_fqldq"]
 [ext_resource type="Material" uid="uid://xlcs6o2eykhi" path="res://mats/shadow.tres" id="4_5xe0b"]
 [ext_resource type="PackedScene" uid="uid://cwtnlojrisbnh" path="res://scenes/npcRelated/magision.tscn" id="4_kaygy"]
 [ext_resource type="PackedScene" uid="uid://r7rq8dwv02br" path="res://scenes/props/levelProps/campfire.tscn" id="5_ffrpi"]
@@ -12,7 +13,7 @@
 [ext_resource type="Shader" uid="uid://dhpd31x2i7lgb" path="res://shaders/silohoutte.gdshader" id="6_jmx14"]
 [ext_resource type="PackedScene" uid="uid://c70owo4ydyf0t" path="res://scenes/relics/greyl.tscn" id="8_0jat1"]
 [ext_resource type="PackedScene" uid="uid://bs01qwyxnt877" path="res://scenes/player/player.tscn" id="12_a5rnb"]
-[ext_resource type="PackedScene" uid="uid://c0gdwr424qs6s" path="res://scenes/enemyRelated/zomb.tscn" id="12_eaa0b"]
+[ext_resource type="PackedScene" uid="uid://bva0j7uw67stn" path="res://scenes/enemyRelated/militia.tscn" id="13_a5rnb"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cg2nv"]
 vertices = PackedVector3Array(-5.43396, 0.49146, -27, -3.43396, 0.49146, -27, -3.43396, 0.49146, -248, -6.43396, 0.49146, -26.5, -7.18396, 0.49146, -25.25, -247.934, 0.49146, -248, -247.934, 0.49146, -24, -7.18396, 0.49146, -23.75, 3.31604, 0.49146, -27, 3.31604, 0.49146, -248, 5.31604, 0.49146, -27, 6.31604, 0.49146, -26.5, 7.06604, 0.49146, -25.25, 248.066, 0.49146, -23.5, 248.066, 0.49146, -248, 7.06604, 0.49146, -23.5, -247.934, 0.49146, -22.75, -7.18396, 0.49146, -23, 3.56604, 0.49146, -19.75, 3.56604, 0.49146, 21, 5.31604, 0.49146, 21, 5.31604, 0.49146, -19.75, 7.06604, 0.49146, -21.5, 6.56604, 0.49146, -20.5, 6.56604, 0.49146, 21.75, 7.06604, 0.49146, 22.75, 7.06604, 0.49146, 24.75, 248.066, 0.49146, 24.75, -6.43396, 0.49146, 21.5, -3.68396, 0.49146, 21, -3.68396, 0.49146, -19.75, -6.43396, 0.49146, -20.25, -247.934, 0.49146, 24, -7.18396, 0.49146, 24.25, -7.18396, 0.49146, 22.75, -7.18396, 0.49146, -21.5, -247.934, 0.49146, 25.25, -7.18396, 0.49146, 25, 5.31604, 0.49146, 28.25, 3.81604, 0.49146, 28.25, 4.06604, 0.49146, 248, 6.56604, 0.49146, 27.5, 248.066, 0.49146, 248, -4.18396, 0.49146, 248, -3.93396, 0.49146, 28.25, -5.43396, 0.49146, 28.25, -6.68396, 0.49146, 27.5, -247.934, 0.49146, 248)
@@ -22,7 +23,7 @@ agent_radius = 2.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_3l8vy"]
 resource_local_to_scene = true
-material = ExtResource("3_cal31")
+material = ExtResource("3_fqldq")
 size = Vector3(10, 10, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pocw5"]
@@ -125,6 +126,7 @@ shape = SubResource("BoxShape3D_pocw5")
 [node name="shad" type="MeshInstance3D" parent="NavigationRegion3D/wall"]
 transform = Transform3D(1.001, 0, 0, 0, 1.001, 0, 0, 0, 1.001, 0, 0, 0)
 material_override = ExtResource("3_c1ej4")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_3l8vy")
 skeleton = NodePath("../wall")
 
@@ -253,7 +255,7 @@ bones/41/rotation = Quaternion(-0.0611397, -0.000265005, 0.0542508, 0.996654)
 bones/42/rotation = Quaternion(0.0226438, -0.00582746, -0.0455393, 0.998689)
 bones/45/rotation = Quaternion(0.998269, 0.0537575, -0.0233411, -0.00498318)
 bones/46/rotation = Quaternion(0.0027181, 0.098277, 7.50166e-05, 0.995155)
-bones/47/rotation = Quaternion(-0.682147, -0.0431024, 0.0286999, 0.729379)
+bones/47/rotation = Quaternion(-0.720851, -0.0402715, 0.021095, 0.691597)
 bones/49/rotation = Quaternion(-0.0604578, -0.0185011, -0.0824633, 0.994587)
 bones/50/rotation = Quaternion(-0.69812, 0.0220067, -0.033143, 0.714875)
 bones/51/rotation = Quaternion(0.996862, 0.00836535, 0.075809, -0.0211757)
@@ -305,8 +307,8 @@ libraries = {
 }
 speed_scale = 1.831
 
-[node name="zomb" parent="." instance=ExtResource("12_eaa0b")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 11.3076, 5.24224, -3.67895)
+[node name="militia" parent="." instance=ExtResource("13_a5rnb")]
+transform = Transform3D(-0.75, 0, 6.55671e-08, 0, 0.75, 0, -6.55671e-08, 0, -0.75, 12.2738, -0.00854015, 0.150088)
 
 [editable path="magision"]
 [editable path="campfire"]
