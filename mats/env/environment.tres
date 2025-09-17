@@ -12,8 +12,8 @@ cellular_return_type = 3
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nwqmb"]
 width = 1024
 height = 1024
-seamless = true
 noise = SubResource("FastNoiseLite_c5kcy")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_125nf"]
 shader = ExtResource("1_4ocns")

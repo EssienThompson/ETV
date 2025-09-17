@@ -14,17 +14,14 @@
 [sub_resource type="Resource" id="Resource_8uqlb"]
 script = ExtResource("2_eia5m")
 scene = ExtResource("2_uh8eb")
-overrides = {}
 
 [sub_resource type="Resource" id="Resource_5b3ay"]
 script = ExtResource("2_eia5m")
 scene = ExtResource("3_p84y7")
-overrides = {}
 
 [sub_resource type="Resource" id="Resource_ae1yd"]
 script = ExtResource("2_eia5m")
 scene = ExtResource("4_qlxsc")
-overrides = {}
 
 [sub_resource type="Resource" id="Resource_nq2v3"]
 script = ExtResource("2_eia5m")
@@ -41,22 +38,18 @@ overrides = {
 [sub_resource type="Resource" id="Resource_t3hxt"]
 script = ExtResource("2_eia5m")
 scene = ExtResource("6_6vr7f")
-overrides = {}
 
 [sub_resource type="Resource" id="Resource_bvalx"]
 script = ExtResource("2_eia5m")
 scene = ExtResource("7_wh3aj")
-overrides = {}
 
 [sub_resource type="Resource" id="Resource_38a3a"]
 script = ExtResource("2_eia5m")
 scene = ExtResource("8_tm48g")
-overrides = {}
 
 [sub_resource type="Resource" id="Resource_1rn7q"]
 script = ExtResource("2_eia5m")
 scene = ExtResource("9_ipkn4")
-overrides = {}
 
 [resource]
 script = ExtResource("3_w2dhu")

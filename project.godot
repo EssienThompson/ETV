@@ -16,7 +16,7 @@ warnings/check_invalid_track_paths=false
 
 config/name="lifeblood"
 run/main_scene="res://scenes/game.tscn"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -319,8 +319,8 @@ behavior_tree/user_task_dirs=PackedStringArray("res://scripts/tasks")
 
 common/physics_jitter_fix=2.0
 3d/physics_engine="Jolt Physics"
-jolt_physics_3d/simulation/areas_detect_static_bodies=true
 3d/default_gravity=30.0
+jolt_physics_3d/simulation/areas_detect_static_bodies=true
 
 [rendering]
 

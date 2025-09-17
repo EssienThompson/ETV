@@ -745,8 +745,10 @@ func attackSetup():
 		man.fallSwordSwing()
 		
 		
-	damage = damage + ((damageBoost/100)*damage)
-	postureDamage = postureDamage + ((postureDmgBoost/100)*postureDamage)
+	@warning_ignore("narrowing_conversion")
+	damage = damage + ((damageBoost/100.0)*damage)
+	@warning_ignore("narrowing_conversion")
+	postureDamage = postureDamage + ((postureDmgBoost/100.0)*postureDamage)
 
 				
 func dodgeSetup():
@@ -917,13 +919,13 @@ func mapIsOff() -> void:
 	mapOpen = false
 	
 func calcPostureReduc(postureRecieved:float) -> float:
-	var reduc = (postureReduc/100) 
+	var reduc = (postureReduc/100.0) 
 	reduc = minf(reduc, 0.4) #cant go over 40%
 	postureRecieved = postureRecieved - (reduc * postureRecieved)
 	return postureRecieved
 	
 func calcDamageReduc(damageRecieved:float) -> float:
-	var reduc = (damageReduc/100) 
+	var reduc = (damageReduc/100.0) 
 	reduc = minf(reduc, 0.4) #cant go over 40%
 	damageRecieved = damageRecieved - (reduc * damageRecieved)
 	return damageRecieved
