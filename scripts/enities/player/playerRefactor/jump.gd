@@ -19,6 +19,8 @@ func checkRelevance(input : InputPackage) -> String:
 	
 func update(input : InputPackage, delta : float):
 	player.velocity.y -= gravity * delta
+	man.fallSword()
 	
 func onEnterState():
 	player.velocity.y += JUMP_VELOCITY
+	man.jumpSword()

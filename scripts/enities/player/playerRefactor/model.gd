@@ -2,10 +2,12 @@ extends Node
 class_name playerModel
 
 var currMove : Move
+@onready var man = $"../man"
 @onready var player = $".."
+@onready var camera = $"../camRoot"
 @onready var moves = {
 	"idle" : $idle,
-	"run" : $run,
+	"jog" : $jog,
 	"jump" : $jump
 }
 
@@ -13,6 +15,8 @@ func _ready() -> void:
 	currMove = moves["idle"]
 	for move in moves.values():
 		move.player = player
+		move.man = man
+		move.camera = camera
 
 func update(input : InputPackage, delta : float):
 	var relevance = currMove.checkRelevance(input)
@@ -21,6 +25,7 @@ func update(input : InputPackage, delta : float):
 	currMove.update(input, delta)
 
 func switchTo(state : String):
+	#print(current_move.move_name + " -> " + state)
 	currMove.onExitState()
 	currMove = moves[state]
 	currMove.onEnterState()

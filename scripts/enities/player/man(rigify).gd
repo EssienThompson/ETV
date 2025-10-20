@@ -1,10 +1,10 @@
 extends Node3D
-
+class_name playerMan
 
 @onready var animation_tree = $rig/Skeleton3D/AnimationPlayer/AnimationTree
 @onready var player: CharacterBody3D = $".."
 @onready var cam_root = $"../camRoot"
-@onready var dodgeVec = player.input_dir
+#@onready var dodgeVec = player.input_dir
 @onready var swordObj = $rig/Skeleton3D/BoneAttachment3D/swordCont
 @onready var sparks: GPUParticles3D = $sparkHol/sparks
 @onready var hit_star: GPUParticles3D = $sparkHol/hitStar
@@ -32,8 +32,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta): # add dodge animations to tree
-	if player.is_on_floor():
-		animation_tree.set("parameters/fallAtk/blend_amount", 0.0)
+	#if player.is_on_floor():
+		#animation_tree.set("parameters/fallAtk/blend_amount", 0.0)
+	pass
 	
 	
 func fallSword():
@@ -70,14 +71,14 @@ func jogstr():
 	animation_tree.set("parameters/runToggle/transition_request", "jog")
 	animation_tree.set("parameters/walkJog/transition_request", "jog")
 	
-func jogSword():
+func jogSword(direction):
 	#animation_tree.set("parameters/blockBlends/blend_amount", 0)
-	dodgeVec = player.input_dir
-	var dodgeDir = Vector2(dodgeVec.x, -dodgeVec.y) #need to interpolate
+	#dodgeVec = player.input_dir
+	var jogDir = Vector2(direction.x, -direction.y) #need to interpolate
 	var unlocked = Vector2(0, 1)
 	var curBlend = animation_tree.get("parameters/jogSword/blend_position")
 	if cam_root.lockOn == true:
-		animation_tree.set("parameters/jogSword/blend_position", lerp(curBlend, dodgeDir, 0.20))
+		animation_tree.set("parameters/jogSword/blend_position", lerp(curBlend, jogDir, 0.20))
 	else:
 		animation_tree.set("parameters/jogSword/blend_position", unlocked)
 	animation_tree.set("parameters/fallMoveSword/transition_request", "move")
@@ -96,9 +97,9 @@ func runSword():
 	animation_tree.set("parameters/idleMoveSword/transition_request", "move")
 	animation_tree.set("parameters/runToggleSword/transition_request", "run")
 	
-func dodge():
-	dodgeVec = player.input_dir
-	var dodgeDir = Vector2(dodgeVec.x, -dodgeVec.y)
+func dodge(direction):
+	#dodgeVec = player.input_dir
+	var dodgeDir = Vector2(direction.x, -direction.y)
 	var unlocked = Vector2(0, 1)
 	if cam_root.lockOn == true:
 		animation_tree.set("parameters/dodgeBlend/blend_position", dodgeDir)
@@ -106,11 +107,11 @@ func dodge():
 		animation_tree.set("parameters/dodgeBlend/blend_position", unlocked)
 	animation_tree.set("parameters/dodge/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
-func dodgeSword():
+func dodgeSword(direction):
 	#animation_tree.set("parameters/blockBlends/blend_amount", 0)
 	animation_tree.set("parameters/fallMoveSword/transition_request", "move")
-	dodgeVec = player.input_dir
-	var dodgeDir = Vector2(dodgeVec.x, -dodgeVec.y)
+	#dodgeVec = player.input_dir
+	var dodgeDir = Vector2(direction.x, -direction.y)
 	var unlocked = Vector2(0, 1)
 	var backStep = Vector2(0, -1)
 	if cam_root.lockOn == true:
@@ -159,7 +160,6 @@ func SwordSprintSwing():
 func fallSwordSwing():
 	animation_tree.set("parameters/fallMoveSword/transition_request", "fall")
 	animation_tree.set("parameters/fallAtk/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	animation_tree
 	
 func swordBlockStart():
 	blendVal = lerpf(blendVal, 1, 0.2)

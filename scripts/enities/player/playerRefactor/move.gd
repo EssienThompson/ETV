@@ -2,10 +2,12 @@ extends Node
 class_name Move
 
 var player : CharacterBody3D
+var man : playerMan
+var camera : playerCamera
 
 static var movesPriority : Dictionary = {
 	"idle" : 1,
-	"run" : 2,
+	"jog" : 2,
 	"jump" : 10
 }
 

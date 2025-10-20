@@ -375,7 +375,7 @@ input_1/reset = true
 animation = &"swWalk"
 
 [resource]
-graph_offset = Vector2(-1290.67, -518.088)
+graph_offset = Vector2(-756.647, -421.31628)
 nodes/output/position = Vector2(2613.33, 53.3333)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_g8vwd")
 nodes/Animation/position = Vector2(-600, -426.667)

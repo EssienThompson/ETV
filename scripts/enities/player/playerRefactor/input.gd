@@ -8,7 +8,7 @@ func gather_input() -> InputPackage:
 	
 	new_input.input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	if new_input.input_direction != Vector2.ZERO:
-		new_input.actions.append("run")
+		new_input.actions.append("jog")
 		if Input.is_action_pressed("sprint"):		# sprint is hidden here to avoid standing in place and sprinting
 			new_input.actions.append("sprint")
 	
@@ -25,7 +25,7 @@ func gather_input() -> InputPackage:
 		if new_input.actions.has("sprint"):
 			new_input.actions.append("jump_sprint")
 		else:
-			new_input.actions.append("jump_run")
+			new_input.actions.append("jump")
 	
 	if Input.is_action_just_pressed("attack"):
 		new_input.combat_actions.append("light_attack_pressed")
