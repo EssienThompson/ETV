@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=73 format=3 uid="uid://boav6jdk7b20v"]
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://boav6jdk7b20v"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g8vwd"]
 animation = &"swjumpLand"

@@ -5,6 +5,7 @@ var currMove : Move
 @onready var man = $"../man"
 @onready var player = $".."
 @onready var camera = $"../camRoot"
+@onready var arrow: MeshInstance3D = $"../man/Arrow"
 @onready var moves = {
 	"idle" : $idle,
 	"jog" : $jog,
@@ -17,6 +18,7 @@ func _ready() -> void:
 		move.player = player
 		move.man = man
 		move.camera = camera
+		move.arrow = arrow
 
 func update(input : InputPackage, delta : float):
 	var relevance = currMove.checkRelevance(input)

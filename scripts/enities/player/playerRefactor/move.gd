@@ -4,6 +4,7 @@ class_name Move
 var player : CharacterBody3D
 var man : playerMan
 var camera : playerCamera
+var arrow : MeshInstance3D
 
 static var movesPriority : Dictionary = {
 	"idle" : 1,

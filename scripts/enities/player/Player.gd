@@ -522,7 +522,7 @@ func _process(delta: float) -> void:
 			man.walkSword()
 			#print("walk")
 		elif input_dir.length() > 0.5 && is_on_floor() && !jogInterupt and !performDodge and !isJumping && !floorStuck or hitBlocked:
-			man.jogSword()
+			man.jogSword(direction)
 			#print("jog")
 	
 	sprintLogic(delta)

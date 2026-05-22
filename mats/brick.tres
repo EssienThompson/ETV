@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://bprxi0aqjg0g"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bprxi0aqjg0g"]
 
 [ext_resource type="Texture2D" uid="uid://77w35uk2p8ab" path="res://images/brick_suffix.png" id="1_5mfsf"]
 [ext_resource type="Shader" uid="uid://cmsbq6j104v0" path="res://shaders/per-objSobel.gdshader" id="2_8wt0n"]

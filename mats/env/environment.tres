@@ -1,4 +1,4 @@
-[gd_resource type="Environment" load_steps=6 format=3 uid="uid://dh35wtmm60qnx"]
+[gd_resource type="Environment" format=3 uid="uid://dh35wtmm60qnx"]
 
 [ext_resource type="Shader" uid="uid://c2mu20usuvpg6" path="res://shaders/sky.gdshader" id="1_4ocns"]
 
@@ -61,7 +61,7 @@ shader_parameter/cloud_fuzziness = 0.261
 
 [sub_resource type="Sky" id="Sky_awhw6"]
 sky_material = SubResource("ShaderMaterial_125nf")
-radiance_size = 5
+radiance_size = 0
 
 [resource]
 background_mode = 2
@@ -72,7 +72,6 @@ ssao_horizon = 0.0
 glow_enabled = true
 glow_normalized = true
 glow_intensity = 0.2
-glow_blend_mode = 1
 glow_hdr_threshold = 3.0
 glow_map_strength = 1.0
 adjustment_enabled = true

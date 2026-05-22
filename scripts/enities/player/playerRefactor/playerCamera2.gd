@@ -92,16 +92,6 @@ func _input(event):
 		twist += -event.relative.x * twistSen
 		pitch += event.relative.y * pitchSen
 		
-	#if (event is InputEventJoypadMotion) && lockOn == false and !player.mapOpen:
-		#match event.axis:
-			#2:
-				#if abs(event.axis_value) > DEADZONE:
-					#twist += -event.axis_value * 2
-			#
-			#3:
-				#if abs(event.axis_value) > DEADZONE:
-					#pitch += event.axis_value * 2
-		
 	if event is InputEventMouseMotion && lockOn:
 		var sensi := 5.0
 		if event.relative.x > sensi:
@@ -144,33 +134,10 @@ func _process(delta):
 	else:
 		spring_arm_3d.rotation_degrees = Vector3.ZERO
 		
-	
 	pitch = clamp(pitch, pMin, pMax)
 	highest_dot_product = -1.0
 	rightDot = 1.0
 	leftDot = -1.0
-	
-	#los = player.los
-	#lockList = player.lockOnChoice
-	#forward_vector = -camera_3d.global_transform.basis.z.normalized()
-	#if Input.is_action_just_pressed("lock_on") and los and !lockList.is_empty() && target != null:
-		#lockOn = !lockOn
-		##targetVal = 0
-		#
-	#if !los or lockList.is_empty():
-		#lockOn = false
-	#if target != null:
-		#var chk = 0
-		#for enemy in lockList:
-			#if target == enemy or keepLock:
-				#chk = 1
-		#if chk == 0:
-			#lockOn = false
-			#target = null
-		#keepLock = false
-		
-	#if player.floored:
-		#lockOn = false
 		
 	if leftTar:
 		if "dying" in leftTar && leftTar.dying:
@@ -179,51 +146,6 @@ func _process(delta):
 	if rightTar:
 		if "dying" in rightTar && rightTar.dying:
 			rightTar = null
-		
-	
-	#if los:
-		#for enemy in lockList:
-			#if enemy == null:
-				#return
-			#var to_enemy = (enemy.global_transform.origin - camera_3d.global_transform.origin).normalized()
-			#var dotProduct = forward_vector.dot(to_enemy)
-			#var crossProd = forward_vector.cross(Vector3.UP)
-			#var sideDot = crossProd.dot(to_enemy)
-			#var toTar := Vector3.ZERO
-			#var tarDot := 0.0
-			#if target:
-				#toTar = (target.global_transform.origin - camera_3d.global_transform.origin).normalized() #will break if load level and enemy not gone
-				#tarDot = crossProd.dot(toTar)
-				#
-			#if dotProduct > highest_dot_product && !lockOn:
-				#highest_dot_product = dotProduct
-				#target = enemy
-				#
-			#if sideDot < tarDot && sideDot > leftDot && enemy != target: #remove ()
-					#leftDot = sideDot
-					#if enemy in lockList:
-						#leftTar = enemy
-				#
-			#if sideDot > tarDot && sideDot < rightDot && enemy != target:
-					#rightDot = sideDot
-					#if enemy in lockList:
-						#rightTar = enemy
-						#
-			##print(rightTar," right")
-			##print(leftTar, " left")
-			##print(sideDot," ",enemy.name)
-		#if lockleft && lockOn && lockDelay == false && leftTar != null:
-			#target = leftTar
-			#lockDelay = true
-					#
-			#
-		#if lockRight && lockOn && lockDelay == false && rightTar != null:
-			#target = rightTar
-			#lockDelay = true
-			#
-					#
-		#lockleft = false
-		#lockRight = false
 		
 	if lockDelay:
 		timer += delta

@@ -11,11 +11,6 @@ func checkRelevance(input : InputPackage) -> String:
 		return input.actions[0]
 	return "okay"
 	
-	#if player.is_on_floor():
-		#if input.input_direction != Vector2.ZERO:
-			#return "run"
-		#return "idle"
-	#return "okay"
 	
 func update(input : InputPackage, delta : float):
 	player.velocity.y -= gravity * delta

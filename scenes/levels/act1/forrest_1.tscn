@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2j022wwlprk5"]
+[gd_scene format=3 uid="uid://d2j022wwlprk5"]
 
 [ext_resource type="Script" uid="uid://dmd50bccngi8e" path="res://scripts/level/act1LevelMan.gd" id="1_ba7f2"]
 [ext_resource type="Material" uid="uid://qjy736ia770r" path="res://mats/manMatt.tres" id="1_rfvsn"]
 [ext_resource type="Material" uid="uid://xlcs6o2eykhi" path="res://mats/shadow.tres" id="2_n2ku4"]
 [ext_resource type="PackedScene" uid="uid://kamh3sd27jnx" path="res://scenes/props/levelProps/tree.tscn" id="4_y40hw"]
+[ext_resource type="PackedScene" uid="uid://g1audxp2s65q" path="res://scenes/player/playerStateTree.tscn" id="6_blo2q"]
 [ext_resource type="Environment" uid="uid://dh35wtmm60qnx" path="res://mats/env/environment.tres" id="6_wrf80"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_l8i46"]
@@ -25,168 +26,171 @@ size = Vector2(100, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_73a8t"]
 size = Vector3(1, 20, 100)
 
-[node name="Forrest1" type="Node3D" groups=["persist"]]
+[node name="Forrest1" type="Node3D" unique_id=89358290 groups=["persist"]]
 script = ExtResource("1_ba7f2")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=306874609]
 navigation_mesh = SubResource("NavigationMesh_l8i46")
 
-[node name="tree" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree" parent="NavigationRegion3D" unique_id=2082021208 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.2299, 0, -40.0587)
 
-[node name="tree2" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree2" parent="NavigationRegion3D" unique_id=1173736111 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6114, 0, 33.2082)
 
-[node name="tree3" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree3" parent="NavigationRegion3D" unique_id=1058925406 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49281, 0, 42.4698)
 
-[node name="tree4" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree4" parent="NavigationRegion3D" unique_id=339634082 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.19546, 0, -33.8232)
 
-[node name="tree5" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree5" parent="NavigationRegion3D" unique_id=1519352162 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7407, 0, 39.4437)
 
-[node name="tree6" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree6" parent="NavigationRegion3D" unique_id=2009120947 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.1943, 0, 32.1996)
 
-[node name="tree7" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree7" parent="NavigationRegion3D" unique_id=1307440927 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3246, 0, 25.4139)
 
-[node name="tree8" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree8" parent="NavigationRegion3D" unique_id=1806771046 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8672, 0, 19.0867)
 
-[node name="tree9" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree9" parent="NavigationRegion3D" unique_id=1927106505 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.065, 0, 43.0199)
 
-[node name="tree10" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree10" parent="NavigationRegion3D" unique_id=211332989 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1789, 0, 20.3482)
 
-[node name="tree11" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree11" parent="NavigationRegion3D" unique_id=1455276726 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.03811, 0, -10.7375)
 
-[node name="tree12" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree12" parent="NavigationRegion3D" unique_id=1810629141 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2117, 0, -2.48463)
 
-[node name="tree13" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree13" parent="NavigationRegion3D" unique_id=1264505132 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4483, 0, 6.41009)
 
-[node name="tree14" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree14" parent="NavigationRegion3D" unique_id=56035059 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0641, 0, 26.4003)
 
-[node name="tree15" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree15" parent="NavigationRegion3D" unique_id=1034572467 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49849, 0, 23.7411)
 
-[node name="tree16" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree16" parent="NavigationRegion3D" unique_id=559529193 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.3246, 0, -0.467273)
 
-[node name="tree17" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree17" parent="NavigationRegion3D" unique_id=1483124889 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45023, 0, -17.7065)
 
-[node name="tree18" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree18" parent="NavigationRegion3D" unique_id=691384278 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.1672, 0, -20.2741)
 
-[node name="tree19" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree19" parent="NavigationRegion3D" unique_id=1087706097 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.317, 0, -40.356)
 
-[node name="tree20" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree20" parent="NavigationRegion3D" unique_id=1129382926 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.234, 0, -22.1081)
 
-[node name="tree21" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree21" parent="NavigationRegion3D" unique_id=2087176022 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.8797, 0, -27.9767)
 
-[node name="tree22" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree22" parent="NavigationRegion3D" unique_id=184548915 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.62494, 0, 5.85992)
 
-[node name="tree23" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree23" parent="NavigationRegion3D" unique_id=395491464 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.7676, 0, -15.0473)
 
-[node name="tree24" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree24" parent="NavigationRegion3D" unique_id=2052917480 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4714, 0, -4.2269)
 
-[node name="tree25" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree25" parent="NavigationRegion3D" unique_id=348851847 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5166, 0, -43.382)
 
-[node name="tree26" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree26" parent="NavigationRegion3D" unique_id=255094895 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2793, 0, -27.7933)
 
-[node name="tree27" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree27" parent="NavigationRegion3D" unique_id=2147023076 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.7985, 0, 5.76821)
 
-[node name="tree28" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree28" parent="NavigationRegion3D" unique_id=993895048 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.8333, 0, -32.8367)
 
-[node name="tree29" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree29" parent="NavigationRegion3D" unique_id=1912703089 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7627, 0, -5.41897)
 
-[node name="tree31" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree31" parent="NavigationRegion3D" unique_id=1285972969 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.3216, 0, -23.4835)
 
-[node name="tree32" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree32" parent="NavigationRegion3D" unique_id=308597938 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6219, 0, 12.3705)
 
-[node name="tree33" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree33" parent="NavigationRegion3D" unique_id=238565744 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.8544, 0, 12.7373)
 
-[node name="tree34" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree34" parent="NavigationRegion3D" unique_id=2047175682 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.8593, 0, 18.8811)
 
-[node name="tree35" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree35" parent="NavigationRegion3D" unique_id=386457741 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.591, 0, 41.5305)
 
-[node name="tree36" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree36" parent="NavigationRegion3D" unique_id=1151473442 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4917, 0, -5.32727)
 
-[node name="tree37" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree37" parent="NavigationRegion3D" unique_id=1235288771 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.9163, 0, 33.2777)
 
-[node name="tree38" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree38" parent="NavigationRegion3D" unique_id=365521634 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.8458, 0, 38.046)
 
-[node name="tree30" parent="NavigationRegion3D" instance=ExtResource("4_y40hw")]
+[node name="tree30" parent="NavigationRegion3D" unique_id=1865042299 instance=ExtResource("4_y40hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.19251, 0, -38.4303)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1574933142]
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D" unique_id=1538423794]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 shape = SubResource("BoxShape3D_ef4ya")
 
-[node name="floor" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+[node name="floor" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" unique_id=1465251646]
 mesh = SubResource("PlaneMesh_qmnsk")
 
-[node name="shadow" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+[node name="shadow" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" unique_id=1413697337]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
 material_override = ExtResource("2_n2ku4")
 mesh = SubResource("PlaneMesh_jhh1v")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/StaticBody3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/StaticBody3D" unique_id=24684451]
 
-[node name="invWall1" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D"]
+[node name="invWall1" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D" unique_id=1566407871]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 10, 0)
 shape = SubResource("BoxShape3D_73a8t")
 
-[node name="invWall2" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D"]
+[node name="invWall2" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D" unique_id=1873623576]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 10, 0)
 shape = SubResource("BoxShape3D_73a8t")
 
-[node name="invWall3" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D"]
+[node name="invWall3" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D" unique_id=1601594081]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, 50)
 shape = SubResource("BoxShape3D_73a8t")
 
-[node name="invWall4" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D"]
+[node name="invWall4" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D" unique_id=1347536349]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, -50)
 shape = SubResource("BoxShape3D_73a8t")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2132312911]
 environment = ExtResource("6_wrf80")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1315400693]
 transform = Transform3D(0.944791, 0.272117, 0.182543, -0.30632, 0.535658, 0.786918, 0.116353, -0.799389, 0.58944, -0.11829, 13.6619, 0)
 shadow_enabled = true
 
-[node name="playerSpawn" type="Marker3D" parent="."]
+[node name="playerSpawn" type="Marker3D" parent="." unique_id=459778187]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -34.9092)
 
-[node name="enemySpawn" type="Marker3D" parent="." groups=["enemySpawn"]]
+[node name="enemySpawn" type="Marker3D" parent="." unique_id=1966476759 groups=["enemySpawn"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.729, 3, 24.049)
+
+[node name="Player" parent="." unique_id=1162614363 instance=ExtResource("6_blo2q")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 1.4111557, 0, 11.7388115)

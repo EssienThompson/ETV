@@ -1,5 +1,62 @@
 [gd_resource type="ArrayMesh" format=4 uid="uid://o00baerw3ee1"]
 
+[ext_resource type="Shader" uid="uid://bl1k87o56oc7f" path="res://shaders/fireStatic.tres" id="1_c22rs"]
+
+[sub_resource type="Gradient" id="Gradient_a1rov"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4vsq4"]
+gradient = SubResource("Gradient_a1rov")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_k1vvy"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wywly"]
+gradient = SubResource("Gradient_k1vvy")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dypys"]
+frequency = 0.007
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pkamh"]
+noise = SubResource("FastNoiseLite_dypys")
+
+[sub_resource type="Gradient" id="Gradient_e8jwy"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nr60j"]
+gradient = SubResource("Gradient_e8jwy")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_7c2yk"]
+offsets = PackedFloat32Array(0, 0.01048951)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i51gx"]
+gradient = SubResource("Gradient_7c2yk")
+
+[sub_resource type="Gradient" id="Gradient_e2qwf"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t2uxw"]
+gradient = SubResource("Gradient_e2qwf")
+fill_from = Vector2(0, 0.5448431)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ndu60"]
+render_priority = 0
+shader = ExtResource("1_c22rs")
+shader_parameter/DisplaceSpeed = Vector2(0, 1)
+shader_parameter/displaceScale = Vector2(1, 1)
+shader_parameter/displacmentTexture = SubResource("GradientTexture2D_t2uxw")
+shader_parameter/displaceIntensity = 0.06
+shader_parameter/speed = Vector2(0, 1)
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/TextureBase = SubResource("NoiseTexture2D_pkamh")
+shader_parameter/TextureAdd = SubResource("GradientTexture2D_wywly")
+shader_parameter/TextureSub = SubResource("GradientTexture2D_nr60j")
+shader_parameter/colorPallete = SubResource("GradientTexture1D_i51gx")
+shader_parameter/DisapearTexture = SubResource("GradientTexture2D_4vsq4")
+shader_parameter/FloatParameter = 1.0
+
 [resource]
 _surfaces = [{
 "aabb": AABB(-1.19233, -1, -1.19233, 2.38465, 2.49308, 2.38465),
@@ -7,6 +64,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 1440,
 "index_data": PackedByteArray("AAABAAIAAgABAAMABAAFAAYABgAFAAcACAAJAAoACgAJAAsADAANAA4ADgANAA8AEAARABIAEgARABMAFAAVABYAFwAYABkAGQAYABoAGwAcAB0AHQAcAB4AHwAgACEAIQAgACIAIwAkACUAJQAkACYAJwAoACkAKQAoACoAKwAsAC0ALQAsAC4ALwAwADEAMQAwADIAMwA0ADUANQA0ADYANwA4ADkAOQA4ADoAOwA8AD0APgA/AEAAQAA/AEEAQgBDAEQARABDAEUARgBHAEgASABHAEkASgBLAEwATQBOAE8ATwBOAFAAUQBSAFMAUwBSAFQAVQBWAFcAVwBWAFgAWQBaAFsAWwBaAFwAXQBeAF8AXwBeAGAAYQBiAGMAYwBiAGQAZQBmAGcAZwBmAGgAaQBqAGsAawBqAGwAbQBuAG8AbwBuAHAAcQByAHMAcwByAHQAdQB2AHcAeAB5AHoAegB5AHsAfAB9AH4AfgB9AH8AgACBAIIAggCBAIMAhACFAIYAhwCIAIkAiQCIAIoAiwCMAI0AjQCMAI4AjwCQAJEAkQCQAJIAkwCUAJUAlQCUAJYAlwCYAJkAmQCYAJoAmwCcAJ0AnQCcAJ4AnwCgAKEAoQCgAKIAowCkAKUApQCkAKYApwCoAKkAqQCoAKoAqwCsAK0ArQCsAK4ArwCwALEAsgCzALQAtACzALUAtgC3ALgAuAC3ALkAugC7ALwAvAC7AL0AvgC/AMAAwQDCAMMAwwDCAMQAxQDGAMcAxwDGAMgAyQDKAMsAywDKAMwAzQDOAM8AzwDOANAA0QDSANMA0wDSANQA1QDWANcA1wDWANgA2QDaANsA2wDaANwA3QDeAN8A3wDeAOAA4QDiAOMA4wDiAOQA5QDmAOcA5wDmAOgA6QDqAOsA6wDqAOwA7QDuAO8A8ADxAPIA8gDxAPMA9AD1APYA9gD1APcA+AD5APoA+gD5APsA/AD9AP4A/wAAAQEBAQEAAQIBAwEEAQUBBQEEAQYBBwEIAQkBCQEIAQoBCwEMAQ0BDQEMAQ4BDwEQAREBEQEQARIBEwEUARUBFQEUARYBFwEYARkBGQEYARoBGwEcAR0BHQEcAR4BHwEgASEBIQEgASIBIwEkASUBJQEkASYBJwEoASkBKgErASwBLAErAS0BLgEvATABMAEvATEBMgEzATQBNAEzATUBNgE3ATgBOQE6ATsBOwE6ATwBPQE+AT8BPwE+AUABQQFCAUMBQwFCAUQBRQFGAUcBRwFGAUgBSQFKAUsBSwFKAUwBTQFOAU8BTwFOAVABUQFSAVMBUwFSAVQBVQFWAVcBVwFWAVgBWQFaAVsBWwFaAVwBXQFeAV8BXwFeAWABYQFiAWMBYwFiAWQBZQFmAWcBaAFpAWoBagFpAWsBbAFtAW4BbgFtAW8BcAFxAXIBcgFxAXMBdAF1AXYBdwF4AXkBeQF4AXoBewF8AX0BfQF8AX4BfwGAAYEBgQGAAYIBgwGEAYUBhQGEAYYBhwGIAYkBiQGIAYoBiwGMAY0BjQGMAY4BjwGQAZEBkQGQAZIBkwGUAZUBlQGUAZYBlwGYAZkBmQGYAZoBmwGcAZ0BnQGcAZ4BnwGgAaEBogGjAaQBpAGjAaUBpgGnAagBqAGnAakBqgGrAawBrAGrAa0BrgGvAbABsAGvAbEBsgGzAbQBtAGzAbUBtgG3AbgBuAG3AbkBugG7AbwBvAG7Ab0BvgG/AcABwAG/AcEBwgHDAcQBxAHDAcUBxgHHAcgByAHHAckBygHLAcwBzQHOAc8BzwHOAdAB0QHSAdMB0wHSAdQB1QHWAdcB1wHWAdgB2QHaAdsB3AHdAd4B3gHdAd8B4AHhAeIB4gHhAeMB5AHlAeYB5gHlAecB6AHpAeoB6gHpAesB7AHtAe4B7gHtAe8B8AHxAfIB8gHxAfMB9AH1AfYB9gH1AfcB+AH5AfoB+gH5AfsB/AH9Af4B/gH9Af8BAAIBAgICAgIBAgMCBAIFAgYCBgIFAgcCCAIJAgoCCwIMAg0CDQIMAg4CDwIQAhECEQIQAhICEwIUAhUCFQIUAhYCFwIYAhkCGgIbAhwCHAIbAh0CHgIfAiACIAIfAiECIgIjAiQCJAIjAiUCJgInAigCKAInAikCKgIrAiwCLAIrAi0CLgIvAjACMAIvAjECMgIzAjQCNAIzAjUCNgI3AjgCOAI3AjkCOgI7AjwCPAI7Aj0CPgI/AkACQAI/AkECQgJDAkQCRQJGAkcCRwJGAkgCSQJKAksCSwJKAkwCTQJOAk8CTwJOAlACUQJSAlMCVAJVAlYCVgJVAlcCWAJZAloCWgJZAlsCXAJdAl4CXgJdAl8CYAJhAmICYgJhAmMCZAJlAmYCZgJlAmcCaAJpAmoCagJpAmsCbAJtAm4CbgJtAm8CcAJxAnICcgJxAnMCdAJ1AnYCdgJ1AncCeAJ5AnoCegJ5AnsCfAJ9An4CfgJ9An8CgAKBAoICgwKEAoUChQKEAoYChwKIAokCiQKIAooCiwKMAo0CjQKMAo4CjwKQApECkgKTApQClAKTApUClgKXApgCmAKXApkCmgKbApwCnAKbAp0CngKfAqACoAKfAqECogKjAqQCpAKjAqUCpgKnAqgCqAKnAqkCqgKrAqwCrAKrAq0CrgKvArACsAKvArECsgKzArQCtAKzArUCtgK3ArgCuAK3ArkCugK7ArwCvQK+Ar8CvwK+AsACwQLCAsMCwwLCAsQCxQLGAscCxwLGAsgCyQLKAssCzALNAs4CzgLNAs8C0ALRAtIC0gLRAtMC1ALVAtYC1gLVAtcC2ALZAtoC2gLZAtsC3ALdAt4C3gLdAt8C4ALhAuIC4gLhAuMC5ALlAuYC5gLlAucC6ALpAuoC6gLpAusC7ALtAu4C7gLtAu8C8ALxAvIC8gLxAvMC9AL1AvYC9wL4AvkC+QL4AvoC+wL8Av0C/QL8Av4C/wIAAwEDAQMAAwIDAwMEAwUDBQMEAwYDBwMIAwkDCQMIAwoDCwMMAw0DDQMMAw4DDwMQAxEDEQMQAxIDEwMUAxUDFQMUAxYDFwMYAxkDGQMYAxoDGwMcAx0DHQMcAx4DHwMgAyEDIQMgAyIDIwMkAyUDJgMnAygDKAMnAykDKgMrAywDLAMrAy0DLgMvAzADMAMvAzEDMgMzAzQDNQM2AzcDNwM2AzgDOQM6AzsDOwM6AzwDPQM+Az8DPwM+A0ADQQNCA0MDQwNCA0QDRQNGA0cDRwNGA0gDSQNKA0sDSwNKA0wDTQNOA08DTwNOA1ADUQNSA1MDUwNSA1QDVQNWA1cDVwNWA1gDWQNaA1sDWwNaA1wDXQNeA18DYANhA2IDYgNhA2MDZANlA2YDZgNlA2cDaANpA2oDagNpA2sDbANtA24DbwNwA3EDcQNwA3IDcwN0A3UDdQN0A3YDdwN4A3kDeQN4A3oDewN8A30DfQN8A34DfwOAA4EDgQOAA4IDgwOEA4UDhQOEA4YDhwOIA4kDiQOIA4oDiwOMA40DjQOMA44DjwOQA5EDkQOQA5IDkwOUA5UDlQOUA5YDlwOYA5kDmQOYA5oDmwOcA50DngOfA6ADoAOfA6EDogOjA6QDpAOjA6UDpgOnA6gDqAOnA6kDqgOrA6wDrQOuA68DrwOuA7ADsQOyA7MDswOyA7QDtQO2A7cDtwO2A7gDuQO6A7sDuwO6A7wDvQO+A78DvwO+A8ADwQPCA8MDwwPCA8QDxQPGA8cDxwPGA8gDyQPKA8sDywPKA8wDzQPOA88DzwPOA9AD0QPSA9MD0wPSA9QD1QPWA9cD2APZA9oD2gPZA9sD3APdA94D3gPdA98D"),
+"material": SubResource("ShaderMaterial_ndu60"),
 "name": "Sphere",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),

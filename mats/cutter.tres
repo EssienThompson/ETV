@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bt7gh87cfn6h4"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bt7gh87cfn6h4"]
 
 [ext_resource type="Shader" uid="uid://b6v0f0q7epn26" path="res://shaders/cutter.gdshader" id="1_ox46l"]
 

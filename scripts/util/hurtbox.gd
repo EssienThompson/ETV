@@ -17,31 +17,6 @@ func _physics_process(delta: float) -> void:
 		if box.active == false:
 			hitboxesHit.erase(box)
 
-
-#func _on_area_entered(hitB: Area3D):
-	#if hitB == null:
-		#return
-	#elif hitB.user == user:
-		#return
-	#elif hitboxesHit.has(hitB) == false && hitB is hitbox:
-		#if hitB.active:
-			#var hitboxInfo = []
-			#hitboxInfo.append(hitB.team)
-			#hitboxInfo.append(hitB.damage)
-			#hitboxInfo.append(hitB.postureDamage)
-			#hitboxInfo.append(hitB.hurtType)
-			#hitboxInfo.append(hitB.userOrigin)
-			#hitboxInfo.append(hitB.user)
-			#if user != null:
-				#if user.name == "Player":
-					#if user.floorStuck == false:
-						#user.isHit(hitboxInfo)
-						##hitB.activeOff()
-						#hitboxesHit.append(hitB)
-				#else:
-					#user.isHit(hitboxInfo)
-					#hitboxesHit.append(hitB)
-					##hitB.activeOff()
 			
 func check_overlap():
 	var overlap = get_overlapping_areas()
